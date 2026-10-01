@@ -1,0 +1,26 @@
+{
+  "name": "tech-vortex-backend",
+  "version": "1.0.0",
+  "description": "Tech Vortex AI Driven Career Intelligence & Employment Management Platform - Node.js Backend API",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "nodemon server.js"
+  },
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^4.19.2"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.0"
+  },
+  "keywords": [
+    "career-intelligence",
+    "ai-matching",
+    "hackathon",
+    "tech-vortex",
+    "employment-management"
+  ],
+  "author": "Tech Vortex Team",
+  "license": "MIT"
+}

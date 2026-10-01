@@ -1,0 +1,155 @@
+{
+  "users": [
+    {
+      "id": "vortex-user-001",
+      "name": "Sambit Kumar",
+      "email": "sambit.vortex@example.com",
+      "phone": "+91 98765 43210",
+      "address": "Bhubaneswar, Odisha, India",
+      "college": "National Institute of Technology",
+      "degree": "B.Tech in Computer Science & Engineering",
+      "gradYear": "2026",
+      "cgpa": "8.85",
+      "skills": ["Python", "React", "JavaScript", "Node.js", "Machine Learning", "Git", "SQL", "Problem Solving"],
+      "interests": ["AI & Machine Learning", "Full Stack Development", "Cloud Computing"],
+      "workMode": "Hybrid",
+      "salaryTarget": "₹12 - 25 LPA",
+      "github": "https://github.com/techvortex-sambit",
+      "linkedin": "https://linkedin.com/in/sambit-techvortex",
+      "bio": "Passionate software engineer and AI enthusiast eager to build scalable web applications and intelligent systems.",
+      "createdAt": "2026-09-30T10:00:00.000Z"
+    }
+  ],
+  "careersDatabase": [
+    {
+      "id": "ai-ml-engineer",
+      "title": "AI/ML Solutions Engineer",
+      "matchScore": 96,
+      "growthRate": "+38% YoY",
+      "fresherSalary": "₹9.5 - 16 LPA",
+      "experiencedSalary": "₹24 - 45 LPA",
+      "description": "Designs and deploys generative AI models, agentic workflows, and predictive machine learning pipelines integrated with modern full-stack platforms.",
+      "requiredSkills": ["Python", "PyTorch / TensorFlow", "LangChain / LlamaIndex", "Vector DBs (Chroma/Pinecone)", "REST APIs", "Docker", "MLOps basics"],
+      "demandTier": "Ultra High",
+      "roadmap": [
+        {"phase": "Month 1-2", "focus": "Advanced Python, Linear Algebra, PyTorch & Deep Learning Foundations"},
+        {"phase": "Month 3-4", "focus": "LLMs, Prompt Engineering, RAG Systems, HuggingFace & Vector Search"},
+        {"phase": "Month 5", "focus": "FastAPI Model Serving, Docker Containerization & Cloud Deployment"},
+        {"phase": "Month 6", "focus": "Production Capstone Project, Portfolio Benchmarking & Mock Interviews"}
+      ]
+    },
+    {
+      "id": "fullstack-architect",
+      "title": "Full-Stack Cloud Engineer",
+      "matchScore": 92,
+      "growthRate": "+29% YoY",
+      "fresherSalary": "₹8 - 14 LPA",
+      "experiencedSalary": "₹22 - 38 LPA",
+      "description": "Architects resilient, high-speed web platforms across modern React/Next.js frontends, microservices backends, and cloud infrastructure.",
+      "requiredSkills": ["React / Next.js", "Node.js / Express", "PostgreSQL / MongoDB", "TypeScript", "AWS / GCP Basics", "Docker", "System Design"],
+      "demandTier": "High",
+      "roadmap": [
+        {"phase": "Month 1-2", "focus": "Modern React 18/19, State Management & Tailwind / CSS Architecture"},
+        {"phase": "Month 3-4", "focus": "Node.js, Express, REST/GraphQL APIs, Relational DBs & Prisma ORM"},
+        {"phase": "Month 5", "focus": "Microservices, Authentication (JWT/OAuth), Docker & AWS Deployment"},
+        {"phase": "Month 6", "focus": "End-to-End Enterprise SaaS Project with CI/CD Pipeline"}
+      ]
+    },
+    {
+      "id": "data-intelligence",
+      "title": "Data Intelligence & Analytics Specialist",
+      "matchScore": 88,
+      "growthRate": "+25% YoY",
+      "fresherSalary": "₹7.5 - 13 LPA",
+      "experiencedSalary": "₹18 - 32 LPA",
+      "description": "Transforms raw big data into real-time business insights, predictive KPI dashboards, and automated executive intelligence systems.",
+      "requiredSkills": ["SQL (Advanced)", "Python (Pandas, NumPy)", "Tableau / PowerBI", "Data Warehousing (Snowflake/BigQuery)", "Statistical Modeling", "ETL Pipelines"],
+      "demandTier": "High",
+      "roadmap": [
+        {"phase": "Month 1-2", "focus": "Advanced SQL Querying, Window Functions & Database Normalization"},
+        {"phase": "Month 3-4", "focus": "Python Data Wrangling, Pandas, Matplotlib & Exploratory Data Analysis"},
+        {"phase": "Month 5", "focus": "Tableau Dashboards, Storytelling & Modern Cloud Data Warehouses"},
+        {"phase": "Month 6", "focus": "Real-world E-Commerce or FinTech Analytics Case Study"}
+      ]
+    },
+    {
+      "id": "devops-cloud",
+      "title": "Cloud & DevOps Reliability Engineer",
+      "matchScore": 84,
+      "growthRate": "+33% YoY",
+      "fresherSalary": "₹8.5 - 15 LPA",
+      "experiencedSalary": "₹25 - 42 LPA",
+      "description": "Manages automated CI/CD pipelines, container orchestration with Kubernetes, and high-availability cloud infrastructure with 99.99% uptime.",
+      "requiredSkills": ["Linux / Bash Scripting", "Docker & Kubernetes", "AWS / Azure", "Terraform (IaC)", "GitHub Actions / GitLab CI", "Prometheus & Grafana"],
+      "demandTier": "Very High",
+      "roadmap": [
+        {"phase": "Month 1-2", "focus": "Linux Internals, Networking Fundamentals & Git Workflow Mastery"},
+        {"phase": "Month 3-4", "focus": "Docker Containerization, Multi-stage Builds & Kubernetes Basics"},
+        {"phase": "Month 5", "focus": "Infrastructure as Code (Terraform) & Automated CI/CD Pipelines"},
+        {"phase": "Month 6", "focus": "Production Cloud Cluster Deployment with Monitoring & Alerting"}
+      ]
+    }
+  ],
+  "liveJobs": [
+    {
+      "id": "job-001",
+      "company": "Cognizant AI Labs",
+      "title": "Associate AI & ML Developer",
+      "location": "Bengaluru (Hybrid)",
+      "type": "Full-Time",
+      "salary": "₹9.5 - 14 LPA",
+      "experience": "0-1 Years (Freshers Welcome)",
+      "skills": ["Python", "Machine Learning", "PyTorch", "REST APIs"],
+      "posted": "Just now",
+      "urgent": true
+    },
+    {
+      "id": "job-002",
+      "company": "Razorpay Tech",
+      "title": "Junior Full Stack Engineer (React/Node)",
+      "location": "Remote / Bengaluru",
+      "type": "Full-Time",
+      "salary": "₹12 - 18 LPA",
+      "experience": "Freshers & 2025/2026 Batch Eligible",
+      "skills": ["React", "JavaScript", "Node.js", "SQL"],
+      "posted": "2 hours ago",
+      "urgent": true
+    },
+    {
+      "id": "job-003",
+      "company": "Swiggy Cloud Platform",
+      "title": "Software Engineering Intern - Cloud & Systems",
+      "location": "Hyderabad",
+      "type": "Internship (PPO Track)",
+      "salary": "₹55,000 / month Stipend",
+      "experience": "Pre-Final / Final Year Students",
+      "skills": ["Python", "Linux", "Docker", "Git"],
+      "posted": "1 day ago",
+      "urgent": false
+    },
+    {
+      "id": "job-004",
+      "company": "Zomato Data Intelligence",
+      "title": "Data Analyst Trainee",
+      "location": "Gurgaon / Remote",
+      "type": "Full-Time",
+      "salary": "₹8.5 - 12 LPA",
+      "experience": "0-2 Years",
+      "skills": ["SQL", "Python", "Tableau", "Problem Solving"],
+      "posted": "3 days ago",
+      "urgent": false
+    },
+    {
+      "id": "job-005",
+      "company": "Microsoft India",
+      "title": "Software Development Engineer 1",
+      "location": "Hyderabad / Bengaluru",
+      "type": "Full-Time",
+      "salary": "₹18 - 28 LPA",
+      "experience": "2025 & 2026 Graduates",
+      "skills": ["Data Structures", "Algorithms", "React", "Python"],
+      "posted": "1 day ago",
+      "urgent": true
+    }
+  ]
+}

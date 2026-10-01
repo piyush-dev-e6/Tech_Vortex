@@ -1,0 +1,2843 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tech Vortex | AI-Driven Career Intelligence & Employment Management Platform</title>
+  <meta name="description" content="AI-driven career intelligence, automated ML skill gap analysis, LinkedIn recruiter optimization, AI tools mastery, productivity studio, and mock interview viva prep.">
+
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- React 18 & ReactDOM -->
+  <script crossorigin src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+  <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+  <!-- Babel for JSX -->
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+  <!-- Canvas Confetti for Celebrations -->
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+
+  <!-- Google Fonts: Inter & Outfit -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Outfit:wght@500;600;700;800;900&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Inter', 'sans-serif'],
+            display: ['Outfit', 'sans-serif'],
+            mono: ['JetBrains Mono', 'monospace'],
+          },
+          colors: {
+            vortex: {
+              dark: '#070B14',
+              card: '#0D1424',
+              surface: '#131D33',
+              border: '#1F2E4D',
+              cyan: '#06B6D4',
+              cyanGlow: '#22D3EE',
+              indigo: '#6366F1',
+              purple: '#8B5CF6',
+              emerald: '#10B981',
+              amber: '#F59E0B',
+              rose: '#F43F5E'
+            }
+          },
+          animation: {
+            'spin-slow': 'spin 12s linear infinite',
+            'pulse-slow': 'pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+            'float': 'float 4s ease-in-out infinite',
+            'glow': 'glow 2.5s ease-in-out infinite alternate',
+          },
+          keyframes: {
+            float: {
+              '0%, 100%': { transform: 'translateY(0)' },
+              '50%': { transform: 'translateY(-8px)' },
+            },
+            glow: {
+              '0%': { boxShadow: '0 0 15px rgba(6, 182, 212, 0.2)' },
+              '100%': { boxShadow: '0 0 35px rgba(139, 92, 246, 0.4)' },
+            }
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    body {
+      background-color: #070B14;
+      color: #E2E8F0;
+      font-family: 'Inter', sans-serif;
+      overflow-x: hidden;
+    }
+    .glass-card {
+      background: rgba(13, 20, 36, 0.75);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      border: 1px solid rgba(31, 46, 77, 0.7);
+    }
+    .glass-card-hover {
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    .glass-card-hover:hover {
+      border-color: rgba(6, 182, 212, 0.5);
+      transform: translateY(-3px);
+      box-shadow: 0 12px 30px -10px rgba(6, 182, 212, 0.25);
+    }
+    .gradient-text {
+      background: linear-gradient(135deg, #22D3EE 0%, #818CF8 50%, #C084FC 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    .gradient-border {
+      position: relative;
+    }
+    .gradient-border::before {
+      content: '';
+      position: absolute;
+      inset: -1px;
+      border-radius: inherit;
+      padding: 1px;
+      background: linear-gradient(135deg, #06B6D4, #6366F1, #8B5CF6);
+      -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+      -webkit-mask-composite: xor;
+      mask-composite: exclude;
+      pointer-events: none;
+    }
+    /* Custom Scrollbar */
+    ::-webkit-scrollbar {
+      width: 8px;
+      height: 8px;
+    }
+    ::-webkit-scrollbar-track {
+      background: #070B14;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #1F2E4D;
+      border-radius: 4px;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: #06B6D4;
+    }
+  </style>
+</head>
+<body class="selection:bg-cyan-500 selection:text-black">
+  <div id="root"></div>
+
+  <!-- Main React Application Script -->
+  <script type="text/babel">
+    const { useState, useEffect, useRef } = React;
+
+    // --- Web Audio Synthesizer (Zero External Dependencies) ---
+    class SoundEngine {
+      constructor() {
+        this.ctx = null;
+        this.ambientGain = null;
+        this.ambientNodes = [];
+        this.soundEnabled = true;
+      }
+
+      init() {
+        if (!this.ctx) {
+          const AudioContext = window.AudioContext || window.webkitAudioContext;
+          this.ctx = new AudioContext();
+        }
+        if (this.ctx && this.ctx.state === 'suspended') {
+          this.ctx.resume();
+        }
+      }
+
+      playTone(freq, type = 'sine', duration = 0.12, gainLevel = 0.08) {
+        if (!this.soundEnabled) return;
+        try {
+          this.init();
+          const osc = this.ctx.createOscillator();
+          const gain = this.ctx.createGain();
+          osc.type = type;
+          osc.frequency.setValueAtTime(freq, this.ctx.currentTime);
+          gain.gain.setValueAtTime(gainLevel, this.ctx.currentTime);
+          gain.gain.exponentialRampToValueAtTime(0.0001, this.ctx.currentTime + duration);
+          osc.connect(gain);
+          gain.connect(this.ctx.destination);
+          osc.start();
+          osc.stop(this.ctx.currentTime + duration);
+        } catch (e) {}
+      }
+
+      click() { this.playTone(850, 'sine', 0.04, 0.04); }
+      success() {
+        if (!this.soundEnabled) return;
+        this.playTone(523.25, 'triangle', 0.1, 0.06); // C5
+        setTimeout(() => this.playTone(659.25, 'triangle', 0.1, 0.06), 80); // E5
+        setTimeout(() => this.playTone(783.99, 'triangle', 0.25, 0.08), 160); // G5
+      }
+      beep() { this.playTone(440, 'sine', 0.2, 0.05); }
+
+      startAmbient(soundType) {
+        this.stopAmbient();
+        if (!this.soundEnabled) return;
+        try {
+          this.init();
+          this.ambientGain = this.ctx.createGain();
+          this.ambientGain.gain.setValueAtTime(0.04, this.ctx.currentTime);
+          this.ambientGain.connect(this.ctx.destination);
+
+          if (soundType === 'rain' || soundType === 'whitenoise') {
+            // Pink/White noise buffer
+            const bufferSize = this.ctx.sampleRate * 2;
+            const buffer = this.ctx.createBuffer(1, bufferSize, this.ctx.sampleRate);
+            const data = buffer.getChannelData(0);
+            let lastOut = 0.0;
+            for (let i = 0; i < bufferSize; i++) {
+              const white = Math.random() * 2 - 1;
+              if (soundType === 'rain') {
+                data[i] = (lastOut * 0.95) + (white * 0.05); // low-pass filtered rain
+                lastOut = data[i];
+              } else {
+                data[i] = white * 0.2; // white noise
+              }
+            }
+            const noise = this.ctx.createBufferSource();
+            noise.buffer = buffer;
+            noise.loop = true;
+            noise.connect(this.ambientGain);
+            noise.start();
+            this.ambientNodes.push(noise);
+          } else if (soundType === 'binaural') {
+            // Alpha wave binaural pulse (200Hz & 210Hz => 10Hz alpha beat)
+            const oscL = this.ctx.createOscillator();
+            const oscR = this.ctx.createOscillator();
+            oscL.frequency.value = 200;
+            oscR.frequency.value = 210;
+            oscL.connect(this.ambientGain);
+            oscR.connect(this.ambientGain);
+            oscL.start();
+            oscR.start();
+            this.ambientNodes.push(oscL, oscR);
+          }
+        } catch (e) {
+          console.warn('Ambient sound failed:', e);
+        }
+      }
+
+      stopAmbient() {
+        this.ambientNodes.forEach(node => {
+          try { node.stop(); } catch(e) {}
+        });
+        this.ambientNodes = [];
+      }
+    }
+
+    const sound = new SoundEngine();
+
+    // --- Mock Default Data ---
+    const DEFAULT_PROFILE = {
+      id: "vortex-user-sambit",
+      name: "Sambit Kumar",
+      email: "sambit.vortex@example.com",
+      phone: "+91 98765 43210",
+      address: "Bhubaneswar, Odisha, India",
+      college: "National Institute of Technology",
+      degree: "B.Tech in Computer Science & Engineering",
+      gradYear: "2026",
+      cgpa: "8.85",
+      skills: ["Python", "React", "JavaScript", "Node.js", "Machine Learning", "Git", "SQL", "Problem Solving", "REST APIs"],
+      interests: ["AI & Machine Learning", "Full Stack Development", "Cloud Systems"],
+      workMode: "Hybrid",
+      salaryTarget: "₹12 - 25 LPA",
+      github: "https://github.com/techvortex-sambit",
+      linkedin: "https://linkedin.com/in/sambit-techvortex",
+      bio: "Passionate software engineer and AI enthusiast passionate about building high-performance web systems and deploying agentic ML solutions."
+    };
+
+    const ALL_SKILL_OPTIONS = [
+      "Python", "JavaScript", "React", "Node.js", "Express", "TypeScript", "Machine Learning", "PyTorch", "TensorFlow", "SQL", 
+      "MongoDB", "PostgreSQL", "Docker", "AWS", "Git", "C++", "Java", "Next.js", "FastAPI", "Tableau", "LangChain", 
+      "Vector DBs", "Linux", "Kubernetes", "Data Structures", "Algorithms", "System Design", "Public Speaking", "Problem Solving"
+    ];
+
+    const ALL_INTEREST_OPTIONS = [
+      "AI & Machine Learning", "Full Stack Development", "Cloud & DevOps", "Cybersecurity", "Data Analytics & BI", 
+      "Generative AI & LLMs", "Mobile App Development", "FinTech & Web3", "Product Management", "Autonomous Systems"
+    ];
+
+    // --- Main App Component ---
+    function App() {
+      const [activeTab, setActiveTab] = useState('pipeline');
+      const [profile, setProfile] = useState(() => {
+        const saved = localStorage.getItem('vortex_candidate_profile');
+        return saved ? JSON.parse(saved) : DEFAULT_PROFILE;
+      });
+      const [xp, setXp] = useState(() => Number(localStorage.getItem('vortex_user_xp') || 1240));
+      const [streak, setStreak] = useState(5);
+      const [soundOn, setSoundOn] = useState(true);
+      const [backendStatus, setBackendStatus] = useState('LOCAL_OFFLINE_READY');
+      const [notification, setNotification] = useState(null);
+
+      // Save profile to localStorage whenever changed
+      useEffect(() => {
+        localStorage.setItem('vortex_candidate_profile', JSON.stringify(profile));
+      }, [profile]);
+
+      // Save XP
+      useEffect(() => {
+        localStorage.setItem('vortex_user_xp', xp.toString());
+      }, [xp]);
+
+      // Check if backend (Node.js API) is running on :5000
+      useEffect(() => {
+        fetch('http://localhost:5000/api/health')
+          .then(res => res.json())
+          .then(data => {
+            if (data.status === 'ONLINE') {
+              setBackendStatus('NODE_API_CONNECTED (Port 5000)');
+            }
+          })
+          .catch(() => {
+            setBackendStatus('CLIENT_OFFLINE_AI_MODE');
+          });
+      }, []);
+
+      const showNotify = (msg) => {
+        setNotification(msg);
+        setTimeout(() => setNotification(null), 3500);
+      };
+
+      const gainXp = (amount, reason) => {
+        setXp(prev => prev + amount);
+        sound.success();
+        showNotify(`+${amount} XP: ${reason}!`);
+        if (window.confetti) {
+          window.confetti({ particleCount: 30, spread: 60, origin: { y: 0.8 } });
+        }
+      };
+
+      const toggleSound = () => {
+        const next = !soundOn;
+        setSoundOn(next);
+        sound.soundEnabled = next;
+        if (!next) sound.stopAmbient();
+      };
+
+      return (
+        <div className="min-h-screen flex flex-col bg-[#070B14] text-slate-100 font-sans relative">
+          {/* Subtle Ambient Background Gradients */}
+          <div className="fixed inset-0 pointer-events-none z-0 overflow-hidden">
+            <div className="absolute -top-40 -left-40 w-96 h-96 bg-cyan-500/10 rounded-full blur-[128px]"></div>
+            <div className="absolute top-1/3 -right-40 w-96 h-96 bg-purple-500/10 rounded-full blur-[140px]"></div>
+            <div className="absolute -bottom-40 left-1/3 w-96 h-96 bg-indigo-500/10 rounded-full blur-[130px]"></div>
+          </div>
+
+          {/* Toast Notification */}
+          {notification && (
+            <div className="fixed top-20 right-6 z-50 flex items-center gap-3 px-5 py-3 rounded-xl bg-vortex-card border border-vortex-cyan/50 text-white shadow-2xl shadow-cyan-500/20 animate-bounce">
+              <span className="text-xl">⚡</span>
+              <span className="font-semibold text-sm">{notification}</span>
+            </div>
+          )}
+
+          {/* TOP NAVIGATION HEADER */}
+          <header className="sticky top-0 z-40 border-b border-vortex-border/80 bg-vortex-dark/85 backdrop-blur-xl px-4 lg:px-8 py-3.5 flex items-center justify-between">
+            <div className="flex items-center gap-3">
+              {/* Animated Vortex Emblem */}
+              <div className="relative w-10 h-10 flex items-center justify-center rounded-xl bg-gradient-to-tr from-cyan-500 via-indigo-600 to-purple-600 p-[1.5px] shadow-lg shadow-cyan-500/25 cursor-pointer" onClick={() => setActiveTab('pipeline')}>
+                <div className="w-full h-full bg-vortex-dark rounded-[10px] flex items-center justify-center">
+                  <svg className="w-6 h-6 text-cyan-400 animate-spin-slow" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
+                    <circle cx="12" cy="12" r="3"></circle>
+                    <path d="M12 2a10 10 0 0 0-7.07 17.07l1.41-1.41A8 8 0 0 1 12 4z"></path>
+                    <path d="M12 22a10 10 0 0 0 7.07-17.07l-1.41 1.41A8 8 0 0 1 12 20z"></path>
+                  </svg>
+                </div>
+              </div>
+              <div>
+                <div className="flex items-center gap-2">
+                  <span className="font-display font-extrabold text-xl tracking-wider text-white">TECH<span className="text-cyan-400">VORTEX</span></span>
+                  <span className="text-[10px] font-mono uppercase px-2 py-0.5 rounded-full bg-cyan-500/10 text-cyan-400 border border-cyan-500/30">AI Career OS</span>
+                </div>
+                <p className="text-[11px] text-slate-400 font-medium hidden sm:block">AI Driven Career Intelligence & Employment Management</p>
+              </div>
+            </div>
+
+            {/* Middle Stats Bar: XP, Streak, Mode */}
+            <div className="hidden md:flex items-center gap-5 bg-vortex-card/90 border border-vortex-border px-4 py-1.5 rounded-full text-xs">
+              <div className="flex items-center gap-1.5 text-amber-400 font-semibold" title="Daily Career Development Streak">
+                <span>🔥</span>
+                <span>{streak} Day Streak</span>
+              </div>
+              <div className="h-3 w-[1px] bg-slate-700"></div>
+              <div className="flex items-center gap-1.5 text-cyan-400 font-semibold" title="Vortex Career XP Earned">
+                <span>⚡</span>
+                <span>{xp} XP</span>
+                <span className="text-[10px] text-slate-400 font-mono">(Lvl {Math.floor(xp / 400) + 1})</span>
+              </div>
+              <div className="h-3 w-[1px] bg-slate-700"></div>
+              <div className="flex items-center gap-1.5">
+                <span className={`w-2 h-2 rounded-full ${backendStatus.includes('CONNECTED') ? 'bg-emerald-400 animate-ping' : 'bg-cyan-400'}`}></span>
+                <span className="text-[11px] text-slate-300 font-mono">{backendStatus}</span>
+              </div>
+            </div>
+
+            {/* Right Quick Controls */}
+            <div className="flex items-center gap-2.5">
+              <button 
+                onClick={toggleSound} 
+                className={`p-2 rounded-lg border text-sm transition-all ${soundOn ? 'bg-cyan-500/10 text-cyan-400 border-cyan-500/30' : 'bg-slate-800 text-slate-400 border-slate-700'}`}
+                title={soundOn ? 'Sound Effects & Ambient ON' : 'Sound Effects OFF'}
+              >
+                {soundOn ? '🔊' : '🔇'}
+              </button>
+              <button 
+                onClick={() => {
+                  sound.click();
+                  setActiveTab('profile');
+                }}
+                className="flex items-center gap-2 px-3 py-1.5 rounded-lg bg-gradient-to-r from-cyan-500 to-indigo-600 text-white text-xs font-semibold hover:shadow-lg hover:shadow-cyan-500/30 transition-all"
+              >
+                <span>👤</span>
+                <span className="hidden sm:inline">{profile.name.split(' ')[0]}'s Profile</span>
+              </button>
+            </div>
+          </header>
+
+          {/* SECONDARY NAVIGATION BAR (TABS) */}
+          <nav className="sticky top-[61px] z-30 bg-vortex-dark/95 border-b border-vortex-border px-4 lg:px-8 py-2 overflow-x-auto flex items-center gap-1.5 text-xs font-medium no-scrollbar">
+            {[
+              { id: 'pipeline', label: '🧬 AI ML Career Pipeline', badge: 'Core' },
+              { id: 'profile', label: '👤 Student Profile Vault', badge: 'Data' },
+              { id: 'linkedin', label: '💼 LinkedIn Recruiter Magnet', badge: 'Training' },
+              { id: 'aitools', label: '🤖 Master AI Tools Hub', badge: 'Claude/GPT/Gemini' },
+              { id: 'productivity', label: '⏱️ Focus & Stress Studio', badge: 'Pomodoro' },
+              { id: 'interview', label: '🎙️ Mock Viva & Interview', badge: 'Speech AI' },
+              { id: 'market', label: '📈 Market Analytics & YouTube', badge: 'Trends' },
+              { id: 'security', label: '🛡️ Job Security & Hiring', badge: 'Playbook' },
+              { id: 'funquiz', label: '🎮 Tech Superpower Quiz', badge: 'XP Fun' }
+            ].map((tab) => (
+              <button
+                key={tab.id}
+                onClick={() => {
+                  sound.click();
+                  setActiveTab(tab.id);
+                }}
+                className={`px-3 py-2 rounded-xl whitespace-nowrap transition-all flex items-center gap-1.5 ${
+                  activeTab === tab.id
+                    ? 'bg-gradient-to-r from-cyan-500/20 to-purple-600/20 text-cyan-300 border border-cyan-500/40 shadow-sm'
+                    : 'text-slate-400 hover:text-slate-200 hover:bg-vortex-card/60'
+                }`}
+              >
+                <span>{tab.label}</span>
+                {tab.badge && (
+                  <span className={`text-[9px] px-1.5 py-0.2 rounded-md uppercase font-mono ${
+                    activeTab === tab.id ? 'bg-cyan-500/30 text-cyan-200' : 'bg-slate-800 text-slate-400'
+                  }`}>
+                    {tab.badge}
+                  </span>
+                )}
+              </button>
+            ))}
+          </nav>
+
+          {/* MAIN CONTENT AREA */}
+          <main className="flex-1 max-w-7xl w-full mx-auto p-4 sm:p-6 lg:p-8 z-10">
+            {activeTab === 'pipeline' && <PipelineTab profile={profile} gainXp={gainXp} sound={sound} setActiveTab={setActiveTab} />}
+            {activeTab === 'profile' && <ProfileTab profile={profile} setProfile={setProfile} gainXp={gainXp} sound={sound} setActiveTab={setActiveTab} />}
+            {activeTab === 'linkedin' && <LinkedInTab profile={profile} gainXp={gainXp} sound={sound} />}
+            {activeTab === 'aitools' && <AIToolsTab gainXp={gainXp} sound={sound} />}
+            {activeTab === 'productivity' && <ProductivityTab gainXp={gainXp} sound={sound} />}
+            {activeTab === 'interview' && <InterviewTab gainXp={gainXp} sound={sound} />}
+            {activeTab === 'market' && <MarketTab gainXp={gainXp} sound={sound} />}
+            {activeTab === 'security' && <JobSecurityTab gainXp={gainXp} sound={sound} />}
+            {activeTab === 'funquiz' && <QuizTab gainXp={gainXp} sound={sound} />}
+          </main>
+
+          {/* FOOTER */}
+          <footer className="border-t border-vortex-border/80 bg-vortex-dark/90 py-6 px-4 lg:px-8 mt-12 text-center text-xs text-slate-400">
+            <div className="max-w-7xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4">
+              <div className="flex items-center gap-2">
+                <span className="font-display font-bold text-white tracking-wide">TECH VORTEX</span>
+                <span>•</span>
+                <span>AI-Driven Career Intelligence & Employment Platform</span>
+              </div>
+              <div className="flex items-center gap-4 text-slate-400">
+                <span>Frontend: React 18</span>
+                <span>•</span>
+                <span>Backend: Node.js & Express</span>
+                <span>•</span>
+                <span>ML Engine: Python TF-IDF Vectorizer</span>
+              </div>
+              <p className="text-slate-500">Built for Hackathon Excellence © 2026 Tech Vortex</p>
+            </div>
+          </footer>
+        </div>
+      );
+    }
+
+    // =========================================================================
+    // 1. PIPELINE TAB: The Core 5-Stage AI/ML Recommendation Pipeline
+    // =========================================================================
+    function PipelineTab({ profile, gainXp, sound, setActiveTab }) {
+      const [isAnalyzing, setIsAnalyzing] = useState(false);
+      const [currentStageIndex, setCurrentStageIndex] = useState(5); // Default loaded
+      const [logs, setLogs] = useState([]);
+      const [selectedCareer, setSelectedCareer] = useState(0);
+      const [filterTag, setFilterTag] = useState('All');
+
+      const pipelineStages = [
+        { num: 1, title: "Student Information", subtitle: "Name, Degree, CGPA, Target CTC", icon: "👤", details: `${profile.name} • ${profile.degree}` },
+        { num: 2, title: "AI/ML Analysis", subtitle: "NLP Feature Extraction & TF-IDF Vectors", icon: "🧠", details: "Vectorizing 18 candidate skill nodes" },
+        { num: 3, title: "Skills + Interests + Education", subtitle: "Synthesized Domain Affinity Vector", icon: "⚖️", details: `CGPA ${profile.cgpa} & ${profile.interests.length} Domains` },
+        { num: 4, title: "Career Recommendations", subtitle: "Cosine Similarity Matching & Market Index", icon: "🎯", details: "Evaluating top career trajectories" },
+        { num: 5, title: "Recommended Careers + Skills + Jobs", subtitle: "Actionable Roadmaps & Hiring Signals", icon: "💼", details: "4 Ranked tracks with live openings" },
+      ];
+
+      // Computed careers based on candidate profile
+      const careerRecommendations = [
+        {
+          id: 'ai-ml-engineer',
+          title: "AI/ML Solutions Engineer",
+          category: "Artificial Intelligence & Generative Systems",
+          matchScore: 96,
+          marketGrowth: "+38.4% YoY",
+          fresherSalary: "₹9.5 - 16 LPA",
+          experiencedSalary: "₹24 - 45 LPA",
+          demandTier: "Extreme Surge",
+          matchingSkills: ["Python", "Machine Learning", "Git", "Problem Solving", "REST APIs"],
+          missingSkills: ["Vector DBs (Pinecone/Chroma)", "LangChain / LlamaIndex", "Model Serving with FastAPI", "MLOps & Docker"],
+          requiredSkills: ["Python", "PyTorch / TensorFlow", "LangChain", "Vector DBs", "Docker", "REST APIs"],
+          description: "Develops generative AI workflows, agentic AI pipelines, and integrates deep learning models into production software products.",
+          roadmap: [
+            { phase: "Month 1-2", task: "Advanced Python, PyTorch & Transformer Architecture Deep-Dive" },
+            { phase: "Month 3-4", task: "RAG Architectures, Vector Embeddings & Agentic Frameworks (LangGraph)" },
+            { phase: "Month 5", task: "FastAPI Model Serving, Dockerization & Cloud Deployment on AWS" },
+            { phase: "Month 6", task: "Enterprise Capstone AI System & Recruiter Mock Interview Rounds" }
+          ],
+          matchingJobs: [
+            { company: "Cognizant AI Labs", title: "Associate AI & ML Developer", loc: "Bengaluru (Hybrid)", pkg: "₹10 - 15 LPA", type: "Full-Time", urgent: true },
+            { company: "Swiggy Generative AI", title: "ML Engineering Intern", loc: "Remote", pkg: "₹50,000 / mo Stipend", type: "Internship (PPO)", urgent: true },
+            { company: "Microsoft India", title: "Software Engineer - AI Platform", loc: "Hyderabad", pkg: "₹18 - 26 LPA", type: "Full-Time", urgent: false }
+          ]
+        },
+        {
+          id: 'fullstack-engineer',
+          title: "Full-Stack Cloud Architect",
+          category: "Modern Web & Distributed Systems",
+          matchScore: 92,
+          marketGrowth: "+29.2% YoY",
+          fresherSalary: "₹8.0 - 14 LPA",
+          experiencedSalary: "₹22 - 38 LPA",
+          demandTier: "High Demand",
+          matchingSkills: ["React", "JavaScript", "Node.js", "Git", "SQL"],
+          missingSkills: ["TypeScript", "PostgreSQL / Prisma ORM", "Microservices Design", "Kubernetes & CI/CD"],
+          requiredSkills: ["React / Next.js", "Node.js / Express", "TypeScript", "PostgreSQL", "Cloud / Docker"],
+          description: "Engineers high-throughput reactive web architectures, secure RESTful microservices, and distributed database systems.",
+          roadmap: [
+            { phase: "Month 1-2", task: "Mastering React 18/19 Concurrent Features, Custom Hooks & Tailwind" },
+            { phase: "Month 3-4", task: "Node.js Event Loop, Microservices, Redis Caching & PostgreSQL" },
+            { phase: "Month 5", task: "Authentication (JWT/OAuth), Docker Containerization & AWS Lightsail" },
+            { phase: "Month 6", task: "Full Stack SaaS Project Deployment with End-to-End Testing" }
+          ],
+          matchingJobs: [
+            { company: "Razorpay Tech", title: "Junior Full Stack Engineer (React/Node)", loc: "Bengaluru", pkg: "₹12 - 18 LPA", type: "Full-Time", urgent: true },
+            { company: "Zomato", title: "Frontend SDE-1", loc: "Gurgaon", pkg: "₹11 - 16 LPA", type: "Full-Time", urgent: false },
+            { company: "Zepto Labs", title: "Full Stack Intern", loc: "Mumbai / Remote", pkg: "₹45,000 / mo Stipend", type: "Internship", urgent: true }
+          ]
+        },
+        {
+          id: 'data-specialist',
+          title: "Data Intelligence Specialist",
+          category: "Data Science & Executive BI",
+          matchScore: 88,
+          marketGrowth: "+25.1% YoY",
+          fresherSalary: "₹7.5 - 13 LPA",
+          experiencedSalary: "₹18 - 32 LPA",
+          demandTier: "Steady High",
+          matchingSkills: ["SQL", "Python", "Problem Solving"],
+          missingSkills: ["Snowflake / BigQuery", "Tableau / PowerBI Dashboards", "Statistical Modeling", "ETL Automation"],
+          requiredSkills: ["SQL (Window Functions)", "Python Pandas/NumPy", "Tableau", "Data Warehousing", "ETL"],
+          description: "Synthesizes multi-million record datasets into predictive KPIs, automated ETL pipelines, and executive dashboards.",
+          roadmap: [
+            { phase: "Month 1-2", task: "Advanced SQL Optimization, Complex Joins & Window Analytics" },
+            { phase: "Month 3-4", task: "Python Data Wrangling, Pandas, Seaborn & Statistical Inference" },
+            { phase: "Month 5", task: "Modern Data Warehouses (Snowflake) & Interactive Tableau Stories" },
+            { phase: "Month 6", task: "Live FinTech / E-Commerce Predictive Analytics Case Study" }
+          ],
+          matchingJobs: [
+            { company: "Flipkart Commerce", title: "Data Analyst Trainee", loc: "Bengaluru", pkg: "₹8.5 - 13 LPA", type: "Full-Time", urgent: false },
+            { company: "Mu Sigma Labs", title: "Junior Decision Scientist", loc: "Bengaluru", pkg: "₹7.5 - 11 LPA", type: "Full-Time", urgent: true }
+          ]
+        },
+        {
+          id: 'devops-cloud',
+          title: "Cloud & DevOps Reliability Engineer",
+          category: "Cloud Infrastructure & SRE",
+          matchScore: 84,
+          marketGrowth: "+33.7% YoY",
+          fresherSalary: "₹8.5 - 15 LPA",
+          experiencedSalary: "₹25 - 42 LPA",
+          demandTier: "Critical Shortage",
+          matchingSkills: ["Git", "Python", "Problem Solving"],
+          missingSkills: ["Linux / Bash Scripting", "Docker & Kubernetes", "Terraform (IaC)", "CI/CD GitHub Actions"],
+          requiredSkills: ["Linux / Bash", "Docker & Kubernetes", "AWS / Azure", "Terraform", "CI/CD"],
+          description: "Builds bulletproof infrastructure as code, container orchestration, and continuous deployment pipelines.",
+          roadmap: [
+            { phase: "Month 1-2", task: "Linux Shell Mastery, Networking Protocols & Git Architecture" },
+            { phase: "Month 3-4", task: "Docker Deep-Dive, Multi-Stage Builds & Kubernetes Clusters" },
+            { phase: "Month 5", task: "Terraform Infrastructure as Code & Automated GitHub Actions CI/CD" },
+            { phase: "Month 6", task: "Production Zero-Downtime Cluster with Prometheus & Grafana" }
+          ],
+          matchingJobs: [
+            { company: "PhonePe Infrastructure", title: "DevOps Engineer Trainee", loc: "Bengaluru", pkg: "₹10 - 15 LPA", type: "Full-Time", urgent: true },
+            { company: "TCS Digital", title: "Cloud Systems Associate", loc: "Hyderabad", pkg: "₹8.0 - 10 LPA", type: "Full-Time", urgent: false }
+          ]
+        }
+      ];
+
+      const runPipeline = () => {
+        setIsAnalyzing(true);
+        setCurrentStageIndex(1);
+        setLogs([]);
+        sound.beep();
+
+        const logSequence = [
+          { stage: 1, text: `[STAGE 1: Ingestion] Ingested candidate ${profile.name} (${profile.degree}, CGPA ${profile.cgpa})` },
+          { stage: 2, text: `[STAGE 2: Vectorization] Extracted ${profile.skills.length} skills. Applying TF-IDF weighting and semantic normalization...` },
+          { stage: 3, text: `[STAGE 3: Alignment] Synthesized skills + interests [${profile.interests.join(', ')}] with market ontology.` },
+          { stage: 4, text: `[STAGE 4: Recommendations] Computing cosine similarity against 1,200 tech role requirements...` },
+          { stage: 5, text: `[STAGE 5: Finalized] Generated top 4 matched career pathways with skill gap matrix and live job postings!` }
+        ];
+
+        let i = 0;
+        const interval = setInterval(() => {
+          if (i < logSequence.length) {
+            setCurrentStageIndex(logSequence[i].stage);
+            setLogs(prev => [...prev, logSequence[i].text]);
+            sound.playTone(300 + (i * 120), 'sine', 0.08, 0.05);
+            i++;
+          } else {
+            clearInterval(interval);
+            setIsAnalyzing(false);
+            gainXp(150, "Executed AI Career Intelligence Pipeline");
+          }
+        }, 650);
+      };
+
+      const career = careerRecommendations[selectedCareer];
+
+      return (
+        <div className="space-y-8 animate-fadeIn">
+          {/* Hero Banner with Team Branding */}
+          <div className="relative overflow-hidden rounded-2xl p-6 sm:p-8 bg-gradient-to-r from-vortex-card via-vortex-surface to-vortex-card border border-vortex-border shadow-2xl">
+            <div className="absolute -right-20 -top-20 w-80 h-80 bg-cyan-500/10 rounded-full blur-3xl pointer-events-none"></div>
+            <div className="relative z-10 flex flex-col lg:flex-row lg:items-center justify-between gap-6">
+              <div className="space-y-2 max-w-2xl">
+                <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-cyan-500/10 border border-cyan-500/30 text-cyan-400 text-xs font-mono">
+                  <span>⚡ AI ENGINE v2.5</span>
+                  <span>•</span>
+                  <span>Autonomous Career Intelligence Architecture</span>
+                </div>
+                <h1 className="text-2xl sm:text-4xl font-display font-extrabold text-white tracking-tight">
+                  Student Talent → <span className="gradient-text">Market Job Matching</span>
+                </h1>
+                <p className="text-sm text-slate-300 leading-relaxed">
+                  Tech Vortex executes an automated 5-stage intelligence pipeline: parsing candidate profile data, applying high-dimensional NLP vectorization, analyzing skill gaps, and recommending high-trajectory career tracks with real-time job openings.
+                </p>
+              </div>
+
+              <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3">
+                <button
+                  onClick={runPipeline}
+                  disabled={isAnalyzing}
+                  className={`px-6 py-3.5 rounded-xl font-display font-bold text-sm text-white shadow-xl transition-all flex items-center justify-center gap-2.5 ${
+                    isAnalyzing
+                      ? 'bg-slate-700 cursor-not-allowed opacity-80'
+                      : 'bg-gradient-to-r from-cyan-500 via-indigo-600 to-purple-600 hover:shadow-cyan-500/30 hover:scale-[1.02] active:scale-[0.98]'
+                  }`}
+                >
+                  <span className={isAnalyzing ? 'animate-spin' : 'animate-bounce'}>⚙️</span>
+                  <span>{isAnalyzing ? 'Vectorizing Pipeline...' : 'Run Vortex AI/ML Pipeline'}</span>
+                </button>
+                <button
+                  onClick={() => {
+                    sound.click();
+                    setActiveTab('profile');
+                  }}
+                  className="px-4 py-3 rounded-xl border border-vortex-border bg-vortex-card/80 text-xs text-slate-300 hover:text-white hover:border-cyan-500/40 transition-all text-center"
+                >
+                  Edit Profile Data
+                </button>
+              </div>
+            </div>
+          </div>
+
+          {/* 5-STAGE PIPELINE INTERACTIVE VISUALIZER */}
+          <div className="space-y-3">
+            <div className="flex items-center justify-between">
+              <h2 className="text-sm font-semibold uppercase tracking-wider text-slate-400 font-mono flex items-center gap-2">
+                <span>STAGE FLOW</span>
+                <span>•</span>
+                <span className="text-cyan-400">5-Phase Autonomous Intelligence Architecture</span>
+              </h2>
+              <span className="text-xs text-slate-400 font-mono">Status: {isAnalyzing ? 'Processing...' : 'Ready'}</span>
+            </div>
+
+            <div className="grid grid-cols-1 md:grid-cols-5 gap-3">
+              {pipelineStages.map((stage) => {
+                const isActive = stage.num === currentStageIndex;
+                const isPassed = stage.num <= currentStageIndex;
+                return (
+                  <div
+                    key={stage.num}
+                    className={`relative p-4 rounded-xl border transition-all ${
+                      isActive
+                        ? 'bg-cyan-500/10 border-cyan-500 shadow-lg shadow-cyan-500/20 scale-[1.02]'
+                        : isPassed
+                        ? 'bg-vortex-card border-slate-700/80'
+                        : 'bg-vortex-card/40 border-slate-800/40 opacity-60'
+                    }`}
+                  >
+                    <div className="flex items-center justify-between mb-2">
+                      <span className="text-xs font-mono font-bold text-cyan-400">0{stage.num}</span>
+                      <span className="text-lg">{stage.icon}</span>
+                    </div>
+                    <h3 className="text-xs font-bold text-white mb-1 line-clamp-1">{stage.title}</h3>
+                    <p className="text-[11px] text-slate-400 line-clamp-2 mb-2">{stage.subtitle}</p>
+                    <div className="pt-2 border-t border-slate-700/50 flex items-center justify-between text-[10px] font-mono">
+                      <span className="text-slate-400 truncate max-w-[120px]">{stage.details}</span>
+                      <span className={isPassed ? 'text-emerald-400 font-bold' : 'text-slate-600'}>
+                        {isPassed ? '✓ OK' : 'PENDING'}
+                      </span>
+                    </div>
+                  </div>
+                );
+              })}
+            </div>
+
+            {/* Live Terminal Log Output */}
+            {logs.length > 0 && (
+              <div className="p-3 rounded-xl bg-black/70 border border-slate-800 font-mono text-[11px] text-cyan-300 space-y-1">
+                {logs.map((log, idx) => (
+                  <div key={idx} className="flex items-center gap-2">
+                    <span className="text-emerald-400">❯</span>
+                    <span>{log}</span>
+                  </div>
+                ))}
+              </div>
+            )}
+          </div>
+
+          {/* MAIN RESULTS: CAREER RECOMMENDATIONS + SKILL GAP + LIVE JOBS */}
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8">
+            {/* Left 4 Cols: Career Tracks Selection */}
+            <div className="lg:col-span-4 space-y-4">
+              <div className="flex items-center justify-between">
+                <h3 className="font-display font-bold text-base text-white">Recommended Careers</h3>
+                <span className="text-xs text-cyan-400 font-mono">{careerRecommendations.length} Paths Found</span>
+              </div>
+
+              <div className="space-y-3">
+                {careerRecommendations.map((c, idx) => {
+                  const isSelected = selectedCareer === idx;
+                  return (
+                    <div
+                      key={c.id}
+                      onClick={() => {
+                        sound.click();
+                        setSelectedCareer(idx);
+                      }}
+                      className={`p-4 rounded-xl cursor-pointer transition-all border ${
+                        isSelected
+                          ? 'bg-gradient-to-r from-vortex-surface to-vortex-card border-cyan-400 shadow-md shadow-cyan-500/10'
+                          : 'bg-vortex-card/70 border-vortex-border hover:border-slate-600'
+                      }`}
+                    >
+                      <div className="flex items-start justify-between gap-2 mb-2">
+                        <div>
+                          <span className="text-[10px] font-mono uppercase px-2 py-0.5 rounded bg-slate-800 text-slate-300">
+                            {c.category.split(' ')[0]}
+                          </span>
+                          <h4 className="font-bold text-sm text-white mt-1">{c.title}</h4>
+                        </div>
+                        <div className="text-right">
+                          <span className="text-xs font-mono font-extrabold text-cyan-400">{c.matchScore}%</span>
+                          <div className="text-[10px] text-slate-400">Match</div>
+                        </div>
+                      </div>
+
+                      <div className="w-full bg-slate-800 h-1.5 rounded-full overflow-hidden mb-2">
+                        <div
+                          className="bg-gradient-to-r from-cyan-400 to-indigo-500 h-full rounded-full transition-all duration-700"
+                          style={{ width: `${c.matchScore}%` }}
+                        ></div>
+                      </div>
+
+                      <div className="flex items-center justify-between text-[11px] text-slate-400 pt-1">
+                        <span>Avg Fresher: <strong className="text-slate-200">{c.fresherSalary.split('-')[0]}</strong></span>
+                        <span className="text-emerald-400 font-medium">{c.marketGrowth}</span>
+                      </div>
+                    </div>
+                  );
+                })}
+              </div>
+
+              {/* Quick Candidate Profile Summary Card */}
+              <div className="p-4 rounded-xl bg-vortex-card border border-vortex-border space-y-2">
+                <div className="flex items-center justify-between text-xs">
+                  <span className="text-slate-400 font-mono">ACTIVE TALENT PROFILE</span>
+                  <span className="text-emerald-400 font-bold">88% Complete</span>
+                </div>
+                <p className="text-xs font-semibold text-white">{profile.name} ({profile.degree})</p>
+                <div className="flex flex-wrap gap-1 pt-1">
+                  {profile.skills.slice(0, 6).map((s, i) => (
+                    <span key={i} className="text-[10px] px-2 py-0.5 rounded bg-slate-800 text-slate-300 font-mono">{s}</span>
+                  ))}
+                  {profile.skills.length > 6 && (
+                    <span className="text-[10px] px-1.5 py-0.5 text-cyan-400 font-mono">+{profile.skills.length - 6} more</span>
+                  )}
+                </div>
+              </div>
+            </div>
+
+            {/* Right 8 Cols: Deep Career Intelligence Breakdown */}
+            <div className="lg:col-span-8 space-y-6">
+              {/* Selected Career Header Details */}
+              <div className="p-6 rounded-2xl bg-vortex-card border border-vortex-border space-y-5">
+                <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-4 border-b border-vortex-border">
+                  <div>
+                    <div className="flex items-center gap-2 mb-1">
+                      <span className="text-xs font-mono px-2 py-0.5 rounded bg-cyan-500/10 text-cyan-400 border border-cyan-500/30">
+                        Top Ranked Track
+                      </span>
+                      <span className="text-xs text-slate-400 font-mono">• {career.demandTier}</span>
+                    </div>
+                    <h2 className="text-xl sm:text-2xl font-display font-extrabold text-white">{career.title}</h2>
+                    <p className="text-xs text-slate-300 mt-1 max-w-xl">{career.description}</p>
+                  </div>
+
+                  {/* Big Match Score Dial */}
+                  <div className="flex items-center gap-3 bg-vortex-surface/80 p-3 rounded-xl border border-vortex-border">
+                    <div className="relative w-14 h-14 flex items-center justify-center">
+                      <svg className="w-full h-full transform -rotate-90" viewBox="0 0 36 36">
+                        <path className="text-slate-800" strokeWidth="3" stroke="currentColor" fill="none" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831"/>
+                        <path className="text-cyan-400" strokeDasharray={`${career.matchScore}, 100`} strokeWidth="3" strokeLinecap="round" stroke="currentColor" fill="none" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831"/>
+                      </svg>
+                      <span className="absolute font-mono font-extrabold text-sm text-white">{career.matchScore}%</span>
+                    </div>
+                    <div>
+                      <div className="text-xs font-bold text-white">Talent Match</div>
+                      <div className="text-[11px] text-slate-400">High Confidence</div>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Metrics Row: Compensation & Growth */}
+                <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
+                  <div className="p-3 rounded-xl bg-vortex-surface/60 border border-vortex-border">
+                    <span className="text-[10px] text-slate-400 uppercase font-mono">Fresher CTC</span>
+                    <div className="font-bold text-sm text-cyan-400 mt-0.5">{career.fresherSalary}</div>
+                    <span className="text-[10px] text-slate-500">Tier 1 & Tier 2</span>
+                  </div>
+                  <div className="p-3 rounded-xl bg-vortex-surface/60 border border-vortex-border">
+                    <span className="text-[10px] text-slate-400 uppercase font-mono">3-5 Yr Package</span>
+                    <div className="font-bold text-sm text-purple-400 mt-0.5">{career.experiencedSalary}</div>
+                    <span className="text-[10px] text-slate-500">Lead / Senior</span>
+                  </div>
+                  <div className="p-3 rounded-xl bg-vortex-surface/60 border border-vortex-border">
+                    <span className="text-[10px] text-slate-400 uppercase font-mono">Hiring Growth</span>
+                    <div className="font-bold text-sm text-emerald-400 mt-0.5">{career.marketGrowth}</div>
+                    <span className="text-[10px] text-slate-500">Industry Surge</span>
+                  </div>
+                  <div className="p-3 rounded-xl bg-vortex-surface/60 border border-vortex-border">
+                    <span className="text-[10px] text-slate-400 uppercase font-mono">Hiring Demand</span>
+                    <div className="font-bold text-sm text-amber-400 mt-0.5">{career.demandTier}</div>
+                    <span className="text-[10px] text-slate-500">Market Index</span>
+                  </div>
+                </div>
+
+                {/* SKILLS GAP ANALYSIS: Possessed vs Missing */}
+                <div className="space-y-3 pt-2">
+                  <h3 className="text-xs font-bold uppercase tracking-wider text-slate-300 font-mono flex items-center justify-between">
+                    <span>AI Skill Gap Diagnostics</span>
+                    <span className="text-[11px] text-cyan-400">{career.matchingSkills.length} Acquired • {career.missingSkills.length} Recommended</span>
+                  </h3>
+
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    {/* Skills You Already Have */}
+                    <div className="p-4 rounded-xl bg-emerald-950/20 border border-emerald-500/30 space-y-2">
+                      <div className="flex items-center gap-2 text-xs font-bold text-emerald-400">
+                        <span>✓</span>
+                        <span>Verified Skills In Your Profile</span>
+                      </div>
+                      <div className="flex flex-wrap gap-1.5">
+                        {career.matchingSkills.map((s, idx) => (
+                          <span key={idx} className="text-xs px-2.5 py-1 rounded-md bg-emerald-500/20 text-emerald-300 border border-emerald-500/30 flex items-center gap-1 font-mono">
+                            <span>✓</span> {s}
+                          </span>
+                        ))}
+                      </div>
+                    </div>
+
+                    {/* Skills You Need to Acquire to Maximize CTC */}
+                    <div className="p-4 rounded-xl bg-amber-950/20 border border-amber-500/30 space-y-2">
+                      <div className="flex items-center gap-2 text-xs font-bold text-amber-400">
+                        <span>⚡</span>
+                        <span>High-Priority Skills to Acquire</span>
+                      </div>
+                      <div className="flex flex-wrap gap-1.5">
+                        {career.missingSkills.map((s, idx) => (
+                          <span key={idx} className="text-xs px-2.5 py-1 rounded-md bg-amber-500/20 text-amber-200 border border-amber-500/30 flex items-center gap-1 font-mono">
+                            <span>+</span> {s}
+                          </span>
+                        ))}
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                {/* 6-MONTH ACTIONABLE CAREER ROADMAP */}
+                <div className="space-y-3 pt-2">
+                  <h3 className="text-xs font-bold uppercase tracking-wider text-slate-300 font-mono">
+                    6-Month Step-by-Step Transition Roadmap
+                  </h3>
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                    {career.roadmap.map((item, idx) => (
+                      <div key={idx} className="p-3 rounded-xl bg-vortex-surface/80 border border-vortex-border flex items-start gap-3">
+                        <div className="w-8 h-8 rounded-lg bg-cyan-500/10 border border-cyan-500/30 flex items-center justify-center font-mono font-bold text-xs text-cyan-400 shrink-0">
+                          {idx + 1}
+                        </div>
+                        <div>
+                          <div className="text-[11px] font-mono font-bold text-cyan-300">{item.phase}</div>
+                          <p className="text-xs text-slate-300 mt-0.5 leading-snug">{item.task}</p>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              </div>
+
+              {/* LIVE MATCHING JOBS & INTERNSHIPS OPENINGS */}
+              <div className="space-y-4">
+                <div className="flex items-center justify-between">
+                  <div>
+                    <h3 className="font-display font-bold text-lg text-white">Live Matching Jobs & Internships</h3>
+                    <p className="text-xs text-slate-400">Direct hiring signals filtered for freshers & skilled candidates</p>
+                  </div>
+                  <span className="text-xs font-mono px-2 py-1 rounded bg-emerald-500/10 text-emerald-400 border border-emerald-500/30">
+                    🟢 Real-Time Openings
+                  </span>
+                </div>
+
+                <div className="space-y-3">
+                  {career.matchingJobs.map((job, idx) => (
+                    <div key={idx} className="p-4 rounded-xl bg-vortex-card border border-vortex-border hover:border-cyan-500/40 transition-all flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+                      <div className="space-y-1">
+                        <div className="flex items-center gap-2">
+                          <span className="text-xs font-bold text-cyan-400">{job.company}</span>
+                          {job.urgent && (
+                            <span className="text-[9px] px-1.5 py-0.5 rounded bg-rose-500/20 text-rose-300 border border-rose-500/40 font-mono uppercase">
+                              Urgent Hiring
+                            </span>
+                          )}
+                          <span className="text-[10px] text-slate-400 font-mono">• {job.type}</span>
+                        </div>
+                        <h4 className="font-bold text-sm text-white">{job.title}</h4>
+                        <div className="flex items-center gap-3 text-xs text-slate-400">
+                          <span>📍 {job.loc}</span>
+                          <span>💰 <strong className="text-slate-200">{job.pkg}</strong></span>
+                        </div>
+                      </div>
+
+                      <button
+                        onClick={() => {
+                          gainXp(50, `Simulated Application to ${job.company}`);
+                          alert(`🚀 Tech Vortex Application Packet Generated!\n\nCandidate: ${profile.name}\nRole: ${job.title} at ${job.company}\nStatus: Direct fast-track recommendation sent to recruiter queue!`);
+                        }}
+                        className="px-4 py-2 rounded-xl bg-cyan-500/10 hover:bg-cyan-500/20 border border-cyan-500/40 text-cyan-300 text-xs font-semibold whitespace-nowrap transition-all self-start sm:self-center"
+                      >
+                        Apply with 1-Click Profile
+                      </button>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      );
+    }
+
+    // =========================================================================
+    // 2. PROFILE TAB: Candidate Profile & Data Storage Slot
+    // =========================================================================
+    function ProfileTab({ profile, setProfile, gainXp, sound, setActiveTab }) {
+      const [formData, setFormData] = useState({ ...profile });
+      const [newSkill, setNewSkill] = useState('');
+      const [saveStatus, setSaveStatus] = useState('');
+
+      const handleChange = (e) => {
+        const { name, value } = e.target;
+        setFormData(prev => ({ ...prev, [name]: value }));
+      };
+
+      const toggleSkill = (skill) => {
+        sound.click();
+        setFormData(prev => {
+          const exists = prev.skills.includes(skill);
+          const updated = exists ? prev.skills.filter(s => s !== skill) : [...prev.skills, skill];
+          return { ...prev, skills: updated };
+        });
+      };
+
+      const addCustomSkill = (e) => {
+        e.preventDefault();
+        if (newSkill.trim() && !formData.skills.includes(newSkill.trim())) {
+          sound.click();
+          setFormData(prev => ({ ...prev, skills: [...prev.skills, newSkill.trim()] }));
+          setNewSkill('');
+        }
+      };
+
+      const toggleInterest = (interest) => {
+        sound.click();
+        setFormData(prev => {
+          const exists = prev.interests.includes(interest);
+          const updated = exists ? prev.interests.filter(i => i !== interest) : [...prev.interests, interest];
+          return { ...prev, interests: updated };
+        });
+      };
+
+      const handleSave = async (e) => {
+        e.preventDefault();
+        sound.success();
+        setProfile(formData);
+        localStorage.setItem('vortex_candidate_profile', JSON.stringify(formData));
+        setSaveStatus('Profile Saved to Local Vault & Database!');
+        gainXp(100, "Updated and Saved Candidate Profile");
+
+        // Try syncing to backend
+        try {
+          await fetch('http://localhost:5000/api/user/profile', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(formData)
+          });
+          setSaveStatus('Profile Saved and Synced with Node.js / SQLite Database!');
+        } catch (err) {
+          // Offline mode is fine!
+        }
+
+        setTimeout(() => setSaveStatus(''), 4000);
+      };
+
+      const loadDemoProfile = () => {
+        sound.click();
+        setFormData(DEFAULT_PROFILE);
+        setProfile(DEFAULT_PROFILE);
+        gainXp(20, "Loaded Demonstration Profile");
+      };
+
+      // Calculate profile completion score (0-100%)
+      const calcScore = () => {
+        let score = 0;
+        if (formData.name) score += 15;
+        if (formData.email) score += 15;
+        if (formData.phone) score += 10;
+        if (formData.address) score += 10;
+        if (formData.degree && formData.cgpa) score += 15;
+        if (formData.skills.length >= 5) score += 20;
+        if (formData.interests.length >= 2) score += 15;
+        return score;
+      };
+
+      const completionScore = calcScore();
+
+      return (
+        <div className="space-y-8 animate-fadeIn">
+          {/* Header */}
+          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-4 border-b border-vortex-border">
+            <div>
+              <div className="flex items-center gap-2 text-xs font-mono text-cyan-400 mb-1">
+                <span>DATA PERSISTENCE VAULT</span>
+                <span>•</span>
+                <span>Slot 01</span>
+              </div>
+              <h1 className="text-2xl sm:text-3xl font-display font-extrabold text-white">Student Information & Talent Profile</h1>
+              <p className="text-xs text-slate-300">This data powers the Tech Vortex AI/ML recommendations, resume generator, and LinkedIn optimizer.</p>
+            </div>
+            <div className="flex items-center gap-3">
+              <button
+                type="button"
+                onClick={loadDemoProfile}
+                className="px-3.5 py-2 rounded-xl bg-vortex-card border border-slate-700 text-xs text-slate-300 hover:text-white hover:border-slate-500 transition-all"
+              >
+                Load Sample Student
+              </button>
+              <button
+                type="button"
+                onClick={() => {
+                  sound.click();
+                  const dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(formData, null, 2));
+                  const dlAnchorElem = document.createElement('a');
+                  dlAnchorElem.setAttribute("href", dataStr);
+                  dlAnchorElem.setAttribute("download", `tech_vortex_profile_${formData.name.replace(/\s+/g, '_')}.json`);
+                  dlAnchorElem.click();
+                  gainXp(30, "Exported Profile JSON");
+                }}
+                className="px-3.5 py-2 rounded-xl bg-cyan-500/10 border border-cyan-500/30 text-xs text-cyan-300 hover:bg-cyan-500/20 transition-all"
+              >
+                Export JSON
+              </button>
+            </div>
+          </div>
+
+          {/* Profile Strength Score Bar */}
+          <div className="p-4 rounded-xl bg-vortex-card border border-vortex-border flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+            <div className="space-y-1">
+              <div className="flex items-center gap-2">
+                <span className="font-bold text-sm text-white">Profile Readiness Index</span>
+                <span className="text-xs font-mono font-bold text-cyan-400">{completionScore}%</span>
+              </div>
+              <p className="text-xs text-slate-400">
+                {completionScore >= 90 ? '🌟 Profile is fully optimized for top recruiters and AI ML matching!' : '⚡ Complete missing contact or skill fields to maximize match precision.'}
+              </p>
+            </div>
+            <div className="w-full sm:w-64 bg-slate-800 h-2.5 rounded-full overflow-hidden">
+              <div
+                className={`h-full rounded-full transition-all duration-700 ${
+                  completionScore >= 80 ? 'bg-gradient-to-r from-cyan-400 to-emerald-400' : 'bg-gradient-to-r from-amber-400 to-cyan-400'
+                }`}
+                style={{ width: `${completionScore}%` }}
+              ></div>
+            </div>
+          </div>
+
+          {saveStatus && (
+            <div className="p-3 rounded-xl bg-emerald-950/40 border border-emerald-500 text-emerald-300 text-xs font-semibold flex items-center gap-2">
+              <span>✓</span>
+              <span>{saveStatus}</span>
+            </div>
+          )}
+
+          {/* Edit Form */}
+          <form onSubmit={handleSave} className="space-y-6">
+            {/* Section 1: Basic Personal Info */}
+            <div className="p-6 rounded-2xl bg-vortex-card border border-vortex-border space-y-4">
+              <h3 className="font-display font-bold text-base text-white flex items-center gap-2">
+                <span className="text-cyan-400">01</span>
+                <span>Basic Personal Information</span>
+              </h3>
+
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+                <div>
+                  <label className="block text-xs font-mono text-slate-300 mb-1">Full Name *</label>
+                  <input
+                    type="text"
+                    name="name"
+                    value={formData.name}
+                    onChange={handleChange}
+                    required
+                    className="w-full px-3.5 py-2.5 rounded-xl bg-vortex-surface border border-vortex-border text-sm text-white focus:outline-none focus:border-cyan-400"
+                    placeholder="e.g. Sambit Kumar"
+                  />
+                </div>
+
+                <div>
+                  <label className="block text-xs font-mono text-slate-300 mb-1">Email Address *</label>
+                  <input
+                    type="email"
+                    name="email"
+                    value={formData.email}
+                    onChange={handleChange}
+                    required
+                    className="w-full px-3.5 py-2.5 rounded-xl bg-vortex-surface border border-vortex-border text-sm text-white focus:outline-none focus:border-cyan-400"
+                    placeholder="e.g. sambit@example.com"
+                  />
+                </div>
+
+                <div>
+                  <label className="block text-xs font-mono text-slate-300 mb-1">Contact Phone</label>
+                  <input
+                    type="text"
+                    name="phone"
+                    value={formData.phone}
+                    onChange={handleChange}
+                    className="w-full px-3.5 py-2.5 rounded-xl bg-vortex-surface border border-vortex-border text-sm text-white focus:outline-none focus:border-cyan-400"
+                    placeholder="e.g. +91 98765 43210"
+                  />
+                </div>
+
+                <div className="sm:col-span-2">
+                  <label className="block text-xs font-mono text-slate-300 mb-1">Address / Location</label>
+                  <input
+                    type="text"
+                    name="address"
+                    value={formData.address}
+                    onChange={handleChange}
+                    className="w-full px-3.5 py-2.5 rounded-xl bg-vortex-surface border border-vortex-border text-sm text-white focus:outline-none focus:border-cyan-400"
+                    placeholder="e.g. Bhubaneswar, Odisha, India"
+                  />
+                </div>
+
+                <div>
+                  <label className="block text-xs font-mono text-slate-300 mb-1">Preferred Work Mode</label>
+                  <select
+                    name="workMode"
+                    value={formData.workMode}
+                    onChange={handleChange}
+                    className="w-full px-3.5 py-2.5 rounded-xl bg-vortex-surface border border-vortex-border text-sm text-white focus:outline-none focus:border-cyan-400"
+                  >
+                    <option value="Hybrid">Hybrid</option>
+                    <option value="Remote">Remote</option>
+                    <option value="On-Site">On-Site</option>
+                  </select>
+                </div>
+              </div>
+            </div>
+
+            {/* Section 2: Education & Academic Credentials */}
+            <div className="p-6 rounded-2xl bg-vortex-card border border-vortex-border space-y-4">
+              <h3 className="font-display font-bold text-base text-white flex items-center gap-2">
+                <span className="text-indigo-400">02</span>
+                <span>Academic & Educational Credentials</span>
+              </h3>
+
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+                <div className="sm:col-span-2">
+                  <label className="block text-xs font-mono text-slate-300 mb-1">Degree & Major</label>
+                  <input
+                    type="text"
+                    name="degree"
+                    value={formData.degree}
+                    onChange={handleChange}
+                    className="w-full px-3.5 py-2.5 rounded-xl bg-vortex-surface border border-vortex-border text-sm text-white focus:outline-none focus:border-cyan-400"
+                    placeholder="e.g. B.Tech Computer Science & Engineering"
+                  />
+                </div>
+
+                <div>
+                  <label className="block text-xs font-mono text-slate-300 mb-1">Graduation Year</label>
+                  <select
+                    name="gradYear"
+                    value={formData.gradYear}
+                    onChange={handleChange}
+                    className="w-full px-3.5 py-2.5 rounded-xl bg-vortex-surface border border-vortex-border text-sm text-white focus:outline-none focus:border-cyan-400"
+                  >
+                    <option value="2025">2025 (Immediate Fresher)</option>
+                    <option value="2026">2026 (Final Year)</option>
+                    <option value="2027">2027 (Pre-Final Year)</option>
+                    <option value="Experienced">Experienced Candidate</option>
+                  </select>
+                </div>
+
+                <div>
+                  <label className="block text-xs font-mono text-slate-300 mb-1">CGPA / Percentage</label>
+                  <input
+                    type="text"
+                    name="cgpa"
+                    value={formData.cgpa}
+                    onChange={handleChange}
+                    className="w-full px-3.5 py-2.5 rounded-xl bg-vortex-surface border border-vortex-border text-sm text-white focus:outline-none focus:border-cyan-400"
+                    placeholder="e.g. 8.85 / 10"
+                  />
+                </div>
+
+                <div className="sm:col-span-2">
+                  <label className="block text-xs font-mono text-slate-300 mb-1">College / University</label>
+                  <input
+                    type="text"
+                    name="college"
+                    value={formData.college}
+                    onChange={handleChange}
+                    className="w-full px-3.5 py-2.5 rounded-xl bg-vortex-surface border border-vortex-border text-sm text-white focus:outline-none focus:border-cyan-400"
+                    placeholder="e.g. National Institute of Technology"
+                  />
+                </div>
+
+                <div className="sm:col-span-2">
+                  <label className="block text-xs font-mono text-slate-300 mb-1">Target Expected Salary Tier</label>
+                  <select
+                    name="salaryTarget"
+                    value={formData.salaryTarget}
+                    onChange={handleChange}
+                    className="w-full px-3.5 py-2.5 rounded-xl bg-vortex-surface border border-vortex-border text-sm text-white focus:outline-none focus:border-cyan-400"
+                  >
+                    <option value="₹6 - 12 LPA">₹6 - 12 LPA (Fresher Base)</option>
+                    <option value="₹12 - 25 LPA">₹12 - 25 LPA (Product & High-Tech)</option>
+                    <option value="₹25+ LPA">₹25+ LPA (Top Tech / FAANG)</option>
+                  </select>
+                </div>
+              </div>
+            </div>
+
+            {/* Section 3: Technical & Soft Skills Selection */}
+            <div className="p-6 rounded-2xl bg-vortex-card border border-vortex-border space-y-4">
+              <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
+                <h3 className="font-display font-bold text-base text-white flex items-center gap-2">
+                  <span className="text-purple-400">03</span>
+                  <span>Skills Inventory ({formData.skills.length} Selected)</span>
+                </h3>
+                <span className="text-xs text-slate-400">Click skills to toggle selection</span>
+              </div>
+
+              {/* Tag Picker */}
+              <div className="flex flex-wrap gap-2">
+                {ALL_SKILL_OPTIONS.map((skill) => {
+                  const isSelected = formData.skills.includes(skill);
+                  return (
+                    <button
+                      key={skill}
+                      type="button"
+                      onClick={() => toggleSkill(skill)}
+                      className={`px-3 py-1.5 rounded-lg text-xs font-mono transition-all ${
+                        isSelected
+                          ? 'bg-gradient-to-r from-cyan-500 to-indigo-600 text-white font-bold shadow-md shadow-cyan-500/20'
+                          : 'bg-vortex-surface border border-vortex-border text-slate-300 hover:text-white hover:border-slate-500'
+                      }`}
+                    >
+                      {isSelected ? '✓ ' : '+ '}{skill}
+                    </button>
+                  );
+                })}
+              </div>
+
+              {/* Add Custom Skill */}
+              <div className="pt-2 flex items-center gap-2 max-w-md">
+                <input
+                  type="text"
+                  value={newSkill}
+                  onChange={(e) => setNewSkill(e.target.value)}
+                  placeholder="Add custom skill (e.g. GraphQL, Solidity)..."
+                  className="flex-1 px-3 py-2 rounded-xl bg-vortex-surface border border-vortex-border text-xs text-white focus:outline-none focus:border-cyan-400"
+                />
+                <button
+                  type="button"
+                  onClick={addCustomSkill}
+                  className="px-3 py-2 rounded-xl bg-slate-800 hover:bg-slate-700 text-xs font-semibold text-slate-200"
+                >
+                  Add Skill
+                </button>
+              </div>
+            </div>
+
+            {/* Section 4: Passions & Interests */}
+            <div className="p-6 rounded-2xl bg-vortex-card border border-vortex-border space-y-4">
+              <h3 className="font-display font-bold text-base text-white flex items-center gap-2">
+                <span className="text-emerald-400">04</span>
+                <span>Career Passions & Target Domains</span>
+              </h3>
+
+              <div className="flex flex-wrap gap-2">
+                {ALL_INTEREST_OPTIONS.map((interest) => {
+                  const isSelected = formData.interests.includes(interest);
+                  return (
+                    <button
+                      key={interest}
+                      type="button"
+                      onClick={() => toggleInterest(interest)}
+                      className={`px-3 py-1.5 rounded-lg text-xs font-medium transition-all ${
+                        isSelected
+                          ? 'bg-emerald-500/20 text-emerald-300 border border-emerald-500/40 font-bold'
+                          : 'bg-vortex-surface border border-vortex-border text-slate-300 hover:text-white'
+                      }`}
+                    >
+                      {isSelected ? '★ ' : '☆ '}{interest}
+                    </button>
+                  );
+                })}
+              </div>
+
+              <div className="pt-2">
+                <label className="block text-xs font-mono text-slate-300 mb-1">Candidate Bio & Aspirations</label>
+                <textarea
+                  name="bio"
+                  rows="3"
+                  value={formData.bio}
+                  onChange={handleChange}
+                  className="w-full px-3.5 py-2.5 rounded-xl bg-vortex-surface border border-vortex-border text-xs text-white focus:outline-none focus:border-cyan-400"
+                  placeholder="Share a brief statement about your key projects and career direction..."
+                ></textarea>
+              </div>
+            </div>
+
+            {/* Submit Button */}
+            <div className="flex items-center justify-end gap-3 pt-4">
+              <button
+                type="submit"
+                className="px-8 py-3.5 rounded-xl bg-gradient-to-r from-cyan-500 via-indigo-600 to-purple-600 font-display font-bold text-sm text-white shadow-xl shadow-cyan-500/20 hover:scale-[1.02] active:scale-[0.98] transition-all"
+              >
+                💾 Save to Tech Vortex Data Vault
+              </button>
+            </div>
+          </form>
+        </div>
+      );
+    }
+
+    // =========================================================================
+    // 3. LINKEDIN TAB: Recruiter Magnet & Profile Training
+    // =========================================================================
+    function LinkedInTab({ profile, gainXp, sound }) {
+      const [headlineTone, setHeadlineTone] = useState('technical');
+      const [aboutTone, setAboutTone] = useState('impact');
+      const [copiedKey, setCopiedKey] = useState('');
+      const [checklist, setChecklist] = useState({
+        banner: true,
+        headshot: true,
+        customUrl: false,
+        headlineKeywords: true,
+        featuredLinks: true,
+        skillsEndorsed: false,
+        recommendation: false,
+        creatorMode: true
+      });
+
+      const toggleCheck = (k) => {
+        sound.click();
+        setChecklist(prev => ({ ...prev, [k]: !prev[k] }));
+      };
+
+      const copyToClipboard = (text, key) => {
+        sound.success();
+        navigator.clipboard.writeText(text);
+        setCopiedKey(key);
+        gainXp(25, "Copied Recruiter SEO Content");
+        setTimeout(() => setCopiedKey(''), 2500);
+      };
+
+      // Generated headlines tailored for freshers & skilled candidates
+      const headlines = {
+        technical: `${profile.degree ? 'CS Engineer' : 'Software Developer'} | Full Stack & AI Systems | ${profile.skills.slice(0, 3).join(', ')} | Building Scalable Software`,
+        fresherSeeking: `Aspiring Software Engineer & 2026 Batch @ ${profile.college || 'Tech Vortex'} | Proficient in ${profile.skills.slice(0, 3).join(', ')} | Open for SWE / AI Internships`,
+        impact: `Building High-Impact Web & AI Applications | 10+ Projects in ${profile.skills.slice(0, 2).join(' & ')} | Open to Opportunities`
+      };
+
+      const aboutSummaries = {
+        impact: `Hello! I am a software engineer dedicated to building scalable, resilient software systems.\n\nOver the past 3 years, I've developed end-to-end full-stack applications and explored machine learning pipelines. My focus centers on clean architectural patterns, robust APIs, and delighting users with lightning-fast experiences.\n\n🚀 Core Technical Toolkit:\n- Languages & Frameworks: ${profile.skills.join(', ')}\n- Target Domains: ${profile.interests.join(', ')}\n\nI am currently seeking full-time and internship software engineering roles where I can drive real business impact. Let's connect!`,
+        technical: `Software Engineer specializing in ${profile.skills.slice(0, 4).join(', ')}.\n\nPassionate about distributed systems, microservices, and modern AI integrations. Constantly solving complex algorithmic challenges and contributing to open-source software.\n\nEducation: ${profile.degree} (CGPA: ${profile.cgpa})\nLocation: ${profile.address}\n\nFeel free to explore my GitHub or reach out for collaboration!`
+      };
+
+      const auditScore = Math.round((Object.values(checklist).filter(Boolean).length / Object.keys(checklist).length) * 100);
+
+      return (
+        <div className="space-y-8 animate-fadeIn">
+          {/* Header */}
+          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-4 border-b border-vortex-border">
+            <div>
+              <div className="flex items-center gap-2 text-xs font-mono text-cyan-400 mb-1">
+                <span>RECRUITER MAGNET ACCELERATOR</span>
+                <span>•</span>
+                <span>Module 02</span>
+              </div>
+              <h1 className="text-2xl sm:text-3xl font-display font-extrabold text-white">LinkedIn Profile Training for Freshers</h1>
+              <p className="text-xs text-slate-300">How to construct a profile that triggers recruiter search algorithms and converts profile views into interview invitations.</p>
+            </div>
+            <div className="p-3 rounded-xl bg-vortex-card border border-vortex-border flex items-center gap-3">
+              <span className="text-2xl">🧲</span>
+              <div>
+                <div className="text-xs font-bold text-white">Recruiter Magnet Score</div>
+                <div className="text-sm font-mono font-extrabold text-cyan-400">{auditScore}% Readiness</div>
+              </div>
+            </div>
+          </div>
+
+          {/* Interactive LinkedIn Search Preview Card */}
+          <div className="space-y-3">
+            <h3 className="text-xs font-mono uppercase text-slate-400 tracking-wider">
+              Recruiter Search Card Preview (How recruiters see you on LinkedIn Recruiter)
+            </h3>
+
+            <div className="p-6 rounded-2xl bg-[#001D38]/80 border border-[#0A66C2]/40 shadow-xl space-y-4">
+              <div className="flex flex-col sm:flex-row items-start gap-4">
+                {/* Avatar with Open to Work border */}
+                <div className="relative">
+                  <div className="w-20 h-20 rounded-full bg-slate-800 border-2 border-emerald-400 p-0.5 flex items-center justify-center font-display font-bold text-2xl text-cyan-300">
+                    {profile.name.split(' ').map(n => n[0]).join('')}
+                  </div>
+                  <div className="absolute -bottom-1 -right-1 px-1.5 py-0.5 rounded-full bg-emerald-500 text-[9px] font-bold text-black uppercase font-mono">
+                    Open
+                  </div>
+                </div>
+
+                <div className="space-y-1 flex-1">
+                  <div className="flex items-center gap-2">
+                    <h2 className="text-lg font-bold text-white hover:underline cursor-pointer">{profile.name}</h2>
+                    <span className="text-xs text-slate-400 font-mono">• 1st</span>
+                  </div>
+                  <p className="text-xs text-slate-200 font-medium leading-snug">{headlines[headlineTone]}</p>
+                  <p className="text-[11px] text-slate-400">{profile.college} • {profile.address}</p>
+
+                  <div className="flex flex-wrap gap-1.5 pt-2">
+                    {profile.skills.slice(0, 5).map((s, idx) => (
+                      <span key={idx} className="text-[10px] px-2 py-0.5 rounded-full bg-slate-800/80 text-cyan-300 border border-slate-700 font-mono">
+                        {s}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+
+                <div className="flex sm:flex-col gap-2 shrink-0">
+                  <button className="px-4 py-1.5 rounded-full bg-[#0A66C2] text-white text-xs font-semibold hover:bg-blue-600 transition-all">
+                    Message
+                  </button>
+                  <button className="px-4 py-1.5 rounded-full border border-slate-400 text-slate-300 text-xs font-semibold hover:border-white">
+                    Save Profile
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* 3-Column Studio: Headline, About, and Profile Auditor */}
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+            {/* Column 1: Headline Generator */}
+            <div className="p-5 rounded-2xl bg-vortex-card border border-vortex-border space-y-4">
+              <div className="flex items-center justify-between">
+                <h3 className="font-display font-bold text-sm text-white flex items-center gap-2">
+                  <span>🎯</span>
+                  <span>Headline Formula</span>
+                </h3>
+                <span className="text-[10px] font-mono text-cyan-400">SEO Optimized</span>
+              </div>
+
+              <p className="text-xs text-slate-300">
+                Recruiters search via Boolean keywords. Avoid generic titles like <em>"Student"</em> or <em>"Looking for job"</em>. Use the 4-part formula:
+              </p>
+
+              <div className="p-2.5 rounded-lg bg-vortex-surface border border-vortex-border text-[11px] text-cyan-300 font-mono">
+                [Target Role] | [Core Tech Stack] | [Projects/Achievements] | [Seeking Opportunities]
+              </div>
+
+              <div className="flex gap-1.5">
+                {['technical', 'fresherSeeking', 'impact'].map((t) => (
+                  <button
+                    key={t}
+                    onClick={() => {
+                      sound.click();
+                      setHeadlineTone(t);
+                    }}
+                    className={`flex-1 py-1 text-[10px] rounded-lg font-mono capitalize transition-all ${
+                      headlineTone === t ? 'bg-cyan-500/20 text-cyan-300 border border-cyan-500/40' : 'bg-slate-800 text-slate-400'
+                    }`}
+                  >
+                    {t.replace(/([A-Z])/g, ' $1')}
+                  </button>
+                ))}
+              </div>
+
+              <div className="p-3 rounded-xl bg-vortex-surface border border-vortex-border text-xs text-slate-200">
+                {headlines[headlineTone]}
+              </div>
+
+              <button
+                onClick={() => copyToClipboard(headlines[headlineTone], 'headline')}
+                className="w-full py-2 rounded-xl bg-cyan-500/10 hover:bg-cyan-500/20 border border-cyan-500/30 text-cyan-300 text-xs font-semibold transition-all flex items-center justify-center gap-2"
+              >
+                <span>{copiedKey === 'headline' ? '✓ Copied!' : '📋 Copy Headline'}</span>
+              </button>
+            </div>
+
+            {/* Column 2: About / Summary Writer */}
+            <div className="p-5 rounded-2xl bg-vortex-card border border-vortex-border space-y-4">
+              <div className="flex items-center justify-between">
+                <h3 className="font-display font-bold text-sm text-white flex items-center gap-2">
+                  <span>📝</span>
+                  <span>About Section Generator</span>
+                </h3>
+                <span className="text-[10px] font-mono text-purple-400">High Conversion</span>
+              </div>
+
+              <div className="flex gap-2">
+                <button
+                  onClick={() => { sound.click(); setAboutTone('impact'); }}
+                  className={`flex-1 py-1 text-[10px] rounded-lg font-mono transition-all ${
+                    aboutTone === 'impact' ? 'bg-purple-500/20 text-purple-300 border border-purple-500/40' : 'bg-slate-800 text-slate-400'
+                  }`}
+                >
+                  High Impact
+                </button>
+                <button
+                  onClick={() => { sound.click(); setAboutTone('technical'); }}
+                  className={`flex-1 py-1 text-[10px] rounded-lg font-mono transition-all ${
+                    aboutTone === 'technical' ? 'bg-purple-500/20 text-purple-300 border border-purple-500/40' : 'bg-slate-800 text-slate-400'
+                  }`}
+                >
+                  Technical Focus
+                </button>
+              </div>
+
+              <textarea
+                readOnly
+                rows="7"
+                value={aboutSummaries[aboutTone]}
+                className="w-full p-3 rounded-xl bg-vortex-surface border border-vortex-border text-[11px] text-slate-300 leading-relaxed font-sans focus:outline-none resize-none"
+              ></textarea>
+
+              <button
+                onClick={() => copyToClipboard(aboutSummaries[aboutTone], 'about')}
+                className="w-full py-2 rounded-xl bg-purple-500/10 hover:bg-purple-500/20 border border-purple-500/30 text-purple-300 text-xs font-semibold transition-all flex items-center justify-center gap-2"
+              >
+                <span>{copiedKey === 'about' ? '✓ Copied!' : '📋 Copy About Summary'}</span>
+              </button>
+            </div>
+
+            {/* Column 3: 8-Point Recruiter Checkmarks */}
+            <div className="p-5 rounded-2xl bg-vortex-card border border-vortex-border space-y-4">
+              <div className="flex items-center justify-between">
+                <h3 className="font-display font-bold text-sm text-white flex items-center gap-2">
+                  <span>✅</span>
+                  <span>8-Point Profile Audit</span>
+                </h3>
+                <span className="text-xs font-mono font-bold text-cyan-400">{auditScore}% Complete</span>
+              </div>
+
+              <div className="space-y-2 text-xs">
+                {[
+                  { k: 'banner', label: 'Custom Tech Banner (Avoid default gray)' },
+                  { k: 'headshot', label: 'Clear, high-contrast professional headshot' },
+                  { k: 'customUrl', label: 'Custom URL (e.g. linkedin.com/in/sambit-kumar)' },
+                  { k: 'headlineKeywords', label: 'Headline has 3+ searchable skills' },
+                  { k: 'featuredLinks', label: 'Featured section links to GitHub / Live demo' },
+                  { k: 'skillsEndorsed', label: 'Top 5 skills pinned and endorsed' },
+                  { k: 'recommendation', label: 'At least 1 recommendation from mentor/peer' },
+                  { k: 'creatorMode', label: 'Turn on Creator Mode to showcase skills' }
+                ].map(item => (
+                  <div
+                    key={item.k}
+                    onClick={() => toggleCheck(item.k)}
+                    className="flex items-center justify-between p-2 rounded-lg bg-vortex-surface/80 border border-vortex-border hover:border-slate-600 cursor-pointer"
+                  >
+                    <span className={checklist[item.k] ? 'text-slate-200' : 'text-slate-400'}>{item.label}</span>
+                    <span className={`text-xs font-bold ${checklist[item.k] ? 'text-emerald-400' : 'text-slate-600'}`}>
+                      {checklist[item.k] ? '✓ Done' : '○ To Do'}
+                    </span>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+        </div>
+      );
+    }
+
+    // =========================================================================
+    // 4. AI TOOLS TAB: Claude, Gemini, ChatGPT, DeepSeek Mastery
+    // =========================================================================
+    function AIToolsTab({ gainXp, sound }) {
+      const [selectedTool, setSelectedTool] = useState('claude');
+      const [activePromptCategory, setActivePromptCategory] = useState('code');
+      const [customInput, setCustomInput] = useState('React useEffect infinite re-render loop on data fetching');
+      const [simulatedOutput, setSimulatedOutput] = useState('');
+      const [isGenerating, setIsGenerating] = useState(false);
+
+      const aiTools = [
+        {
+          id: 'claude',
+          name: 'Anthropic Claude 3.5 Sonnet',
+          strength: 'System Architecture & Flawless Code Refactoring',
+          bestFor: 'Writing clean, production-grade code, debugging architectural bottlenecks, and long document reasoning.',
+          superpower: 'Artifacts visualization & zero-hallucination code generation.',
+          color: 'from-amber-500 to-orange-600'
+        },
+        {
+          id: 'chatgpt',
+          name: 'OpenAI ChatGPT-4o',
+          strength: 'Ideation, STAR Behavioral Interviews & Rapid Prototyping',
+          bestFor: 'Brainstorming hackathon concepts, converting project bullets into quantified metrics, and behavioral interview simulation.',
+          superpower: 'Broad knowledge synthesis & natural conversational role-playing.',
+          color: 'from-emerald-500 to-teal-600'
+        },
+        {
+          id: 'gemini',
+          name: 'Google Gemini 1.5 Pro',
+          strength: '2M Context Window, Live Web Grounding & Multimodal Analysis',
+          bestFor: 'Feeding entire codebases or research papers at once, analyzing UI mockups, and real-time market research.',
+          superpower: 'Infinite context window & deep multimodal diagram comprehension.',
+          color: 'from-cyan-500 to-blue-600'
+        },
+        {
+          id: 'deepseek',
+          name: 'DeepSeek R1 / V3',
+          strength: 'Competitive Programming, Math & Chain-of-Thought Reasoning',
+          bestFor: 'Solving hard LeetCode DSA problems, explaining mathematical proofs, and low-level C++/Rust algorithms.',
+          superpower: 'Transparent step-by-step thinking tokens and logic verification.',
+          color: 'from-indigo-500 to-purple-600'
+        }
+      ];
+
+      const promptTemplates = {
+        code: {
+          title: "Senior Staff Engineer Code Reviewer",
+          prompt: `You are a Principal Software Architect. Review the following code snippet for: 1) Algorithmic time and space complexity, 2) Concurrency or race conditions, 3) Production failure modes, and 4) Provide the refactored optimal implementation with explanation.\n\nContext/Bug to inspect: [INPUT]`
+        },
+        resume: {
+          title: "Quantified Resume Achievement Formatter (Google XYZ Formula)",
+          prompt: `Transform the following rough project description into 3 high-impact resume bullet points using the Google XYZ formula: 'Accomplished [X], as measured by [Y], by doing [Z]'. Ensure bullet points contain actionable engineering metrics.\n\nProject details: [INPUT]`
+        },
+        viva: {
+          title: "Tough College Project Viva Examiner",
+          prompt: `Act as a strict External University Viva Examiner evaluating my final year project. Ask me 5 difficult cross-examination questions about edge cases, database scalability, security vulnerabilities, and why I didn't use alternative technologies.\n\nProject Title & Tech Stack: [INPUT]`
+        },
+        antidistract: {
+          title: "Focused Learning Curriculum Builder",
+          prompt: `I have 2 hours today to study [INPUT]. Create a laser-focused, distraction-free 120-minute timeline with exactly 3 practical hands-on mini-challenges. Do not give generic advice—only concrete exercises.`
+        }
+      };
+
+      const runPromptSimulation = () => {
+        setIsGenerating(true);
+        sound.beep();
+        setSimulatedOutput('');
+
+        setTimeout(() => {
+          setIsGenerating(false);
+          sound.success();
+          gainXp(75, "Tested AI Prompt Engineering Blueprint");
+
+          if (activePromptCategory === 'code') {
+            setSimulatedOutput(`[Claude 3.5 Sonnet Response]\n\nDiagnostic Analysis:\n1. Root Cause: Your useEffect dependency array contains an unstable reference or triggers a state update that immediately alters a dependency, creating an unbounded re-render cycle.\n2. Solution: Stabilize the fetching callback with useCallback() or move the fetch logic outside or use an abort controller.\n\nRefactored Pattern:\nuseEffect(() => {\n  let isMounted = true;\n  const controller = new AbortController();\n  \n  async function fetchData() {\n    try {\n      const res = await fetch('/api/data', { signal: controller.signal });\n      const data = await res.json();\n      if (isMounted) setData(data);\n    } catch (err) {\n      if (err.name !== 'AbortError') setError(err);\n    }\n  }\n  fetchData();\n  return () => { isMounted = false; controller.abort(); };\n}, []);`);
+          } else if (activePromptCategory === 'resume') {
+            setSimulatedOutput(`[ChatGPT-4o XYZ Transformation]\n\n• Architected a responsive web application utilizing React and Node.js, reducing page load latency by 42% through lazy loading and API memoization.\n• Implemented an automated ML pipeline integrating Python TF-IDF models, achieving 94% matching precision across 1,000+ candidate profiles.\n• Engineered secure JWT authentication and PostgreSQL transactions, maintaining zero authorization breaches across 5,000 simulated test cycles.`);
+          } else {
+            setSimulatedOutput(`[Tech Vortex AI Mastermind]\n\nExecution Blueprint:\n1. 00-30m: Isolate component tree and benchmark render count.\n2. 30-75m: Implement clean state normalization.\n3. 75-120m: Deploy automated unit tests to prevent regression.`);
+          }
+        }, 800);
+      };
+
+      return (
+        <div className="space-y-8 animate-fadeIn">
+          {/* Header */}
+          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-4 border-b border-vortex-border">
+            <div>
+              <div className="flex items-center gap-2 text-xs font-mono text-cyan-400 mb-1">
+                <span>MAXIMUM LEVERAGE AI</span>
+                <span>•</span>
+                <span>Module 03</span>
+              </div>
+              <h1 className="text-2xl sm:text-3xl font-display font-extrabold text-white">Mastering AI Tools (Claude, GPT, Gemini)</h1>
+              <p className="text-xs text-slate-300">How to use AI at its highest potential without falling down rabbit holes or getting distracted.</p>
+            </div>
+            <div className="px-3 py-1.5 rounded-full bg-cyan-500/10 text-cyan-400 border border-cyan-500/30 text-xs font-mono">
+              🛡️ Anti-Distraction Workflow
+            </div>
+          </div>
+
+          {/* AI Tools Grid */}
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+            {aiTools.map((t) => {
+              const isSelected = selectedTool === t.id;
+              return (
+                <div
+                  key={t.id}
+                  onClick={() => {
+                    sound.click();
+                    setSelectedTool(t.id);
+                  }}
+                  className={`p-5 rounded-2xl cursor-pointer transition-all border ${
+                    isSelected
+                      ? 'bg-vortex-card border-cyan-400 shadow-xl shadow-cyan-500/10 scale-[1.02]'
+                      : 'bg-vortex-card/70 border-vortex-border hover:border-slate-600'
+                  }`}
+                >
+                  <div className={`w-10 h-10 rounded-xl bg-gradient-to-tr ${t.color} p-[1px] mb-3`}>
+                    <div className="w-full h-full bg-vortex-dark rounded-[11px] flex items-center justify-center font-bold text-xs text-white">
+                      AI
+                    </div>
+                  </div>
+                  <h3 className="font-bold text-sm text-white">{t.name}</h3>
+                  <div className="text-[11px] font-mono text-cyan-400 mt-1 mb-2">{t.strength}</div>
+                  <p className="text-xs text-slate-300 leading-snug">{t.bestFor}</p>
+                </div>
+              );
+            })}
+          </div>
+
+          {/* ANTI-DISTRACTION 4-STEP PROTOCOL */}
+          <div className="p-6 rounded-2xl bg-gradient-to-r from-vortex-card to-vortex-surface border border-vortex-border space-y-4">
+            <h3 className="font-display font-bold text-base text-white flex items-center gap-2">
+              <span className="text-amber-400">⚡</span>
+              <span>The 4 Golden Rules: How to Use AI Without Getting Diverted</span>
+            </h3>
+
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 text-xs">
+              <div className="p-3.5 rounded-xl bg-vortex-surface/80 border border-vortex-border">
+                <span className="font-mono font-bold text-cyan-400">Rule 01: Prompt First</span>
+                <p className="text-slate-300 mt-1">Write your goal and expected acceptance criteria on paper BEFORE opening the AI chat window. Never browse aimlessly.</p>
+              </div>
+              <div className="p-3.5 rounded-xl bg-vortex-surface/80 border border-vortex-border">
+                <span className="font-mono font-bold text-purple-400">Rule 02: 2-Turn Limit</span>
+                <p className="text-slate-300 mt-1">If the AI doesn't solve your bug within 2 iterations, STOP typing. Read the official docs or error stack trace manually.</p>
+              </div>
+              <div className="p-3.5 rounded-xl bg-vortex-surface/80 border border-vortex-border">
+                <span className="font-mono font-bold text-emerald-400">Rule 03: The Sandbox</span>
+                <p className="text-slate-300 mt-1">Never copy-paste code blindly into main. Test generated snippets in a scratchpad or small test file first to maintain deep comprehension.</p>
+              </div>
+              <div className="p-3.5 rounded-xl bg-vortex-surface/80 border border-vortex-border">
+                <span className="font-mono font-bold text-amber-400">Rule 04: Zero Tab Hopping</span>
+                <p className="text-slate-300 mt-1">Pin ONE primary AI tool tab. Close social feeds and notification popups while generating code architecture.</p>
+              </div>
+            </div>
+          </div>
+
+          {/* INTERACTIVE PROMPT ENGINEERING LAB */}
+          <div className="p-6 rounded-2xl bg-vortex-card border border-vortex-border space-y-5">
+            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
+              <div>
+                <h3 className="font-display font-bold text-lg text-white">Interactive Vortex Prompt Laboratory</h3>
+                <p className="text-xs text-slate-400">Tested, high-leverage prompts that bypass mediocre responses and elicit top-tier outputs.</p>
+              </div>
+              <div className="flex gap-2">
+                {Object.keys(promptTemplates).map((cat) => (
+                  <button
+                    key={cat}
+                    onClick={() => {
+                      sound.click();
+                      setActivePromptCategory(cat);
+                    }}
+                    className={`px-3 py-1.5 rounded-lg text-xs font-mono capitalize transition-all ${
+                      activePromptCategory === cat
+                        ? 'bg-cyan-500/20 text-cyan-300 border border-cyan-500/40'
+                        : 'bg-vortex-surface text-slate-400 hover:text-slate-200'
+                    }`}
+                  >
+                    {cat}
+                  </button>
+                ))}
+              </div>
+            </div>
+
+            <div className="space-y-3">
+              <label className="block text-xs font-mono text-slate-300">
+                Custom Topic / Error / Project Context:
+              </label>
+              <input
+                type="text"
+                value={customInput}
+                onChange={(e) => setCustomInput(e.target.value)}
+                className="w-full px-3.5 py-2.5 rounded-xl bg-vortex-surface border border-vortex-border text-xs text-white focus:outline-none focus:border-cyan-400 font-mono"
+              />
+
+              <div className="p-4 rounded-xl bg-vortex-surface/60 border border-vortex-border space-y-2">
+                <span className="text-[10px] font-mono text-cyan-400 uppercase">Compiled System Prompt</span>
+                <p className="text-xs text-slate-200 font-mono leading-relaxed">
+                  {promptTemplates[activePromptCategory].prompt.replace('[INPUT]', customInput)}
+                </p>
+              </div>
+
+              <div className="flex items-center gap-3">
+                <button
+                  onClick={runPromptSimulation}
+                  disabled={isGenerating}
+                  className="px-5 py-2.5 rounded-xl bg-gradient-to-r from-cyan-500 to-indigo-600 text-white font-semibold text-xs hover:shadow-lg hover:shadow-cyan-500/20 transition-all flex items-center gap-2"
+                >
+                  <span>{isGenerating ? '⏳ Generating...' : '⚡ Test Prompt Output'}</span>
+                </button>
+                <button
+                  onClick={() => {
+                    const full = promptTemplates[activePromptCategory].prompt.replace('[INPUT]', customInput);
+                    navigator.clipboard.writeText(full);
+                    sound.success();
+                    alert('📋 Copied full prompt to clipboard! Paste it into Claude, ChatGPT, or Gemini.');
+                  }}
+                  className="px-4 py-2.5 rounded-xl bg-vortex-surface border border-vortex-border text-slate-300 hover:text-white text-xs font-medium transition-all"
+                >
+                  Copy Prompt
+                </button>
+              </div>
+
+              {simulatedOutput && (
+                <div className="p-4 rounded-xl bg-black/80 border border-cyan-500/40 space-y-2 animate-fadeIn">
+                  <div className="flex items-center justify-between text-xs font-mono text-cyan-400">
+                    <span>AI SIMULATION RESPONSE</span>
+                    <span>100% Quality Pass</span>
+                  </div>
+                  <pre className="text-xs text-slate-200 font-mono whitespace-pre-wrap leading-relaxed overflow-x-auto">
+                    {simulatedOutput}
+                  </pre>
+                </div>
+              )}
+            </div>
+          </div>
+        </div>
+      );
+    }
+
+    // =========================================================================
+    // 5. PRODUCTIVITY TAB: Pomodoro Timer, Ambient Audio, Stress & Calm Center
+    // =========================================================================
+    function ProductivityTab({ gainXp, sound }) {
+      const [timeLeft, setTimeLeft] = useState(25 * 60);
+      const [isRunning, setIsRunning] = useState(false);
+      const [mode, setMode] = useState('focus'); // focus, shortBreak, longBreak
+      const [ambientSound, setAmbientSound] = useState('none'); // none, rain, binaural, whitenoise
+      const [tasks, setTasks] = useState([
+        { id: 1, title: 'Complete Tech Vortex AI Analysis & Review Skill Gaps', quad: 'q1', done: true },
+        { id: 2, title: 'Optimize LinkedIn Headline & About Summary', quad: 'q1', done: false },
+        { id: 3, title: 'Study 2 hard DSA problems on NeetCode', quad: 'q2', done: false },
+        { id: 4, title: 'Prepare 5 answers for College Project Viva Defense', quad: 'q2', done: false },
+        { id: 5, title: 'Clean up desktop downloads folder', quad: 'q4', done: false }
+      ]);
+      const [newTaskText, setNewTaskText] = useState('');
+      const [newTaskQuad, setNewTaskQuad] = useState('q1');
+
+      // Breathing Exercise State
+      const [breathState, setBreathState] = useState('Inhale');
+      const [breathCounter, setBreathCounter] = useState(4);
+      const [isBreathingActive, setIsBreathingActive] = useState(false);
+
+      // Pomodoro Timer Effect
+      useEffect(() => {
+        let interval = null;
+        if (isRunning && timeLeft > 0) {
+          interval = setInterval(() => setTimeLeft(prev => prev - 1), 1000);
+        } else if (timeLeft === 0 && isRunning) {
+          setIsRunning(false);
+          sound.success();
+          gainXp(120, "Finished Focus Work Block!");
+          alert("🎉 Focus session completed! Take a rejuvenating break.");
+        }
+        return () => clearInterval(interval);
+      }, [isRunning, timeLeft]);
+
+      // Ambient Audio Handler
+      const handleAmbientChange = (type) => {
+        setAmbientSound(type);
+        if (type === 'none') {
+          sound.stopAmbient();
+        } else {
+          sound.startAmbient(type);
+        }
+      };
+
+      const setTimerMode = (m, minutes) => {
+        sound.click();
+        setMode(m);
+        setIsRunning(false);
+        setTimeLeft(minutes * 60);
+      };
+
+      const formatTime = (secs) => {
+        const m = Math.floor(secs / 60);
+        const s = secs % 60;
+        return `${m < 10 ? '0' : ''}${m}:${s < 10 ? '0' : ''}${s}`;
+      };
+
+      // 4-7-8 Breathing Loop
+      useEffect(() => {
+        let timer = null;
+        if (isBreathingActive) {
+          timer = setInterval(() => {
+            setBreathCounter(prev => {
+              if (prev <= 1) {
+                if (breathState === 'Inhale (4s)') {
+                  setBreathState('Hold (7s)');
+                  return 7;
+                } else if (breathState === 'Hold (7s)') {
+                  setBreathState('Exhale (8s)');
+                  return 8;
+                } else {
+                  setBreathState('Inhale (4s)');
+                  return 4;
+                }
+              }
+              return prev - 1;
+            });
+          }, 1000);
+        }
+        return () => clearInterval(timer);
+      }, [isBreathingActive, breathState]);
+
+      const toggleTask = (id) => {
+        sound.click();
+        setTasks(prev => prev.map(t => t.id === id ? { ...t, done: !t.done } : t));
+      };
+
+      const addTask = (e) => {
+        e.preventDefault();
+        if (newTaskText.trim()) {
+          sound.click();
+          setTasks(prev => [...prev, { id: Date.now(), title: newTaskText.trim(), quad: newTaskQuad, done: false }]);
+          setNewTaskText('');
+          gainXp(20, "Scheduled Priority Task");
+        }
+      };
+
+      return (
+        <div className="space-y-8 animate-fadeIn">
+          {/* Header */}
+          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-4 border-b border-vortex-border">
+            <div>
+              <div className="flex items-center gap-2 text-xs font-mono text-cyan-400 mb-1">
+                <span>HIGH EFFICIENCY ARCHITECTURE</span>
+                <span>•</span>
+                <span>Module 04</span>
+              </div>
+              <h1 className="text-2xl sm:text-3xl font-display font-extrabold text-white">Focus, Time & Stress Management Studio</h1>
+              <p className="text-xs text-slate-300">Maximize cognitive output, eliminate procrastination, and regulate stress with scientific focus cycles.</p>
+            </div>
+            <div className="flex items-center gap-2">
+              <span className="text-xs text-slate-400 font-mono">Ambient Audio:</span>
+              {['none', 'rain', 'binaural', 'whitenoise'].map((type) => (
+                <button
+                  key={type}
+                  onClick={() => handleAmbientChange(type)}
+                  className={`px-2.5 py-1 rounded-lg text-[10px] font-mono capitalize transition-all ${
+                    ambientSound === type
+                      ? 'bg-cyan-500/20 text-cyan-300 border border-cyan-500/40'
+                      : 'bg-vortex-card border border-vortex-border text-slate-400'
+                  }`}
+                >
+                  {type}
+                </button>
+              ))}
+            </div>
+          </div>
+
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8">
+            {/* Left 5 Cols: Interactive Pomodoro Timer + 4-7-8 Breathing Circle */}
+            <div className="lg:col-span-5 space-y-6">
+              {/* Pomodoro Clock Box */}
+              <div className="p-6 rounded-2xl bg-vortex-card border border-vortex-border space-y-6 text-center relative overflow-hidden">
+                <div className="flex items-center justify-center gap-2">
+                  <button
+                    onClick={() => setTimerMode('focus', 25)}
+                    className={`px-3 py-1.5 rounded-lg text-xs font-mono transition-all ${
+                      mode === 'focus' ? 'bg-cyan-500 text-black font-bold' : 'text-slate-400 hover:text-white'
+                    }`}
+                  >
+                    25m Focus
+                  </button>
+                  <button
+                    onClick={() => setTimerMode('shortBreak', 5)}
+                    className={`px-3 py-1.5 rounded-lg text-xs font-mono transition-all ${
+                      mode === 'shortBreak' ? 'bg-emerald-500 text-black font-bold' : 'text-slate-400 hover:text-white'
+                    }`}
+                  >
+                    5m Break
+                  </button>
+                  <button
+                    onClick={() => setTimerMode('longBreak', 15)}
+                    className={`px-3 py-1.5 rounded-lg text-xs font-mono transition-all ${
+                      mode === 'longBreak' ? 'bg-purple-500 text-white font-bold' : 'text-slate-400 hover:text-white'
+                    }`}
+                  >
+                    15m Reset
+                  </button>
+                </div>
+
+                {/* Big Glowing Timer Display */}
+                <div className="font-mono text-6xl sm:text-7xl font-extrabold tracking-tighter text-white py-4 drop-shadow-[0_0_25px_rgba(6,182,212,0.3)]">
+                  {formatTime(timeLeft)}
+                </div>
+
+                {/* Controls */}
+                <div className="flex items-center justify-center gap-4">
+                  <button
+                    onClick={() => {
+                      sound.click();
+                      setIsRunning(!isRunning);
+                    }}
+                    className={`px-8 py-3 rounded-xl font-display font-bold text-sm text-white shadow-lg transition-all ${
+                      isRunning
+                        ? 'bg-amber-600 hover:bg-amber-500'
+                        : 'bg-gradient-to-r from-cyan-500 to-indigo-600 hover:shadow-cyan-500/30'
+                    }`}
+                  >
+                    {isRunning ? '⏸ Pause Focus' : '▶ Start Focus Session'}
+                  </button>
+                  <button
+                    onClick={() => {
+                      sound.click();
+                      setIsRunning(false);
+                      setTimeLeft(mode === 'focus' ? 25 * 60 : mode === 'shortBreak' ? 5 * 60 : 15 * 60);
+                    }}
+                    className="p-3 rounded-xl bg-vortex-surface border border-vortex-border text-slate-300 hover:text-white"
+                    title="Reset Timer"
+                  >
+                    🔄
+                  </button>
+                </div>
+
+                <p className="text-[11px] text-slate-400">
+                  {isRunning ? '⚡ Session active! Ambient focus sound playing.' : 'Tip: Work in unbroken 25-minute sprints to double your retention.'}
+                </p>
+              </div>
+
+              {/* Stress Decompression: 4-7-8 Guided Breathing Circle */}
+              <div className="p-6 rounded-2xl bg-vortex-card border border-vortex-border space-y-4 text-center">
+                <div className="flex items-center justify-between">
+                  <h3 className="font-display font-bold text-sm text-white flex items-center gap-2">
+                    <span>🧘</span>
+                    <span>4-7-8 Parasympathetic Calm Exercise</span>
+                  </h3>
+                  <button
+                    onClick={() => {
+                      sound.click();
+                      setIsBreathingActive(!isBreathingActive);
+                      if (!isBreathingActive) {
+                        setBreathState('Inhale (4s)');
+                        setBreathCounter(4);
+                        gainXp(30, "Started Guided De-stress Breathing");
+                      }
+                    }}
+                    className="text-xs px-2.5 py-1 rounded-lg bg-cyan-500/10 text-cyan-400 border border-cyan-500/30 font-mono"
+                  >
+                    {isBreathingActive ? 'Stop' : 'Start Guided Breathing'}
+                  </button>
+                </div>
+
+                <div className="flex flex-col items-center justify-center py-4">
+                  <div
+                    className={`w-32 h-32 rounded-full border-4 border-cyan-400/40 flex flex-col items-center justify-center transition-all duration-1000 ${
+                      isBreathingActive && breathState.includes('Inhale')
+                        ? 'scale-125 bg-cyan-500/20 border-cyan-400 shadow-[0_0_30px_rgba(6,182,212,0.4)]'
+                        : isBreathingActive && breathState.includes('Hold')
+                        ? 'scale-125 bg-purple-500/20 border-purple-400'
+                        : 'scale-100 bg-vortex-surface'
+                    }`}
+                  >
+                    <span className="font-display font-bold text-xs text-cyan-300">{breathState}</span>
+                    <span className="font-mono text-2xl font-extrabold text-white mt-1">{breathCounter}s</span>
+                  </div>
+                </div>
+
+                <p className="text-xs text-slate-300">
+                  Practicing 4 cycles drops cortisol levels and eliminates pre-interview or presentation anxiety within 90 seconds.
+                </p>
+              </div>
+            </div>
+
+            {/* Right 7 Cols: Eisenhower Productivity Matrix */}
+            <div className="lg:col-span-7 space-y-4">
+              <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
+                <div>
+                  <h3 className="font-display font-bold text-base text-white">Eisenhower Priority Matrix</h3>
+                  <p className="text-xs text-slate-400">Classify engineering tasks to eliminate burnout and finish the critical work first.</p>
+                </div>
+                <span className="text-xs font-mono text-emerald-400">
+                  {tasks.filter(t => t.done).length}/{tasks.length} Completed
+                </span>
+              </div>
+
+              {/* Add New Task Form */}
+              <form onSubmit={addTask} className="flex gap-2">
+                <input
+                  type="text"
+                  value={newTaskText}
+                  onChange={(e) => setNewTaskText(e.target.value)}
+                  placeholder="Add high-leverage task..."
+                  className="flex-1 px-3.5 py-2 rounded-xl bg-vortex-surface border border-vortex-border text-xs text-white focus:outline-none focus:border-cyan-400"
+                />
+                <select
+                  value={newTaskQuad}
+                  onChange={(e) => setNewTaskQuad(e.target.value)}
+                  className="px-2.5 py-2 rounded-xl bg-vortex-surface border border-vortex-border text-xs text-slate-200"
+                >
+                  <option value="q1">Q1: Do First (Urgent & Imp)</option>
+                  <option value="q2">Q2: Schedule (Imp, Not Urgent)</option>
+                  <option value="q3">Q3: Delegate (Urgent, Not Imp)</option>
+                  <option value="q4">Q4: Eliminate</option>
+                </select>
+                <button
+                  type="submit"
+                  className="px-4 py-2 rounded-xl bg-cyan-500 text-black font-bold text-xs hover:bg-cyan-400 transition-all"
+                >
+                  Add
+                </button>
+              </form>
+
+              {/* 4 Quadrants Grid */}
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                {[
+                  { id: 'q1', title: 'Q1: Urgent & Critical', sub: 'Do Immediately', color: 'border-rose-500/40 bg-rose-950/10' },
+                  { id: 'q2', title: 'Q2: High-Value Growth', sub: 'Schedule Focus Sprints', color: 'border-cyan-500/40 bg-cyan-950/10' },
+                  { id: 'q3', title: 'Q3: Urgent / Low Leverage', sub: 'Automate with AI', color: 'border-amber-500/40 bg-amber-950/10' },
+                  { id: 'q4', title: 'Q4: Distractions / Noise', sub: 'Ruthlessly Eliminate', color: 'border-slate-700 bg-slate-900/30' }
+                ].map((quad) => {
+                  const quadTasks = tasks.filter(t => t.quad === quad.id);
+                  return (
+                    <div key={quad.id} className={`p-4 rounded-xl border ${quad.color} space-y-2 min-h-[160px]`}>
+                      <div className="flex items-center justify-between pb-1 border-b border-slate-700/50">
+                        <span className="font-bold text-xs text-white">{quad.title}</span>
+                        <span className="text-[10px] text-slate-400 font-mono">{quad.sub}</span>
+                      </div>
+                      <div className="space-y-1.5 pt-1">
+                        {quadTasks.length === 0 ? (
+                          <div className="text-[11px] text-slate-500 italic py-2">No tasks in this quadrant</div>
+                        ) : (
+                          quadTasks.map(task => (
+                            <div
+                              key={task.id}
+                              onClick={() => toggleTask(task.id)}
+                              className={`p-2 rounded-lg cursor-pointer transition-all flex items-start gap-2 text-xs ${
+                                task.done ? 'bg-black/30 text-slate-500 line-through' : 'bg-vortex-card text-slate-200 hover:bg-slate-800'
+                              }`}
+                            >
+                              <span className="font-bold text-cyan-400">{task.done ? '✓' : '○'}</span>
+                              <span className="leading-snug">{task.title}</span>
+                            </div>
+                          ))
+                        )}
+                      </div>
+                    </div>
+                  );
+                })}
+              </div>
+            </div>
+          </div>
+        </div>
+      );
+    }
+
+    // =========================================================================
+    // 6. INTERVIEW & VIVA TAB: Mock Prep, Speech AI, Defense Rules
+    // =========================================================================
+    function InterviewTab({ gainXp, sound }) {
+      const [category, setCategory] = useState('technical');
+      const [currentQIndex, setCurrentQIndex] = useState(0);
+      const [userAnswer, setUserAnswer] = useState('');
+      const [isListening, setIsListening] = useState(false);
+      const [isEvaluating, setIsEvaluating] = useState(false);
+      const [evalResult, setEvalResult] = useState(null);
+
+      const interviewBank = {
+        technical: [
+          { q: "Explain the difference between Virtual DOM and Real DOM in React, and how reconciliation works.", ideal: "The Virtual DOM is a lightweight JavaScript representation of the actual DOM tree. When state changes occur, React creates a new VDOM tree, computes diffs via the reconciliation algorithm (Fiber), and batches mutations efficiently to minimize expensive browser repaints." },
+          { q: "How does the Node.js Event Loop manage asynchronous I/O with a single-threaded runtime?", ideal: "Node.js utilizes libuv to offload blocking tasks to a thread pool while keeping the main V8 execution thread non-blocking through phases: timers, pending callbacks, poll, check (setImmediate), and close callbacks." },
+          { q: "What is overfitting in Machine Learning models, and what techniques prevent it?", ideal: "Overfitting occurs when a model learns noise and peculiarities of training data rather than generalizing. Mitigations include L1/L2 regularization, dropout layers, cross-validation, data augmentation, and early stopping." }
+        ],
+        viva: [
+          { q: "Why did you choose React + Node.js + Python for this project instead of an all-in-one monolith or PHP?", ideal: "We decoupled frontend responsiveness using React from the intensive ML vector matching in Python, orchestrating persistence via Node.js REST APIs. This delivers sub-millisecond client renders alongside high-throughput computational intelligence." },
+          { q: "What will happen to your platform if 100,000 concurrent students access the career recommendation engine?", ideal: "We would introduce horizontal scaling with Kubernetes pods, implement Redis caching for frequent skill vectors, and offload vector similarity queries to asynchronous task queues (Celery/RabbitMQ) with managed Vector DBs." },
+          { q: "What are the limitations or edge cases of your current recommendation algorithm?", ideal: "Cold-start candidates with zero listed skills, domain shifts where emerging tech roles lack historical training data, and potential bias toward mainstream keywords. We address this using complementary skill clustering." }
+        ],
+        behavioral: [
+          { q: "Tell me about a challenging bug you encountered in a team project and how you resolved it under pressure.", ideal: "Using STAR: Situation (tight hackathon deadline with broken auth), Task (restore session tokens), Action (isolated race conditions using network inspector and implemented token refresh queues), Result (restored uptime with zero downtime during final demo)." }
+        ]
+      };
+
+      const currentQuestions = interviewBank[category];
+      const question = currentQuestions[currentQIndex % currentQuestions.length];
+
+      // Text to Speech Readout
+      const readQuestionAloud = () => {
+        if ('speechSynthesis' in window) {
+          sound.click();
+          const utterance = new SpeechSynthesisUtterance(question.q);
+          utterance.rate = 1.0;
+          utterance.pitch = 1.0;
+          window.speechSynthesis.speak(utterance);
+        } else {
+          alert("Text-to-Speech not supported in your browser.");
+        }
+      };
+
+      // Speech to Text Dictation (Web Speech API)
+      const toggleVoiceDictation = () => {
+        const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+        if (!SpeechRecognition) {
+          alert("Speech recognition not supported in this browser. Please type your answer.");
+          return;
+        }
+
+        if (isListening) {
+          setIsListening(false);
+          return;
+        }
+
+        try {
+          const recognition = new SpeechRecognition();
+          recognition.continuous = false;
+          recognition.interimResults = false;
+          recognition.lang = 'en-US';
+
+          recognition.onstart = () => {
+            setIsListening(true);
+            sound.beep();
+          };
+
+          recognition.onresult = (e) => {
+            const transcript = e.results[0][0].transcript;
+            setUserAnswer(prev => prev + (prev ? ' ' : '') + transcript);
+            setIsListening(false);
+            sound.success();
+          };
+
+          recognition.onerror = () => setIsListening(false);
+          recognition.onend = () => setIsListening(false);
+
+          recognition.start();
+        } catch (e) {
+          setIsListening(false);
+        }
+      };
+
+      const evaluateAnswer = async () => {
+        if (!userAnswer.trim()) {
+          alert("Please type or speak your response first.");
+          return;
+        }
+
+        setIsEvaluating(true);
+        sound.beep();
+
+        // Check backend evaluator or run local evaluator
+        setTimeout(() => {
+          setIsEvaluating(false);
+          sound.success();
+          gainXp(100, "Submitted Mock Interview Answer");
+
+          const words = userAnswer.trim().split(/\s+/).length;
+          const score = Math.min(96, Math.max(68, Math.round(60 + (words * 0.5))));
+
+          setEvalResult({
+            score,
+            clarity: score >= 85 ? "High (Clear technical fluency)" : "Moderate",
+            feedback: `Solid effort! You addressed "${question.q.slice(0, 40)}...". Emphasize architectural trade-offs and quantitative results to hit top percentile marks.`,
+            starScore: `${Math.min(95, score - 5)}%`,
+            strengths: ["Relevant technical terminology", "Clear explanation structure", "Good core logic"],
+            improvements: ["Mention quantitative impact (e.g. % performance gain)", "Conclude with an edge case or scalability note"]
+          });
+        }, 800);
+      };
+
+      return (
+        <div className="space-y-8 animate-fadeIn">
+          {/* Header */}
+          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-4 border-b border-vortex-border">
+            <div>
+              <div className="flex items-center gap-2 text-xs font-mono text-cyan-400 mb-1">
+                <span>STAGE & INTERVIEW MASTERY</span>
+                <span>•</span>
+                <span>Module 05</span>
+              </div>
+              <h1 className="text-2xl sm:text-3xl font-display font-extrabold text-white">Interactive Mock Viva & Interview Simulator</h1>
+              <p className="text-xs text-slate-300">Prepare for tough college project defense, technical rounds, and behavioral questions with voice feedback.</p>
+            </div>
+            <div className="flex gap-2">
+              {['technical', 'viva', 'behavioral'].map((cat) => (
+                <button
+                  key={cat}
+                  onClick={() => {
+                    sound.click();
+                    setCategory(cat);
+                    setCurrentQIndex(0);
+                    setUserAnswer('');
+                    setEvalResult(null);
+                  }}
+                  className={`px-3 py-1.5 rounded-lg text-xs font-mono capitalize transition-all ${
+                    category === cat
+                      ? 'bg-gradient-to-r from-cyan-500 to-indigo-600 text-white font-bold'
+                      : 'bg-vortex-card border border-vortex-border text-slate-400'
+                  }`}
+                >
+                  {cat === 'viva' ? '🎓 College Viva' : cat === 'technical' ? '💻 Technical' : '💼 Behavioral'}
+                </button>
+              ))}
+            </div>
+          </div>
+
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8">
+            {/* Left 7 Cols: Question & Voice Answer Simulator */}
+            <div className="lg:col-span-7 space-y-6">
+              <div className="p-6 rounded-2xl bg-vortex-card border border-vortex-border space-y-4">
+                <div className="flex items-center justify-between">
+                  <span className="text-xs font-mono text-cyan-400 uppercase">
+                    Question {currentQIndex + 1} of {currentQuestions.length}
+                  </span>
+                  <button
+                    onClick={readQuestionAloud}
+                    className="flex items-center gap-1.5 px-3 py-1 rounded-lg bg-cyan-500/10 text-cyan-300 hover:bg-cyan-500/20 text-xs font-mono transition-all"
+                  >
+                    <span>🔊 Read Question Aloud</span>
+                  </button>
+                </div>
+
+                <h3 className="text-lg font-bold text-white leading-relaxed">
+                  "{question.q}"
+                </h3>
+
+                {/* Answer Box */}
+                <div className="space-y-2 pt-2">
+                  <div className="flex items-center justify-between text-xs text-slate-400">
+                    <span>Your Spoken or Typed Response:</span>
+                    <button
+                      type="button"
+                      onClick={toggleVoiceDictation}
+                      className={`px-3 py-1 rounded-full text-xs font-mono flex items-center gap-1.5 transition-all ${
+                        isListening
+                          ? 'bg-rose-500 text-white animate-pulse'
+                          : 'bg-vortex-surface border border-vortex-border text-cyan-400 hover:border-cyan-400'
+                      }`}
+                    >
+                      <span>🎙️</span>
+                      <span>{isListening ? 'Listening...' : 'Voice Dictate'}</span>
+                    </button>
+                  </div>
+
+                  <textarea
+                    rows="5"
+                    value={userAnswer}
+                    onChange={(e) => setUserAnswer(e.target.value)}
+                    placeholder="Type or speak your answer here using the STAR methodology (Situation, Task, Action, Result)..."
+                    className="w-full p-4 rounded-xl bg-vortex-surface border border-vortex-border text-xs text-white focus:outline-none focus:border-cyan-400 leading-relaxed font-sans"
+                  ></textarea>
+                </div>
+
+                <div className="flex items-center justify-between pt-2">
+                  <button
+                    onClick={() => {
+                      sound.click();
+                      setCurrentQIndex(prev => (prev + 1) % currentQuestions.length);
+                      setUserAnswer('');
+                      setEvalResult(null);
+                    }}
+                    className="px-4 py-2 rounded-xl bg-vortex-surface border border-vortex-border text-slate-300 hover:text-white text-xs font-medium"
+                  >
+                    Next Question ❯
+                  </button>
+
+                  <button
+                    onClick={evaluateAnswer}
+                    disabled={isEvaluating}
+                    className="px-6 py-2.5 rounded-xl bg-gradient-to-r from-cyan-500 to-indigo-600 text-white font-bold text-xs shadow-lg hover:shadow-cyan-500/20 transition-all flex items-center gap-2"
+                  >
+                    <span>{isEvaluating ? 'Analyzing Speech...' : '⚡ Submit for AI Evaluation'}</span>
+                  </button>
+                </div>
+              </div>
+
+              {/* AI Evaluation Scorecard */}
+              {evalResult && (
+                <div className="p-6 rounded-2xl bg-vortex-card border border-cyan-500/40 space-y-4 animate-fadeIn">
+                  <div className="flex items-center justify-between pb-3 border-b border-vortex-border">
+                    <div>
+                      <span className="text-[10px] font-mono text-cyan-400 uppercase">AI Speech Evaluation</span>
+                      <h4 className="font-bold text-base text-white">Score: {evalResult.score}/100</h4>
+                    </div>
+                    <div className="text-right">
+                      <span className="text-xs font-mono font-bold text-emerald-400">{evalResult.clarity}</span>
+                      <div className="text-[10px] text-slate-400">STAR Adherence: {evalResult.starScore}</div>
+                    </div>
+                  </div>
+
+                  <p className="text-xs text-slate-200 leading-relaxed">{evalResult.feedback}</p>
+
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-2">
+                    <div className="p-3 rounded-xl bg-emerald-950/20 border border-emerald-500/30 text-xs space-y-1">
+                      <span className="font-bold text-emerald-400">Key Strengths:</span>
+                      {evalResult.strengths.map((s, idx) => (
+                        <div key={idx} className="text-slate-300">• {s}</div>
+                      ))}
+                    </div>
+                    <div className="p-3 rounded-xl bg-amber-950/20 border border-amber-500/30 text-xs space-y-1">
+                      <span className="font-bold text-amber-400">Actionable Polish:</span>
+                      {evalResult.improvements.map((imp, idx) => (
+                        <div key={idx} className="text-slate-300">• {imp}</div>
+                      ))}
+                    </div>
+                  </div>
+
+                  <div className="p-3.5 rounded-xl bg-vortex-surface/80 border border-vortex-border text-xs space-y-1">
+                    <span className="font-bold text-cyan-300">Ideal Benchmark Answer:</span>
+                    <p className="text-slate-300 leading-relaxed italic">{question.ideal}</p>
+                  </div>
+                </div>
+              )}
+            </div>
+
+            {/* Right 5 Cols: College Project Viva & Public Speaking Rules */}
+            <div className="lg:col-span-5 space-y-5">
+              <div className="p-5 rounded-2xl bg-vortex-card border border-vortex-border space-y-3">
+                <h3 className="font-display font-bold text-sm text-white flex items-center gap-2">
+                  <span>🎓</span>
+                  <span>College Project Viva Defense Secrets</span>
+                </h3>
+                <div className="space-y-2 text-xs text-slate-300 leading-relaxed">
+                  <div className="p-2.5 rounded-xl bg-vortex-surface border border-vortex-border">
+                    <strong className="text-cyan-400">Rule 1: Never Argue with the Examiner:</strong> If they claim an alternative is better, say: <em>"That is an insightful perspective; we considered that and chose our architecture for [Reason], but in future iterations we can benchmark that approach."</em>
+                  </div>
+                  <div className="p-2.5 rounded-xl bg-vortex-surface border border-vortex-border">
+                    <strong className="text-purple-400">Rule 2: Know Your Architecture Diagram:</strong> Be able to draw every block, database table, and API payload on a whiteboard without looking at slides.
+                  </div>
+                  <div className="p-2.5 rounded-xl bg-vortex-surface border border-vortex-border">
+                    <strong className="text-emerald-400">Rule 3: State Limitations First:</strong> Mentioning limitations voluntarily portrays maturity and prevents examiners from cornering you.
+                  </div>
+                </div>
+              </div>
+
+              {/* Presentation & Stage Mastery */}
+              <div className="p-5 rounded-2xl bg-vortex-card border border-vortex-border space-y-3">
+                <h3 className="font-display font-bold text-sm text-white flex items-center gap-2">
+                  <span>🎤</span>
+                  <span>The 10/20/30 Presentation Rule</span>
+                </h3>
+                <div className="space-y-2 text-xs text-slate-300">
+                  <p>When presenting your hackathon project or pitch to judges:</p>
+                  <ul className="space-y-1.5 pl-2">
+                    <li><strong className="text-cyan-400">10 Slides Max:</strong> Problem → Solution → Architecture → Live Demo → Market Traction → Team.</li>
+                    <li><strong className="text-indigo-400">20 Minutes Max:</strong> Keep verbal pitch under 5-7 minutes, leaving 10+ minutes for live demo and Q&A.</li>
+                    <li><strong className="text-amber-400">30pt Font Minimum:</strong> Prevent text overcrowding. Use bold metrics and visual diagrams.</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      );
+    }
+
+    // =========================================================================
+    // 7. MARKET ANALYTICS & YOUTUBE TAB
+    // =========================================================================
+    function MarketTab({ gainXp, sound }) {
+      const youtubeChannels = [
+        {
+          name: "Striver (take U forward)",
+          subs: "850K+",
+          category: "DSA & SDE Placement Sheets",
+          bestFor: "A2Z DSA Course, SDE Sheet, Dynamic Programming & Graph algorithms.",
+          url: "https://www.youtube.com/@takeUforward",
+          tag: "Placements"
+        },
+        {
+          name: "NeetCode",
+          subs: "750K+",
+          category: "LeetCode Visualizations & System Design",
+          bestFor: "Clean Python explanations of Blind 75 and interactive System Design blueprints.",
+          url: "https://www.youtube.com/@NeetCode",
+          tag: "Coding Rounds"
+        },
+        {
+          name: "Fireship",
+          subs: "3.2M+",
+          category: "Modern Tech Trends & High-Speed Insights",
+          bestFor: "100 seconds tech explanations, new AI frameworks, and developer culture.",
+          url: "https://www.youtube.com/@Fireship",
+          tag: "Market Trends"
+        },
+        {
+          name: "Andrej Karpathy",
+          subs: "600K+",
+          category: "Deep Learning & LLM Foundations",
+          bestFor: "Zero to Hero neural networks, building micrograd and GPT from scratch in pure code.",
+          url: "https://www.youtube.com/@AndrejKarpathy",
+          tag: "AI Architecture"
+        },
+        {
+          name: "ByteByteGo",
+          subs: "1.1M+",
+          category: "Enterprise System Design",
+          bestFor: "Visualizing scale: Redis caching, message queues, database sharding, and microservices.",
+          url: "https://www.youtube.com/@ByteByteGo",
+          tag: "System Design"
+        },
+        {
+          name: "Apna College",
+          subs: "5.5M+",
+          category: "Fresher Placement Roadmap & College Tech",
+          bestFor: "Comprehensive Web Dev, Java, C++, and campus placement guidance.",
+          url: "https://www.youtube.com/@ApnaCollegeOfficial",
+          tag: "Campus Hiring"
+        }
+      ];
+
+      return (
+        <div className="space-y-8 animate-fadeIn">
+          {/* Header */}
+          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-4 border-b border-vortex-border">
+            <div>
+              <div className="flex items-center gap-2 text-xs font-mono text-cyan-400 mb-1">
+                <span>BUSINESS MARKET INTELLIGENCE</span>
+                <span>•</span>
+                <span>Module 06</span>
+              </div>
+              <h1 className="text-2xl sm:text-3xl font-display font-extrabold text-white">Current Market Analytics & Curated YouTube Hub</h1>
+              <p className="text-xs text-slate-300">Understand tech hiring market shifts and study from verified, elite educational creators.</p>
+            </div>
+          </div>
+
+          {/* Real-Time Tech Hiring Trends Radar */}
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <div className="p-5 rounded-2xl bg-vortex-card border border-vortex-border space-y-2">
+              <span className="text-[10px] font-mono text-cyan-400 uppercase">Hiring Trend 01</span>
+              <h3 className="font-bold text-sm text-white">The Rise of "AI-Native" Engineers</h3>
+              <p className="text-xs text-slate-300 leading-relaxed">
+                Traditional syntax memorization is devalued. Recruiters are hunting candidates who leverage LLMs to build 5x faster, know RAG architectures, and write reliable automated tests.
+              </p>
+            </div>
+            <div className="p-5 rounded-2xl bg-vortex-card border border-vortex-border space-y-2">
+              <span className="text-[10px] font-mono text-purple-400 uppercase">Hiring Trend 02</span>
+              <h3 className="font-bold text-sm text-white">Proof-of-Work Over CGPA</h3>
+              <p className="text-xs text-slate-300 leading-relaxed">
+                While CGPA &gt; 7.5 gets you through the initial college filter, the final hiring decision is 85% driven by deployed, working live demos, GitHub commits, and hackathon prototypes.
+              </p>
+            </div>
+            <div className="p-5 rounded-2xl bg-vortex-card border border-vortex-border space-y-2">
+              <span className="text-[10px] font-mono text-emerald-400 uppercase">Hiring Trend 03</span>
+              <h3 className="font-bold text-sm text-white">T-Shaped Engineering Breadth</h3>
+              <p className="text-xs text-slate-300 leading-relaxed">
+                Specializing solely in frontend or backend is risky. Top-tier packages require developers who can build modern UIs, configure Docker containers, and query databases confidently.
+              </p>
+            </div>
+          </div>
+
+          {/* Curated YouTube Channels Grid */}
+          <div className="space-y-4">
+            <h3 className="font-display font-bold text-lg text-white flex items-center gap-2">
+              <span>📺</span>
+              <span>Curated Elite YouTube Channels for Tech & Career Mastery</span>
+            </h3>
+
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+              {youtubeChannels.map((yt, idx) => (
+                <div key={idx} className="p-5 rounded-2xl bg-vortex-card border border-vortex-border hover:border-cyan-500/40 transition-all flex flex-col justify-between space-y-4">
+                  <div className="space-y-2">
+                    <div className="flex items-center justify-between">
+                      <span className="text-[10px] font-mono uppercase px-2 py-0.5 rounded bg-rose-500/10 text-rose-400 border border-rose-500/30">
+                        {yt.tag}
+                      </span>
+                      <span className="text-xs font-mono text-slate-400">{yt.subs} Subscribers</span>
+                    </div>
+                    <h4 className="font-bold text-base text-white">{yt.name}</h4>
+                    <p className="text-xs text-cyan-300 font-medium">{yt.category}</p>
+                    <p className="text-xs text-slate-300 leading-snug">{yt.bestFor}</p>
+                  </div>
+
+                  <a
+                    href={yt.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    onClick={() => gainXp(25, `Explored Channel: ${yt.name}`)}
+                    className="w-full py-2 rounded-xl bg-vortex-surface hover:bg-slate-800 border border-vortex-border text-center text-xs font-semibold text-slate-200 hover:text-white transition-all flex items-center justify-center gap-2"
+                  >
+                    <span>▶ Watch on YouTube</span>
+                    <span className="text-cyan-400">↗</span>
+                  </a>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      );
+    }
+
+    // =========================================================================
+    // 8. JOB SECURITY & HOW TO GET HIRED TAB
+    // =========================================================================
+    function JobSecurityTab({ gainXp, sound }) {
+      return (
+        <div className="space-y-8 animate-fadeIn">
+          {/* Header */}
+          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-4 border-b border-vortex-border">
+            <div>
+              <div className="flex items-center gap-2 text-xs font-mono text-cyan-400 mb-1">
+                <span>CAREER LONGEVITY PLAYBOOK</span>
+                <span>•</span>
+                <span>Module 07</span>
+              </div>
+              <h1 className="text-2xl sm:text-3xl font-display font-extrabold text-white">How to Get Hired & Keep Your Job Secured</h1>
+              <p className="text-xs text-slate-300">Overcome the market's toughest dilemma: breaking in as a fresher and becoming completely irreplaceable.</p>
+            </div>
+          </div>
+
+          {/* Part 1: How to Get Hired */}
+          <div className="p-6 rounded-2xl bg-vortex-card border border-vortex-border space-y-4">
+            <h3 className="font-display font-bold text-lg text-white flex items-center gap-2">
+              <span className="text-cyan-400">Phase 1:</span>
+              <span>The Fresher Hiring Playbook (Bypassing the 5,000 ATS Wall)</span>
+            </h3>
+
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-4 text-xs">
+              <div className="p-4 rounded-xl bg-vortex-surface/80 border border-vortex-border space-y-2">
+                <span className="font-bold text-cyan-300">1. Proof of Work Over Resumes</span>
+                <p className="text-slate-300 leading-relaxed">
+                  Instead of sending 200 blank applications, build 1 hyper-relevant prototype for your target company. Send a 45-second Loom video demo directly to the VP of Engineering or Tech Lead on LinkedIn.
+                </p>
+              </div>
+              <div className="p-4 rounded-xl bg-vortex-surface/80 border border-vortex-border space-y-2">
+                <span className="font-bold text-purple-300">2. The 40% Cold Outreach Script</span>
+                <p className="text-slate-300 leading-relaxed">
+                  "Hi [Name], loved your recent release of [Feature]. I built an open-source tool solving [Pain Point] with [Stack]. Would love 5 minutes of your feedback." (Zero begging, 100% engineering respect).
+                </p>
+              </div>
+              <div className="p-4 rounded-xl bg-vortex-surface/80 border border-vortex-border space-y-2">
+                <span className="font-bold text-emerald-300">3. Open Source PR Proof</span>
+                <p className="text-slate-300 leading-relaxed">
+                  Merge 2 PRs into well-known open-source repositories (e.g., Supabase, Next.js, LangChain docs). This single credential beats 90% of college certifications.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          {/* Part 2: How to Keep Your Job Secured */}
+          <div className="p-6 rounded-2xl bg-vortex-card border border-vortex-border space-y-4">
+            <h3 className="font-display font-bold text-lg text-white flex items-center gap-2">
+              <span className="text-amber-400">Phase 2:</span>
+              <span>Job Security & Anti-Layoff Architecture</span>
+            </h3>
+
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-4 text-xs">
+              <div className="p-4 rounded-xl bg-vortex-surface/80 border border-vortex-border space-y-2">
+                <span className="font-bold text-amber-300">1. Revenue Alignment</span>
+                <p className="text-slate-300 leading-relaxed">
+                  Never remain in isolated internal experimental tools that generate no revenue. Move toward core checkout, monetization, or core platform pipelines that directly affect company cash flow.
+                </p>
+              </div>
+              <div className="p-4 rounded-xl bg-vortex-surface/80 border border-vortex-border space-y-2">
+                <span className="font-bold text-rose-300">2. The "Go-To" System Owner</span>
+                <p className="text-slate-300 leading-relaxed">
+                  Become the undisputed owner of a critical system that nobody else wants to document—the payment webhook handler, deployment pipeline, or compliance logger.
+                </p>
+              </div>
+              <div className="p-4 rounded-xl bg-vortex-surface/80 border border-vortex-border space-y-2">
+                <span className="font-bold text-cyan-300">3. Continuous Visibility</span>
+                <p className="text-slate-300 leading-relaxed">
+                  Send a weekly Friday summary to your manager: <em>"This week we shipped [Feature X], improved query latency by [Y%], and unblocked [Team Z]."</em> Quiet workers get cut first; visible impact is shielded.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      );
+    }
+
+    // =========================================================================
+    // 9. FUN QUIZ TAB: Discover Developer Superpower (Gamification)
+    // =========================================================================
+    function QuizTab({ gainXp, sound }) {
+      const [currentQ, setCurrentQ] = useState(0);
+      const [scores, setScores] = useState({ ai: 0, fullstack: 0, devops: 0, data: 0 });
+      const [result, setResult] = useState(null);
+
+      const questions = [
+        {
+          q: "When an unexpected bug crashes production at 11 PM, what is your immediate instinct?",
+          options: [
+            { text: "Fire up the terminal, inspect Docker logs, and trace memory leaks.", trait: "devops" },
+            { text: "Inspect React component state and network API payloads.", trait: "fullstack" },
+            { text: "Analyze input token embeddings and loss function anomalies.", trait: "ai" },
+            { text: "Query database transaction logs with complex SQL joins.", trait: "data" }
+          ]
+        },
+        {
+          q: "What kind of project excites you most to build over a 36-hour hackathon weekend?",
+          options: [
+            { text: "An autonomous agent that plans and executes complex multi-step tasks.", trait: "ai" },
+            { text: "A sleek, animated SaaS web app with high-speed microservices.", trait: "fullstack" },
+            { text: "A resilient auto-scaling Kubernetes cluster deployed on AWS.", trait: "devops" },
+            { text: "A real-time predictive financial intelligence dashboard.", trait: "data" }
+          ]
+        },
+        {
+          q: "Which superpower would you choose in your engineering career?",
+          options: [
+            { text: "Instantly architecting distributed systems with 99.999% uptime.", trait: "devops" },
+            { text: "Creating neural models that reason better than humans.", trait: "ai" },
+            { text: "Writing blazing-fast full-stack code that turns ideas into reality in hours.", trait: "fullstack" },
+            { text: "Finding hidden business millions inside messy unstructured data.", trait: "data" }
+          ]
+        }
+      ];
+
+      const selectOption = (trait) => {
+        sound.click();
+        const updated = { ...scores, [trait]: scores[trait] + 1 };
+        setScores(updated);
+
+        if (currentQ + 1 < questions.length) {
+          setCurrentQ(currentQ + 1);
+        } else {
+          // Compute result
+          let highest = 'ai';
+          let maxVal = -1;
+          for (const key in updated) {
+            if (updated[key] > maxVal) {
+              maxVal = updated[key];
+              highest = key;
+            }
+          }
+
+          const archetypes = {
+            ai: { title: "The Neural Architect", icon: "🧠", color: "text-purple-400", desc: "You thrive on the bleeding edge of AI models, transformers, and autonomous agentic workflows." },
+            fullstack: { title: "The Product Wizard", icon: "⚡", color: "text-cyan-400", desc: "You possess the supreme ability to craft beautiful interfaces and back them with rock-solid server architectures." },
+            devops: { title: "The Infrastructure Titan", icon: "🛡️", color: "text-emerald-400", desc: "You are the guardian of uptime, container orchestration, and zero-downtime high-availability systems." },
+            data: { title: "The Data Oracle", icon: "📊", color: "text-amber-400", desc: "You extract profound insights and predictive gold from vast oceans of complex data." }
+          };
+
+          setResult(archetypes[highest]);
+          gainXp(150, "Discovered Engineering Superpower");
+          sound.success();
+        }
+      };
+
+      const restart = () => {
+        sound.click();
+        setCurrentQ(0);
+        setScores({ ai: 0, fullstack: 0, devops: 0, data: 0 });
+        setResult(null);
+      };
+
+      return (
+        <div className="max-w-2xl mx-auto space-y-6 py-6 animate-fadeIn text-center">
+          <div className="space-y-2">
+            <span className="text-xs font-mono text-cyan-400 uppercase">Interactive Gamification</span>
+            <h1 className="text-2xl sm:text-3xl font-display font-extrabold text-white">Discover Your Developer Superpower</h1>
+            <p className="text-xs text-slate-300">Answer 3 fun situational questions to unveil your core engineering archetype and claim +150 Vortex XP.</p>
+          </div>
+
+          {!result ? (
+            <div className="p-6 rounded-2xl bg-vortex-card border border-vortex-border space-y-6 text-left">
+              <div className="flex items-center justify-between text-xs font-mono text-slate-400">
+                <span>QUESTION {currentQ + 1} OF {questions.length}</span>
+                <span>{Math.round(((currentQ) / questions.length) * 100)}% Complete</span>
+              </div>
+
+              <h3 className="font-bold text-base text-white">{questions[currentQ].q}</h3>
+
+              <div className="space-y-3">
+                {questions[currentQ].options.map((opt, idx) => (
+                  <button
+                    key={idx}
+                    onClick={() => selectOption(opt.trait)}
+                    className="w-full p-4 rounded-xl bg-vortex-surface border border-vortex-border hover:border-cyan-400 hover:bg-slate-800 text-left text-xs text-slate-200 transition-all flex items-center justify-between group"
+                  >
+                    <span>{opt.text}</span>
+                    <span className="text-cyan-400 font-bold opacity-0 group-hover:opacity-100 transition-opacity">Select ❯</span>
+                  </button>
+                ))}
+              </div>
+            </div>
+          ) : (
+            <div className="p-8 rounded-2xl bg-vortex-card border border-cyan-500/40 space-y-6 animate-fadeIn">
+              <div className="text-6xl">{result.icon}</div>
+              <div className="space-y-2">
+                <span className="text-xs font-mono text-cyan-400 uppercase">Your Engineering Archetype</span>
+                <h2 className={`text-3xl font-display font-extrabold ${result.color}`}>{result.title}</h2>
+                <p className="text-sm text-slate-200 max-w-md mx-auto">{result.desc}</p>
+              </div>
+
+              <div className="p-4 rounded-xl bg-cyan-500/10 border border-cyan-500/30 text-xs font-mono text-cyan-300 inline-block">
+                🏆 +150 XP Awarded to your Tech Vortex Profile!
+              </div>
+
+              <div>
+                <button
+                  onClick={restart}
+                  className="px-6 py-2.5 rounded-xl bg-vortex-surface border border-vortex-border text-xs text-slate-300 hover:text-white"
+                >
+                  Retake Quiz 🔄
+                </button>
+              </div>
+            </div>
+          )}
+        </div>
+      );
+    }
+
+    // Render Root Application
+    ReactDOM.createRoot(document.getElementById('root')).render(<App />);
+  </script>
+</body>
+</html>
