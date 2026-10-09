@@ -1,0 +1,2496 @@
+{
+  "schemaVersion": "1.0.0",
+  "catalogueVersion": "2026.10",
+  "name": "Tech Vortex Career Roadmap Catalogue",
+  "purpose": "Canonical career roadmaps used by the personalized roadmap engine.",
+  "personalizationRule": {
+    "description": "Career tracks define target skills. Confirmed profile skills are skipped from active learning. Developing skills are surfaced for reinforcement. Job requirements and skill goals are merged as additional requirements and prioritized.",
+    "statuses": [
+      "confirmed",
+      "developing",
+      "missing",
+      "not_applicable"
+    ],
+    "roadmapOrder": "dependency-aware, then priority-aware",
+    "learningLoop": [
+      "learn",
+      "practice",
+      "verify"
+    ]
+  },
+  "tracks": {
+    "machine-learning-ai": {
+      "name": "Machine Learning / AI",
+      "type": "career",
+      "description": "A progressive path from programming and data foundations through classical ML, deep learning, deployment, and MLOps.",
+      "skills": [
+        {
+          "skill": "Python",
+          "stage": "Foundations",
+          "importance": "core",
+          "prerequisites": []
+        },
+        {
+          "skill": "NumPy",
+          "stage": "Foundations",
+          "importance": "core",
+          "prerequisites": [
+            "Python"
+          ]
+        },
+        {
+          "skill": "Pandas",
+          "stage": "Foundations",
+          "importance": "core",
+          "prerequisites": [
+            "Python"
+          ]
+        },
+        {
+          "skill": "SQL",
+          "stage": "Foundations",
+          "importance": "core",
+          "prerequisites": []
+        },
+        {
+          "skill": "Statistics",
+          "stage": "Mathematics",
+          "importance": "core",
+          "prerequisites": []
+        },
+        {
+          "skill": "Probability",
+          "stage": "Mathematics",
+          "importance": "core",
+          "prerequisites": [
+            "Statistics"
+          ]
+        },
+        {
+          "skill": "Linear Algebra",
+          "stage": "Mathematics",
+          "importance": "core",
+          "prerequisites": []
+        },
+        {
+          "skill": "Calculus",
+          "stage": "Mathematics",
+          "importance": "core",
+          "prerequisites": [
+            "Linear Algebra"
+          ]
+        },
+        {
+          "skill": "Data Visualization",
+          "stage": "Data",
+          "importance": "core",
+          "prerequisites": []
+        },
+        {
+          "skill": "Data Cleaning / EDA",
+          "stage": "Data",
+          "importance": "core",
+          "prerequisites": [
+            "Pandas",
+            "Statistics"
+          ]
+        },
+        {
+          "skill": "Machine Learning",
+          "stage": "Classical ML",
+          "importance": "core",
+          "prerequisites": [
+            "Python",
+            "Statistics",
+            "Probability",
+            "Linear Algebra"
+          ]
+        },
+        {
+          "skill": "Scikit-learn",
+          "stage": "Classical ML",
+          "importance": "core",
+          "prerequisites": [
+            "Machine Learning"
+          ]
+        },
+        {
+          "skill": "Feature Engineering",
+          "stage": "Classical ML",
+          "importance": "core",
+          "prerequisites": [
+            "Machine Learning",
+            "Pandas"
+          ]
+        },
+        {
+          "skill": "Model Evaluation",
+          "stage": "Classical ML",
+          "importance": "core",
+          "prerequisites": [
+            "Machine Learning",
+            "Statistics"
+          ]
+        },
+        {
+          "skill": "Deep Learning",
+          "stage": "Deep Learning",
+          "importance": "core",
+          "prerequisites": [
+            "Linear Algebra",
+            "Calculus",
+            "Machine Learning"
+          ]
+        },
+        {
+          "skill": "Neural Networks",
+          "stage": "Deep Learning",
+          "importance": "core",
+          "prerequisites": [
+            "Deep Learning"
+          ]
+        },
+        {
+          "skill": "PyTorch",
+          "stage": "Deep Learning",
+          "importance": "core",
+          "prerequisites": [
+            "Python",
+            "Neural Networks"
+          ]
+        },
+        {
+          "skill": "CNNs",
+          "stage": "Deep Learning",
+          "importance": "core",
+          "prerequisites": [
+            "PyTorch"
+          ]
+        },
+        {
+          "skill": "Transformers",
+          "stage": "Advanced AI",
+          "importance": "core",
+          "prerequisites": [
+            "PyTorch",
+            "Neural Networks"
+          ]
+        },
+        {
+          "skill": "NLP",
+          "stage": "Advanced AI",
+          "importance": "core",
+          "prerequisites": [
+            "PyTorch",
+            "Transformers"
+          ]
+        },
+        {
+          "skill": "Computer Vision",
+          "stage": "Advanced AI",
+          "importance": "core",
+          "prerequisites": [
+            "PyTorch",
+            "CNNs"
+          ]
+        },
+        {
+          "skill": "ML Deployment",
+          "stage": "Production",
+          "importance": "core",
+          "prerequisites": [
+            "Machine Learning",
+            "Python"
+          ]
+        },
+        {
+          "skill": "Docker",
+          "stage": "Production",
+          "importance": "core",
+          "prerequisites": [
+            "Linux"
+          ]
+        },
+        {
+          "skill": "MLOps",
+          "stage": "Production",
+          "importance": "core",
+          "prerequisites": [
+            "Docker",
+            "ML Deployment"
+          ]
+        },
+        {
+          "skill": "Model Optimization",
+          "stage": "Advanced AI",
+          "importance": "core",
+          "prerequisites": [
+            "PyTorch",
+            "Deep Learning"
+          ]
+        }
+      ]
+    },
+    "data-science": {
+      "name": "Data Science",
+      "type": "career",
+      "description": "A data-centric path covering analysis, statistics, visualization, machine learning, and communication.",
+      "skills": [
+        {
+          "skill": "Python",
+          "stage": "Foundations",
+          "importance": "core",
+          "prerequisites": []
+        },
+        {
+          "skill": "NumPy",
+          "stage": "Foundations",
+          "importance": "core",
+          "prerequisites": [
+            "Python"
+          ]
+        },
+        {
+          "skill": "Pandas",
+          "stage": "Foundations",
+          "importance": "core",
+          "prerequisites": [
+            "Python"
+          ]
+        },
+        {
+          "skill": "SQL",
+          "stage": "Foundations",
+          "importance": "core",
+          "prerequisites": []
+        },
+        {
+          "skill": "Statistics",
+          "stage": "Mathematics",
+          "importance": "core",
+          "prerequisites": []
+        },
+        {
+          "skill": "Probability",
+          "stage": "Mathematics",
+          "importance": "core",
+          "prerequisites": [
+            "Statistics"
+          ]
+        },
+        {
+          "skill": "Linear Algebra",
+          "stage": "Mathematics",
+          "importance": "core",
+          "prerequisites": []
+        },
+        {
+          "skill": "Data Cleaning / EDA",
+          "stage": "Data",
+          "importance": "core",
+          "prerequisites": [
+            "Pandas",
+            "Statistics"
+          ]
+        },
+        {
+          "skill": "Data Visualization",
+          "stage": "Data",
+          "importance": "core",
+          "prerequisites": [
+            "Pandas"
+          ]
+        },
+        {
+          "skill": "Matplotlib",
+          "stage": "Visualization",
+          "importance": "core",
+          "prerequisites": [
+            "Python"
+          ]
+        },
+        {
+          "skill": "Seaborn",
+          "stage": "Visualization",
+          "importance": "core",
+          "prerequisites": [
+            "Python",
+            "Matplotlib"
+          ]
+        },
+        {
+          "skill": "Machine Learning",
+          "stage": "Machine Learning",
+          "importance": "core",
+          "prerequisites": [
+            "Statistics",
+            "Probability",
+            "Python"
+          ]
+        },
+        {
+          "skill": "Scikit-learn",
+          "stage": "Machine Learning",
+          "importance": "core",
+          "prerequisites": [
+            "Machine Learning"
+          ]
+        },
+        {
+          "skill": "Feature Engineering",
+          "stage": "Machine Learning",
+          "importance": "core",
+          "prerequisites": [
+            "Pandas",
+            "Machine Learning"
+          ]
+        },
+        {
+          "skill": "Model Evaluation",
+          "stage": "Machine Learning",
+          "importance": "core",
+          "prerequisites": [
+            "Machine Learning",
+            "Statistics"
+          ]
+        },
+        {
+          "skill": "Data Storytelling",
+          "stage": "Applied DS",
+          "importance": "core",
+          "prerequisites": []
+        },
+        {
+          "skill": "Jupyter",
+          "stage": "Tooling",
+          "importance": "core",
+          "prerequisites": [
+            "Python"
+          ]
+        },
+        {
+          "skill": "Git & GitHub",
+          "stage": "Tooling",
+          "importance": "core",
+          "prerequisites": []
+        }
+      ]
+    },
+    "full-stack": {
+      "name": "Full-Stack Development",
+      "type": "career",
+      "description": "Frontend-to-backend web development with databases, security, testing, deployment, and system fundamentals.",
+      "skills": [
+        {
+          "skill": "HTML & CSS",
+          "stage": "Frontend",
+          "importance": "core",
+          "prerequisites": []
+        },
+        {
+          "skill": "JavaScript",
+          "stage": "Frontend",
+          "importance": "core",
+          "prerequisites": [
+            "HTML & CSS"
+          ]
+        },
+        {
+          "skill": "TypeScript",
+          "stage": "Frontend",
+          "importance": "core",
+          "prerequisites": [
+            "JavaScript"
+          ]
+        },
+        {
+          "skill": "DOM & Browser APIs",
+          "stage": "Frontend",
+          "importance": "core",
+          "prerequisites": [
+            "JavaScript"
+          ]
+        },
+        {
+          "skill": "React",
+          "stage": "Frontend",
+          "importance": "core",
+          "prerequisites": [
+            "JavaScript",
+            "HTML & CSS"
+          ]
+        },
+        {
+          "skill": "Responsive Web Design",
+          "stage": "Frontend",
+          "importance": "core",
+          "prerequisites": [
+            "HTML & CSS"
+          ]
+        },
+        {
+          "skill": "REST APIs",
+          "stage": "Backend",
+          "importance": "core",
+          "prerequisites": [
+            "HTTP",
+            "JavaScript"
+          ]
+        },
+        {
+          "skill": "Node.js",
+          "stage": "Backend",
+          "importance": "core",
+          "prerequisites": [
+            "JavaScript"
+          ]
+        },
+        {
+          "skill": "Express",
+          "stage": "Backend",
+          "importance": "core",
+          "prerequisites": [
+            "Node.js",
+            "REST APIs"
+          ]
+        },
+        {
+          "skill": "SQL",
+          "stage": "Databases",
+          "importance": "core",
+          "prerequisites": []
+        },
+        {
+          "skill": "PostgreSQL",
+          "stage": "Databases",
+          "importance": "core",
+          "prerequisites": [
+            "SQL"
+          ]
+        },
+        {
+          "skill": "MongoDB",
+          "stage": "Databases",
+          "importance": "core",
+          "prerequisites": []
+        },
+        {
+          "skill": "Database Design",
+          "stage": "Databases",
+          "importance": "core",
+          "prerequisites": [
+            "SQL"
+          ]
+        },
+        {
+          "skill": "Authentication",
+          "stage": "Security",
+          "importance": "core",
+          "prerequisites": [
+            "HTTP",
+            "REST APIs"
+          ]
+        },
+        {
+          "skill": "Web Security",
+          "stage": "Security",
+          "importance": "core",
+          "prerequisites": [
+            "HTTP",
+            "Authentication"
+          ]
+        },
+        {
+          "skill": "Testing",
+          "stage": "Engineering",
+          "importance": "core",
+          "prerequisites": [
+            "JavaScript"
+          ]
+        },
+        {
+          "skill": "Git & GitHub",
+          "stage": "Engineering",
+          "importance": "core",
+          "prerequisites": []
+        },
+        {
+          "skill": "Docker",
+          "stage": "Deployment",
+          "importance": "core",
+          "prerequisites": []
+        },
+        {
+          "skill": "CI/CD",
+          "stage": "Deployment",
+          "importance": "core",
+          "prerequisites": [
+            "Git & GitHub",
+            "Docker"
+          ]
+        },
+        {
+          "skill": "System Design",
+          "stage": "Advanced",
+          "importance": "core",
+          "prerequisites": [
+            "REST APIs",
+            "Database Design"
+          ]
+        }
+      ]
+    },
+    "backend": {
+      "name": "Backend Development",
+      "type": "career",
+      "description": "Server-side engineering covering APIs, databases, security, testing, deployment, scalability, and distributed systems.",
+      "skills": [
+        {
+          "skill": "Python",
+          "stage": "Programming",
+          "importance": "core",
+          "prerequisites": []
+        },
+        {
+          "skill": "JavaScript",
+          "stage": "Programming",
+          "importance": "core",
+          "prerequisites": []
+        },
+        {
+          "skill": "C++",
+          "stage": "Programming",
+          "importance": "core",
+          "prerequisites": []
+        },
+        {
+          "skill": "Git & GitHub",
+          "stage": "Engineering",
+          "importance": "core",
+          "prerequisites": []
+        },
+        {
+          "skill": "Linux",
+          "stage": "Engineering",
+          "importance": "core",
+          "prerequisites": []
+        },
+        {
+          "skill": "HTTP",
+          "stage": "Web Fundamentals",
+          "importance": "core",
+          "prerequisites": []
+        },
+        {
+          "skill": "REST APIs",
+          "stage": "Backend",
+          "importance": "core",
+          "prerequisites": [
+            "HTTP"
+          ]
+        },
+        {
+          "skill": "Node.js",
+          "stage": "Backend",
+          "importance": "core",
+          "prerequisites": [
+            "JavaScript"
+          ]
+        },
+        {
+          "skill": "Express",
+          "stage": "Backend",
+          "importance": "core",
+          "prerequisites": [
+            "Node.js",
+            "REST APIs"
+          ]
+        },
+        {
+          "skill": "SQL",
+          "stage": "Databases",
+          "importance": "core",
+          "prerequisites": []
+        },
+        {
+          "skill": "PostgreSQL",
+          "stage": "Databases",
+          "importance": "core",
+          "prerequisites": [
+            "SQL"
+          ]
+        },
+        {
+          "skill": "Database Design",
+          "stage": "Databases",
+          "importance": "core",
+          "prerequisites": [
+            "SQL"
+          ]
+        },
+        {
+          "skill": "Redis / Caching",
+          "stage": "Performance",
+          "importance": "core",
+          "prerequisites": [
+            "Database Design"
+          ]
+        },
+        {
+          "skill": "Authentication",
+          "stage": "Security",
+          "importance": "core",
+          "prerequisites": [
+            "REST APIs"
+          ]
+        },
+        {
+          "skill": "Web Security",
+          "stage": "Security",
+          "importance": "core",
+          "prerequisites": [
+            "Authentication"
+          ]
+        },
+        {
+          "skill": "Testing",
+          "stage": "Engineering",
+          "importance": "core",
+          "prerequisites": []
+        },
+        {
+          "skill": "Docker",
+          "stage": "Deployment",
+          "importance": "core",
+          "prerequisites": [
+            "Linux"
+          ]
+        },
+        {
+          "skill": "CI/CD",
+          "stage": "Deployment",
+          "importance": "core",
+          "prerequisites": [
+            "Git & GitHub",
+            "Docker"
+          ]
+        },
+        {
+          "skill": "Message Queues",
+          "stage": "Distributed Systems",
+          "importance": "core",
+          "prerequisites": []
+        },
+        {
+          "skill": "System Design",
+          "stage": "Advanced",
+          "importance": "core",
+          "prerequisites": [
+            "REST APIs",
+            "Database Design",
+            "Redis / Caching"
+          ]
+        }
+      ]
+    },
+    "cloud-devops": {
+      "name": "Cloud / DevOps",
+      "type": "career",
+      "description": "Infrastructure and delivery path from Linux and networking through cloud, containers, orchestration, IaC, and observability.",
+      "skills": [
+        {
+          "skill": "Linux",
+          "stage": "Foundations",
+          "importance": "core",
+          "prerequisites": []
+        },
+        {
+          "skill": "Networking",
+          "stage": "Foundations",
+          "importance": "core",
+          "prerequisites": []
+        },
+        {
+          "skill": "Git & GitHub",
+          "stage": "Foundations",
+          "importance": "core",
+          "prerequisites": []
+        },
+        {
+          "skill": "Python",
+          "stage": "Automation",
+          "importance": "core",
+          "prerequisites": []
+        },
+        {
+          "skill": "Cloud Fundamentals",
+          "stage": "Cloud",
+          "importance": "core",
+          "prerequisites": []
+        },
+        {
+          "skill": "AWS",
+          "stage": "Cloud",
+          "importance": "core",
+          "prerequisites": [
+            "Cloud Fundamentals"
+          ]
+        },
+        {
+          "skill": "Azure",
+          "stage": "Cloud",
+          "importance": "core",
+          "prerequisites": [
+            "Cloud Fundamentals"
+          ]
+        },
+        {
+          "skill": "Google Cloud",
+          "stage": "Cloud",
+          "importance": "core",
+          "prerequisites": [
+            "Cloud Fundamentals"
+          ]
+        },
+        {
+          "skill": "IAM",
+          "stage": "Cloud Security",
+          "importance": "core",
+          "prerequisites": [
+            "AWS"
+          ]
+        },
+        {
+          "skill": "Docker",
+          "stage": "Containers",
+          "importance": "core",
+          "prerequisites": [
+            "Linux"
+          ]
+        },
+        {
+          "skill": "Kubernetes",
+          "stage": "Orchestration",
+          "importance": "core",
+          "prerequisites": [
+            "Docker",
+            "Networking"
+          ]
+        },
+        {
+          "skill": "CI/CD",
+          "stage": "Delivery",
+          "importance": "core",
+          "prerequisites": [
+            "Git & GitHub",
+            "Docker"
+          ]
+        },
+        {
+          "skill": "GitHub Actions",
+          "stage": "Delivery",
+          "importance": "core",
+          "prerequisites": [
+            "Git & GitHub",
+            "CI/CD"
+          ]
+        },
+        {
+          "skill": "Infrastructure as Code",
+          "stage": "IaC",
+          "importance": "core",
+          "prerequisites": []
+        },
+        {
+          "skill": "Terraform",
+          "stage": "IaC",
+          "importance": "core",
+          "prerequisites": [
+            "Infrastructure as Code"
+          ]
+        },
+        {
+          "skill": "Monitoring & Logging",
+          "stage": "Observability",
+          "importance": "core",
+          "prerequisites": []
+        },
+        {
+          "skill": "Message Queues",
+          "stage": "Distributed Systems",
+          "importance": "core",
+          "prerequisites": []
+        },
+        {
+          "skill": "Security Fundamentals",
+          "stage": "Security",
+          "importance": "core",
+          "prerequisites": []
+        }
+      ]
+    },
+    "iot-embedded": {
+      "name": "IoT / Embedded Systems",
+      "type": "career",
+      "description": "Embedded programming, microcontrollers, communication protocols, sensors, edge computing, and IoT systems.",
+      "skills": [
+        {
+          "skill": "C",
+          "stage": "Programming",
+          "importance": "core",
+          "prerequisites": []
+        },
+        {
+          "skill": "C++",
+          "stage": "Programming",
+          "importance": "core",
+          "prerequisites": [
+            "C"
+          ]
+        },
+        {
+          "skill": "Python",
+          "stage": "Programming",
+          "importance": "core",
+          "prerequisites": []
+        },
+        {
+          "skill": "Data Structures",
+          "stage": "Programming",
+          "importance": "core",
+          "prerequisites": [
+            "C"
+          ]
+        },
+        {
+          "skill": "Embedded Systems",
+          "stage": "Foundations",
+          "importance": "core",
+          "prerequisites": [
+            "C"
+          ]
+        },
+        {
+          "skill": "Microcontrollers",
+          "stage": "Foundations",
+          "importance": "core",
+          "prerequisites": [
+            "C",
+            "Embedded Systems"
+          ]
+        },
+        {
+          "skill": "GPIO",
+          "stage": "Hardware",
+          "importance": "core",
+          "prerequisites": [
+            "Microcontrollers"
+          ]
+        },
+        {
+          "skill": "UART",
+          "stage": "Communication",
+          "importance": "core",
+          "prerequisites": [
+            "Microcontrollers"
+          ]
+        },
+        {
+          "skill": "SPI",
+          "stage": "Communication",
+          "importance": "core",
+          "prerequisites": [
+            "Microcontrollers"
+          ]
+        },
+        {
+          "skill": "I2C",
+          "stage": "Communication",
+          "importance": "core",
+          "prerequisites": [
+            "Microcontrollers"
+          ]
+        },
+        {
+          "skill": "Interrupts",
+          "stage": "Embedded",
+          "importance": "core",
+          "prerequisites": [
+            "C",
+            "Microcontrollers"
+          ]
+        },
+        {
+          "skill": "Timers",
+          "stage": "Embedded",
+          "importance": "core",
+          "prerequisites": [
+            "C",
+            "Microcontrollers"
+          ]
+        },
+        {
+          "skill": "Sensors",
+          "stage": "Hardware",
+          "importance": "core",
+          "prerequisites": [
+            "GPIO",
+            "I2C"
+          ]
+        },
+        {
+          "skill": "Actuators",
+          "stage": "Hardware",
+          "importance": "core",
+          "prerequisites": [
+            "GPIO"
+          ]
+        },
+        {
+          "skill": "PWM",
+          "stage": "Hardware",
+          "importance": "core",
+          "prerequisites": [
+            "Microcontrollers"
+          ]
+        },
+        {
+          "skill": "Networking",
+          "stage": "Connectivity",
+          "importance": "core",
+          "prerequisites": []
+        },
+        {
+          "skill": "MQTT",
+          "stage": "IoT",
+          "importance": "core",
+          "prerequisites": [
+            "Networking"
+          ]
+        },
+        {
+          "skill": "HTTP",
+          "stage": "IoT",
+          "importance": "core",
+          "prerequisites": [
+            "Networking"
+          ]
+        },
+        {
+          "skill": "Arduino",
+          "stage": "Platforms",
+          "importance": "core",
+          "prerequisites": [
+            "C",
+            "Microcontrollers"
+          ]
+        },
+        {
+          "skill": "ESP32",
+          "stage": "Platforms",
+          "importance": "core",
+          "prerequisites": [
+            "C",
+            "Microcontrollers"
+          ]
+        },
+        {
+          "skill": "Raspberry Pi",
+          "stage": "Platforms",
+          "importance": "core",
+          "prerequisites": [
+            "Linux"
+          ]
+        },
+        {
+          "skill": "RTOS",
+          "stage": "Advanced Embedded",
+          "importance": "core",
+          "prerequisites": [
+            "C",
+            "Interrupts",
+            "Timers"
+          ]
+        },
+        {
+          "skill": "Embedded Linux",
+          "stage": "Advanced Embedded",
+          "importance": "core",
+          "prerequisites": [
+            "Linux"
+          ]
+        },
+        {
+          "skill": "Edge Computing",
+          "stage": "Advanced IoT",
+          "importance": "core",
+          "prerequisites": [
+            "Networking",
+            "Embedded Linux"
+          ]
+        },
+        {
+          "skill": "Cloud IoT",
+          "stage": "Advanced IoT",
+          "importance": "core",
+          "prerequisites": [
+            "MQTT",
+            "Cloud Fundamentals"
+          ]
+        }
+      ]
+    },
+    "dsa-problem-solving": {
+      "name": "DSA & Problem Solving",
+      "type": "shared",
+      "description": "Shared algorithmic foundation for technical interviews and software engineering.",
+      "skills": [
+        {
+          "skill": "Big-O",
+          "stage": "Foundations",
+          "importance": "core",
+          "prerequisites": []
+        },
+        {
+          "skill": "Problem Solving",
+          "stage": "Foundations",
+          "importance": "core",
+          "prerequisites": [
+            "Big-O"
+          ]
+        },
+        {
+          "skill": "Data Structures",
+          "stage": "Core",
+          "importance": "core",
+          "prerequisites": [
+            "Big-O"
+          ]
+        },
+        {
+          "skill": "Arrays",
+          "stage": "Core",
+          "importance": "core",
+          "prerequisites": [
+            "Data Structures"
+          ]
+        },
+        {
+          "skill": "Strings",
+          "stage": "Core",
+          "importance": "core",
+          "prerequisites": [
+            "Data Structures"
+          ]
+        },
+        {
+          "skill": "Linked Lists",
+          "stage": "Core",
+          "importance": "core",
+          "prerequisites": [
+            "Data Structures"
+          ]
+        },
+        {
+          "skill": "Stacks",
+          "stage": "Core",
+          "importance": "core",
+          "prerequisites": [
+            "Data Structures"
+          ]
+        },
+        {
+          "skill": "Queues",
+          "stage": "Core",
+          "importance": "core",
+          "prerequisites": [
+            "Data Structures"
+          ]
+        },
+        {
+          "skill": "Hash Tables",
+          "stage": "Core",
+          "importance": "core",
+          "prerequisites": [
+            "Data Structures"
+          ]
+        },
+        {
+          "skill": "Trees",
+          "stage": "Core",
+          "importance": "core",
+          "prerequisites": [
+            "Data Structures"
+          ]
+        },
+        {
+          "skill": "Heaps / Priority Queues",
+          "stage": "Core",
+          "importance": "core",
+          "prerequisites": [
+            "Trees"
+          ]
+        },
+        {
+          "skill": "Graphs",
+          "stage": "Core",
+          "importance": "core",
+          "prerequisites": [
+            "Data Structures"
+          ]
+        },
+        {
+          "skill": "Recursion",
+          "stage": "Algorithms",
+          "importance": "core",
+          "prerequisites": [
+            "Problem Solving"
+          ]
+        },
+        {
+          "skill": "Sorting",
+          "stage": "Algorithms",
+          "importance": "core",
+          "prerequisites": [
+            "Arrays"
+          ]
+        },
+        {
+          "skill": "Searching",
+          "stage": "Algorithms",
+          "importance": "core",
+          "prerequisites": [
+            "Arrays"
+          ]
+        },
+        {
+          "skill": "Binary Search",
+          "stage": "Algorithms",
+          "importance": "core",
+          "prerequisites": [
+            "Searching"
+          ]
+        },
+        {
+          "skill": "Two Pointers",
+          "stage": "Patterns",
+          "importance": "core",
+          "prerequisites": [
+            "Arrays"
+          ]
+        },
+        {
+          "skill": "Sliding Window",
+          "stage": "Patterns",
+          "importance": "core",
+          "prerequisites": [
+            "Arrays"
+          ]
+        },
+        {
+          "skill": "Greedy Algorithms",
+          "stage": "Algorithms",
+          "importance": "core",
+          "prerequisites": [
+            "Sorting",
+            "Problem Solving"
+          ]
+        },
+        {
+          "skill": "Backtracking",
+          "stage": "Algorithms",
+          "importance": "core",
+          "prerequisites": [
+            "Recursion"
+          ]
+        },
+        {
+          "skill": "Divide & Conquer",
+          "stage": "Algorithms",
+          "importance": "core",
+          "prerequisites": [
+            "Recursion"
+          ]
+        },
+        {
+          "skill": "BFS / DFS",
+          "stage": "Graphs",
+          "importance": "core",
+          "prerequisites": [
+            "Graphs"
+          ]
+        },
+        {
+          "skill": "Dynamic Programming",
+          "stage": "Advanced",
+          "importance": "core",
+          "prerequisites": [
+            "Recursion",
+            "Problem Solving"
+          ]
+        },
+        {
+          "skill": "Shortest Path",
+          "stage": "Advanced",
+          "importance": "core",
+          "prerequisites": [
+            "Graphs"
+          ]
+        },
+        {
+          "skill": "Minimum Spanning Tree",
+          "stage": "Advanced",
+          "importance": "core",
+          "prerequisites": [
+            "Graphs"
+          ]
+        },
+        {
+          "skill": "Topological Sorting",
+          "stage": "Advanced",
+          "importance": "core",
+          "prerequisites": [
+            "Graphs"
+          ]
+        },
+        {
+          "skill": "Union-Find",
+          "stage": "Advanced",
+          "importance": "core",
+          "prerequisites": [
+            "Graphs"
+          ]
+        }
+      ]
+    },
+    "software-engineering": {
+      "name": "Software Engineering Fundamentals",
+      "type": "shared",
+      "description": "Cross-career engineering practices that improve reliability, maintainability, collaboration, and delivery.",
+      "skills": [
+        {
+          "skill": "Git & GitHub",
+          "stage": "Version Control",
+          "importance": "core",
+          "prerequisites": []
+        },
+        {
+          "skill": "Linux",
+          "stage": "Development Environment",
+          "importance": "core",
+          "prerequisites": []
+        },
+        {
+          "skill": "HTTP",
+          "stage": "Web Fundamentals",
+          "importance": "core",
+          "prerequisites": []
+        },
+        {
+          "skill": "REST APIs",
+          "stage": "Backend Fundamentals",
+          "importance": "core",
+          "prerequisites": [
+            "HTTP"
+          ]
+        },
+        {
+          "skill": "Databases",
+          "stage": "Data Fundamentals",
+          "importance": "core",
+          "prerequisites": []
+        },
+        {
+          "skill": "Authentication",
+          "stage": "Security",
+          "importance": "core",
+          "prerequisites": [
+            "HTTP"
+          ]
+        },
+        {
+          "skill": "Web Security",
+          "stage": "Security",
+          "importance": "core",
+          "prerequisites": [
+            "Authentication"
+          ]
+        },
+        {
+          "skill": "Testing",
+          "stage": "Quality",
+          "importance": "core",
+          "prerequisites": []
+        },
+        {
+          "skill": "Debugging",
+          "stage": "Quality",
+          "importance": "core",
+          "prerequisites": []
+        },
+        {
+          "skill": "Software Design",
+          "stage": "Architecture",
+          "importance": "core",
+          "prerequisites": []
+        },
+        {
+          "skill": "Clean Code",
+          "stage": "Engineering",
+          "importance": "core",
+          "prerequisites": []
+        },
+        {
+          "skill": "Documentation",
+          "stage": "Engineering",
+          "importance": "core",
+          "prerequisites": []
+        },
+        {
+          "skill": "CI/CD",
+          "stage": "Delivery",
+          "importance": "core",
+          "prerequisites": [
+            "Git & GitHub"
+          ]
+        },
+        {
+          "skill": "Docker",
+          "stage": "Delivery",
+          "importance": "core",
+          "prerequisites": []
+        },
+        {
+          "skill": "System Design",
+          "stage": "Architecture",
+          "importance": "core",
+          "prerequisites": [
+            "REST APIs",
+            "Databases"
+          ]
+        }
+      ]
+    }
+  },
+  "resourcePolicy": {
+    "officialDocumentation": "Prefer first-party/maintainer documentation. Conceptual topics may use authoritative educational references where no software vendor documentation exists.",
+    "youtube": "Use a high-view verified video when web research exposed reliable view counts. Do not present missing view counts as verified popularity.",
+    "thumbnailTemplate": "https://i.ytimg.com/vi/{videoId}/hqdefault.jpg",
+    "fallback": "Use youtubeSearchUrl when no verified video is stored; do not invent a video ID."
+  },
+  "implementationNotes": [
+    "Use skill names as canonical IDs only after passing them through the existing skill normalizer/ontology.",
+    "Do not duplicate the same resource object into each career track; store by canonical skill and reuse.",
+    "The roadmap engine should remove confirmed skills from active learning but retain them as completed prerequisites.",
+    "Job-description requirements should be layered on top of the selected career track rather than replacing the track.",
+    "Resume-derived unconfirmed candidates must not satisfy requirements until confirmed by the user.",
+    "A roadmap item should expose prerequisites, official documentation, YouTube resources, and future practice/verification fields."
+  ],
+  "resourcesBySkill": {
+    "actuators": {
+      "officialDocumentationUrls": [
+        "https://docs.arduino.cc/learn/electronics/servo-motors"
+      ],
+      "youtube": [],
+      "youtubeSearchUrl": "https://www.youtube.com/results?search_query=Actuators+tutorial"
+    },
+    "arduino": {
+      "officialDocumentationUrls": [
+        "https://docs.arduino.cc/learn/"
+      ],
+      "youtube": [],
+      "youtubeSearchUrl": "https://www.youtube.com/results?search_query=Arduino+tutorial"
+    },
+    "arrays": {
+      "officialDocumentationUrls": [
+        "https://en.cppreference.com/w/cpp/container"
+      ],
+      "youtube": [],
+      "youtubeSearchUrl": "https://www.youtube.com/results?search_query=Arrays+tutorial"
+    },
+    "authentication": {
+      "officialDocumentationUrls": [
+        "https://developer.mozilla.org/en-US/docs/Web/HTTP/Guides/Authentication"
+      ],
+      "youtube": [],
+      "youtubeSearchUrl": "https://www.youtube.com/results?search_query=Authentication+tutorial"
+    },
+    "aws": {
+      "officialDocumentationUrls": [
+        "https://docs.aws.amazon.com/getting-started/"
+      ],
+      "youtube": [],
+      "youtubeSearchUrl": "https://www.youtube.com/results?search_query=AWS+tutorial"
+    },
+    "azure": {
+      "officialDocumentationUrls": [
+        "https://learn.microsoft.com/en-us/azure/"
+      ],
+      "youtube": [],
+      "youtubeSearchUrl": "https://www.youtube.com/results?search_query=Azure+tutorial"
+    },
+    "backtracking": {
+      "officialDocumentationUrls": [
+        "https://cp-algorithms.com/algebra/all-submasks.html"
+      ],
+      "youtube": [],
+      "youtubeSearchUrl": "https://www.youtube.com/results?search_query=Backtracking+tutorial"
+    },
+    "bfs / dfs": {
+      "officialDocumentationUrls": [
+        "https://cp-algorithms.com/graph/breadth-first-search.html"
+      ],
+      "youtube": [],
+      "youtubeSearchUrl": "https://www.youtube.com/results?search_query=BFS+/+DFS+tutorial"
+    },
+    "big-o": {
+      "officialDocumentationUrls": [
+        "https://en.wikipedia.org/wiki/Big_O_notation"
+      ],
+      "youtube": [
+        {
+          "title": "Data Structures Easy to Advanced Course - Full Tutorial from a Google Engineer",
+          "channel": "freeCodeCamp.org",
+          "videoId": "RBSGKlAvoiM",
+          "url": "https://www.youtube.com/watch?v=RBSGKlAvoiM",
+          "thumbnailUrl": "https://i.ytimg.com/vi/RBSGKlAvoiM/hqdefault.jpg",
+          "viewsAtResearch": 7466150,
+          "selectionBasis": "high_view_verified",
+          "coverage": "direct"
+        }
+      ],
+      "youtubeSearchUrl": "https://www.youtube.com/results?search_query=Big-O+tutorial"
+    },
+    "binary search": {
+      "officialDocumentationUrls": [
+        "https://en.cppreference.com/w/cpp/algorithm/binary_search"
+      ],
+      "youtube": [],
+      "youtubeSearchUrl": "https://www.youtube.com/results?search_query=Binary+Search+tutorial"
+    },
+    "c": {
+      "officialDocumentationUrls": [
+        "https://en.cppreference.com/w/c"
+      ],
+      "youtube": [
+        {
+          "title": "C Programming Tutorial for Beginners",
+          "channel": "freeCodeCamp.org",
+          "videoId": "KJgsSFOSQv0",
+          "url": "https://www.youtube.com/watch?v=KJgsSFOSQv0",
+          "thumbnailUrl": "https://i.ytimg.com/vi/KJgsSFOSQv0/hqdefault.jpg",
+          "viewsAtResearch": 18846629,
+          "selectionBasis": "high_view_verified",
+          "coverage": "direct"
+        }
+      ],
+      "youtubeSearchUrl": "https://www.youtube.com/results?search_query=C+tutorial"
+    },
+    "c++": {
+      "officialDocumentationUrls": [
+        "https://en.cppreference.com/w/cpp"
+      ],
+      "youtube": [
+        {
+          "title": "C++ Tutorial for Beginners - Full Course",
+          "channel": "freeCodeCamp.org",
+          "videoId": "vLnPwxZdW4Y",
+          "url": "https://www.youtube.com/watch?v=vLnPwxZdW4Y",
+          "thumbnailUrl": "https://i.ytimg.com/vi/vLnPwxZdW4Y/hqdefault.jpg",
+          "viewsAtResearch": 13564872,
+          "selectionBasis": "high_view_verified",
+          "coverage": "direct"
+        }
+      ],
+      "youtubeSearchUrl": "https://www.youtube.com/results?search_query=C+++tutorial"
+    },
+    "calculus": {
+      "officialDocumentationUrls": [
+        "https://tutorial.math.lamar.edu/"
+      ],
+      "youtube": [],
+      "youtubeSearchUrl": "https://www.youtube.com/results?search_query=Calculus+tutorial"
+    },
+    "ci/cd": {
+      "officialDocumentationUrls": [
+        "https://docs.github.com/en/actions"
+      ],
+      "youtube": [],
+      "youtubeSearchUrl": "https://www.youtube.com/results?search_query=CI/CD+tutorial"
+    },
+    "clean code": {
+      "officialDocumentationUrls": [
+        "https://refactoring.guru/"
+      ],
+      "youtube": [],
+      "youtubeSearchUrl": "https://www.youtube.com/results?search_query=Clean+Code+tutorial"
+    },
+    "cloud fundamentals": {
+      "officialDocumentationUrls": [
+        "https://docs.aws.amazon.com/whitepapers/latest/aws-overview/aws-overview.html"
+      ],
+      "youtube": [],
+      "youtubeSearchUrl": "https://www.youtube.com/results?search_query=Cloud+Fundamentals+tutorial"
+    },
+    "cloud iot": {
+      "officialDocumentationUrls": [
+        "https://aws.amazon.com/iot/"
+      ],
+      "youtube": [],
+      "youtubeSearchUrl": "https://www.youtube.com/results?search_query=Cloud+IoT+tutorial"
+    },
+    "cnn": {
+      "officialDocumentationUrls": [
+        "https://pytorch.org/tutorials/beginner/blitz/cifar10_tutorial.html"
+      ],
+      "youtube": [
+        {
+          "title": "PyTorch for Deep Learning & Machine Learning - Full Course",
+          "channel": "Daniel Bourke",
+          "videoId": "V_xro1bcAuA",
+          "url": "https://www.youtube.com/watch?v=V_xro1bcAuA",
+          "thumbnailUrl": "https://i.ytimg.com/vi/V_xro1bcAuA/hqdefault.jpg",
+          "viewsAtResearch": null,
+          "selectionBasis": "curated_relevant",
+          "coverage": "direct"
+        }
+      ],
+      "youtubeSearchUrl": "https://www.youtube.com/results?search_query=CNNs+tutorial"
+    },
+    "computer vision": {
+      "officialDocumentationUrls": [
+        "https://pytorch.org/vision/stable/"
+      ],
+      "youtube": [],
+      "youtubeSearchUrl": "https://www.youtube.com/results?search_query=Computer+Vision+tutorial"
+    },
+    "data cleaning / eda": {
+      "officialDocumentationUrls": [
+        "https://pandas.pydata.org/docs/user_guide/10min.html"
+      ],
+      "youtube": [],
+      "youtubeSearchUrl": "https://www.youtube.com/results?search_query=Data+Cleaning+/+EDA+tutorial"
+    },
+    "data storytelling": {
+      "officialDocumentationUrls": [
+        "https://www.tableau.com/learn/articles/data-storytelling"
+      ],
+      "youtube": [],
+      "youtubeSearchUrl": "https://www.youtube.com/results?search_query=Data+Storytelling+tutorial"
+    },
+    "data structures": {
+      "officialDocumentationUrls": [
+        "https://en.cppreference.com/w/cpp/container"
+      ],
+      "youtube": [],
+      "youtubeSearchUrl": "https://www.youtube.com/results?search_query=Data+Structures+tutorial"
+    },
+    "data visualization": {
+      "officialDocumentationUrls": [
+        "https://matplotlib.org/stable/tutorials/"
+      ],
+      "youtube": [],
+      "youtubeSearchUrl": "https://www.youtube.com/results?search_query=Data+Visualization+tutorial"
+    },
+    "database design": {
+      "officialDocumentationUrls": [
+        "https://www.postgresql.org/docs/current/ddl.html"
+      ],
+      "youtube": [
+        {
+          "title": "SQL Tutorial - Full Database Course for Beginners",
+          "channel": "freeCodeCamp.org",
+          "videoId": "HXV3zeQKqGY",
+          "url": "https://www.youtube.com/watch?v=HXV3zeQKqGY",
+          "thumbnailUrl": "https://i.ytimg.com/vi/HXV3zeQKqGY/hqdefault.jpg",
+          "viewsAtResearch": 20993714,
+          "selectionBasis": "high_view_verified",
+          "coverage": "direct"
+        }
+      ],
+      "youtubeSearchUrl": "https://www.youtube.com/results?search_query=Database+Design+tutorial"
+    },
+    "databases": {
+      "officialDocumentationUrls": [
+        "https://www.postgresql.org/docs/current/tutorial.html"
+      ],
+      "youtube": [],
+      "youtubeSearchUrl": "https://www.youtube.com/results?search_query=Databases+tutorial"
+    },
+    "debugging": {
+      "officialDocumentationUrls": [
+        "https://code.visualstudio.com/docs/editor/debugging"
+      ],
+      "youtube": [],
+      "youtubeSearchUrl": "https://www.youtube.com/results?search_query=Debugging+tutorial"
+    },
+    "deep learning": {
+      "officialDocumentationUrls": [
+        "https://pytorch.org/tutorials/"
+      ],
+      "youtube": [
+        {
+          "title": "PyTorch for Deep Learning & Machine Learning - Full Course",
+          "channel": "Daniel Bourke",
+          "videoId": "V_xro1bcAuA",
+          "url": "https://www.youtube.com/watch?v=V_xro1bcAuA",
+          "thumbnailUrl": "https://i.ytimg.com/vi/V_xro1bcAuA/hqdefault.jpg",
+          "viewsAtResearch": null,
+          "selectionBasis": "curated_relevant",
+          "coverage": "direct"
+        }
+      ],
+      "youtubeSearchUrl": "https://www.youtube.com/results?search_query=Deep+Learning+tutorial"
+    },
+    "divide & conquer": {
+      "officialDocumentationUrls": [
+        "https://cp-algorithms.com/divide-and-conquer/"
+      ],
+      "youtube": [],
+      "youtubeSearchUrl": "https://www.youtube.com/results?search_query=Divide+&+Conquer+tutorial"
+    },
+    "docker": {
+      "officialDocumentationUrls": [
+        "https://docs.docker.com/get-started/"
+      ],
+      "youtube": [
+        {
+          "title": "Docker Tutorial for Beginners [FULL COURSE in 3 Hours]",
+          "channel": "TechWorld with Nana",
+          "videoId": "3c-iBn73dDE",
+          "url": "https://www.youtube.com/watch?v=3c-iBn73dDE",
+          "thumbnailUrl": "https://i.ytimg.com/vi/3c-iBn73dDE/hqdefault.jpg",
+          "viewsAtResearch": 6464910,
+          "selectionBasis": "high_view_verified",
+          "coverage": "direct"
+        }
+      ],
+      "youtubeSearchUrl": "https://www.youtube.com/results?search_query=Docker+tutorial"
+    },
+    "documentation": {
+      "officialDocumentationUrls": [
+        "https://www.writethedocs.org/guide/"
+      ],
+      "youtube": [],
+      "youtubeSearchUrl": "https://www.youtube.com/results?search_query=Documentation+tutorial"
+    },
+    "dom & browser apis": {
+      "officialDocumentationUrls": [],
+      "youtube": [],
+      "youtubeSearchUrl": "https://www.youtube.com/results?search_query=DOM+&+Browser+APIs+tutorial"
+    },
+    "dynamic programming": {
+      "officialDocumentationUrls": [
+        "https://cp-algorithms.com/dynamic_programming/intro-to-dp.html"
+      ],
+      "youtube": [],
+      "youtubeSearchUrl": "https://www.youtube.com/results?search_query=Dynamic+Programming+tutorial"
+    },
+    "edge computing": {
+      "officialDocumentationUrls": [
+        "https://www.linuxfoundation.org/projects/lf-edge"
+      ],
+      "youtube": [],
+      "youtubeSearchUrl": "https://www.youtube.com/results?search_query=Edge+Computing+tutorial"
+    },
+    "embedded linux": {
+      "officialDocumentationUrls": [
+        "https://www.kernel.org/doc/html/latest/"
+      ],
+      "youtube": [],
+      "youtubeSearchUrl": "https://www.youtube.com/results?search_query=Embedded+Linux+tutorial"
+    },
+    "embedded systems": {
+      "officialDocumentationUrls": [
+        "https://docs.arduino.cc/learn/"
+      ],
+      "youtube": [],
+      "youtubeSearchUrl": "https://www.youtube.com/results?search_query=Embedded+Systems+tutorial"
+    },
+    "esp32": {
+      "officialDocumentationUrls": [
+        "https://docs.espressif.com/projects/esp-idf/en/latest/esp32/"
+      ],
+      "youtube": [],
+      "youtubeSearchUrl": "https://www.youtube.com/results?search_query=ESP32+tutorial"
+    },
+    "express": {
+      "officialDocumentationUrls": [
+        "https://expressjs.com/en/starter/installing.html"
+      ],
+      "youtube": [
+        {
+          "title": "Learn Node.js - Full Tutorial for Beginners",
+          "channel": "freeCodeCamp.org",
+          "videoId": "RLtyhwFtXQA",
+          "url": "https://www.youtube.com/watch?v=RLtyhwFtXQA",
+          "thumbnailUrl": "https://i.ytimg.com/vi/RLtyhwFtXQA/hqdefault.jpg",
+          "viewsAtResearch": 1243052,
+          "selectionBasis": "high_view_verified",
+          "coverage": "direct"
+        }
+      ],
+      "youtubeSearchUrl": "https://www.youtube.com/results?search_query=Express+tutorial"
+    },
+    "feature engineering": {
+      "officialDocumentationUrls": [
+        "https://scikit-learn.org/stable/modules/classes.html"
+      ],
+      "youtube": [
+        {
+          "title": "Machine Learning Course for Beginners",
+          "channel": "freeCodeCamp.org",
+          "videoId": "NWONeJKn6kc",
+          "url": "https://www.youtube.com/watch?v=NWONeJKn6kc",
+          "thumbnailUrl": "https://i.ytimg.com/vi/NWONeJKn6kc/hqdefault.jpg",
+          "viewsAtResearch": 2081044,
+          "selectionBasis": "high_view_verified",
+          "coverage": "direct"
+        }
+      ],
+      "youtubeSearchUrl": "https://www.youtube.com/results?search_query=Feature+Engineering+tutorial"
+    },
+    "gcp": {
+      "officialDocumentationUrls": [
+        "https://cloud.google.com/docs"
+      ],
+      "youtube": [],
+      "youtubeSearchUrl": "https://www.youtube.com/results?search_query=Google+Cloud+tutorial"
+    },
+    "git & github": {
+      "officialDocumentationUrls": [
+        "https://git-scm.com/docs"
+      ],
+      "youtube": [
+        {
+          "title": "Git and GitHub for Beginners - Crash Course",
+          "channel": "freeCodeCamp.org",
+          "videoId": "RGOj5yH7evk",
+          "url": "https://www.youtube.com/watch?v=RGOj5yH7evk",
+          "thumbnailUrl": "https://i.ytimg.com/vi/RGOj5yH7evk/hqdefault.jpg",
+          "viewsAtResearch": 5129908,
+          "selectionBasis": "high_view_verified",
+          "coverage": "direct"
+        }
+      ],
+      "youtubeSearchUrl": "https://www.youtube.com/results?search_query=Git+&+GitHub+tutorial"
+    },
+    "github actions": {
+      "officialDocumentationUrls": [
+        "https://docs.github.com/en/actions/get-started/quickstart"
+      ],
+      "youtube": [],
+      "youtubeSearchUrl": "https://www.youtube.com/results?search_query=GitHub+Actions+tutorial"
+    },
+    "gpio": {
+      "officialDocumentationUrls": [
+        "https://docs.arduino.cc/learn/electronics/pinouts"
+      ],
+      "youtube": [],
+      "youtubeSearchUrl": "https://www.youtube.com/results?search_query=GPIO+tutorial"
+    },
+    "graphs": {
+      "officialDocumentationUrls": [
+        "https://cp-algorithms.com/graph/"
+      ],
+      "youtube": [],
+      "youtubeSearchUrl": "https://www.youtube.com/results?search_query=Graphs+tutorial"
+    },
+    "greedy algorithms": {
+      "officialDocumentationUrls": [
+        "https://cp-algorithms.com/greedy/"
+      ],
+      "youtube": [],
+      "youtubeSearchUrl": "https://www.youtube.com/results?search_query=Greedy+Algorithms+tutorial"
+    },
+    "hash tables": {
+      "officialDocumentationUrls": [
+        "https://en.cppreference.com/w/cpp/container/unordered_map"
+      ],
+      "youtube": [],
+      "youtubeSearchUrl": "https://www.youtube.com/results?search_query=Hash+Tables+tutorial"
+    },
+    "heaps / priority queues": {
+      "officialDocumentationUrls": [
+        "https://en.cppreference.com/w/cpp/container/priority_queue"
+      ],
+      "youtube": [],
+      "youtubeSearchUrl": "https://www.youtube.com/results?search_query=Heaps+/+Priority+Queues+tutorial"
+    },
+    "html & css": {
+      "officialDocumentationUrls": [
+        "https://developer.mozilla.org/en-US/docs/Learn_web_development"
+      ],
+      "youtube": [
+        {
+          "title": "Learn HTML & CSS - Full Course for Beginners",
+          "channel": "freeCodeCamp.org",
+          "videoId": "a_iQb1lnAEQ",
+          "url": "https://www.youtube.com/watch?v=a_iQb1lnAEQ",
+          "thumbnailUrl": "https://i.ytimg.com/vi/a_iQb1lnAEQ/hqdefault.jpg",
+          "viewsAtResearch": 947865,
+          "selectionBasis": "high_view_verified",
+          "coverage": "direct"
+        }
+      ],
+      "youtubeSearchUrl": "https://www.youtube.com/results?search_query=HTML+&+CSS+tutorial"
+    },
+    "http": {
+      "officialDocumentationUrls": [
+        "https://developer.mozilla.org/en-US/docs/Web/HTTP"
+      ],
+      "youtube": [
+        {
+          "title": "Learn Node.js - Full Tutorial for Beginners",
+          "channel": "freeCodeCamp.org",
+          "videoId": "RLtyhwFtXQA",
+          "url": "https://www.youtube.com/watch?v=RLtyhwFtXQA",
+          "thumbnailUrl": "https://i.ytimg.com/vi/RLtyhwFtXQA/hqdefault.jpg",
+          "viewsAtResearch": 1243052,
+          "selectionBasis": "high_view_verified",
+          "coverage": "direct"
+        }
+      ],
+      "youtubeSearchUrl": "https://www.youtube.com/results?search_query=HTTP+tutorial"
+    },
+    "i2c": {
+      "officialDocumentationUrls": [
+        "https://docs.arduino.cc/learn/communication/wire"
+      ],
+      "youtube": [],
+      "youtubeSearchUrl": "https://www.youtube.com/results?search_query=I2C+tutorial"
+    },
+    "iam": {
+      "officialDocumentationUrls": [
+        "https://docs.aws.amazon.com/IAM/latest/UserGuide/introduction.html"
+      ],
+      "youtube": [],
+      "youtubeSearchUrl": "https://www.youtube.com/results?search_query=IAM+tutorial"
+    },
+    "infrastructure as code": {
+      "officialDocumentationUrls": [
+        "https://developer.hashicorp.com/terraform/intro"
+      ],
+      "youtube": [],
+      "youtubeSearchUrl": "https://www.youtube.com/results?search_query=Infrastructure+as+Code+tutorial"
+    },
+    "interrupts": {
+      "officialDocumentationUrls": [
+        "https://docs.arduino.cc/language-reference/en/functions/external-interrupts/attachInterrupt/"
+      ],
+      "youtube": [],
+      "youtubeSearchUrl": "https://www.youtube.com/results?search_query=Interrupts+tutorial"
+    },
+    "javascript": {
+      "officialDocumentationUrls": [
+        "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide"
+      ],
+      "youtube": [
+        {
+          "title": "JavaScript Tutorial for Beginners: Learn JavaScript in 1 Hour",
+          "channel": "Programming with Mosh",
+          "videoId": "W6NZfCO5SIk",
+          "url": "https://www.youtube.com/watch?v=W6NZfCO5SIk",
+          "thumbnailUrl": "https://i.ytimg.com/vi/W6NZfCO5SIk/hqdefault.jpg",
+          "viewsAtResearch": null,
+          "selectionBasis": "curated_relevant",
+          "coverage": "direct"
+        }
+      ],
+      "youtubeSearchUrl": "https://www.youtube.com/results?search_query=JavaScript+tutorial"
+    },
+    "jupyter": {
+      "officialDocumentationUrls": [
+        "https://docs.jupyter.org/en/latest/start/index.html"
+      ],
+      "youtube": [],
+      "youtubeSearchUrl": "https://www.youtube.com/results?search_query=Jupyter+tutorial"
+    },
+    "kubernetes": {
+      "officialDocumentationUrls": [
+        "https://kubernetes.io/docs/tutorials/kubernetes-basics/"
+      ],
+      "youtube": [
+        {
+          "title": "Kubernetes Course - Full Tutorial for Beginners",
+          "channel": "freeCodeCamp.org",
+          "videoId": "d6WC5n9G_sM",
+          "url": "https://www.youtube.com/watch?v=d6WC5n9G_sM",
+          "thumbnailUrl": "https://i.ytimg.com/vi/d6WC5n9G_sM/hqdefault.jpg",
+          "viewsAtResearch": null,
+          "selectionBasis": "curated_relevant",
+          "coverage": "direct"
+        }
+      ],
+      "youtubeSearchUrl": "https://www.youtube.com/results?search_query=Kubernetes+tutorial"
+    },
+    "linear algebra": {
+      "officialDocumentationUrls": [
+        "https://numpy.org/doc/stable/reference/routines.linalg.html"
+      ],
+      "youtube": [],
+      "youtubeSearchUrl": "https://www.youtube.com/results?search_query=Linear+Algebra+tutorial"
+    },
+    "linked lists": {
+      "officialDocumentationUrls": [
+        "https://en.cppreference.com/w/cpp/container/list"
+      ],
+      "youtube": [],
+      "youtubeSearchUrl": "https://www.youtube.com/results?search_query=Linked+Lists+tutorial"
+    },
+    "linux": {
+      "officialDocumentationUrls": [
+        "https://www.kernel.org/doc/html/latest/"
+      ],
+      "youtube": [],
+      "youtubeSearchUrl": "https://www.youtube.com/results?search_query=Linux+tutorial"
+    },
+    "machine learning": {
+      "officialDocumentationUrls": [
+        "https://scikit-learn.org/stable/user_guide.html"
+      ],
+      "youtube": [
+        {
+          "title": "Machine Learning Course for Beginners",
+          "channel": "freeCodeCamp.org",
+          "videoId": "NWONeJKn6kc",
+          "url": "https://www.youtube.com/watch?v=NWONeJKn6kc",
+          "thumbnailUrl": "https://i.ytimg.com/vi/NWONeJKn6kc/hqdefault.jpg",
+          "viewsAtResearch": 2081044,
+          "selectionBasis": "high_view_verified",
+          "coverage": "direct"
+        }
+      ],
+      "youtubeSearchUrl": "https://www.youtube.com/results?search_query=Machine+Learning+tutorial"
+    },
+    "matplotlib": {
+      "officialDocumentationUrls": [
+        "https://matplotlib.org/stable/tutorials/"
+      ],
+      "youtube": [],
+      "youtubeSearchUrl": "https://www.youtube.com/results?search_query=Matplotlib+tutorial"
+    },
+    "message queues": {
+      "officialDocumentationUrls": [
+        "https://www.rabbitmq.com/tutorials"
+      ],
+      "youtube": [],
+      "youtubeSearchUrl": "https://www.youtube.com/results?search_query=Message+Queues+tutorial"
+    },
+    "microcontrollers": {
+      "officialDocumentationUrls": [
+        "https://docs.arduino.cc/learn/"
+      ],
+      "youtube": [],
+      "youtubeSearchUrl": "https://www.youtube.com/results?search_query=Microcontrollers+tutorial"
+    },
+    "minimum spanning tree": {
+      "officialDocumentationUrls": [
+        "https://cp-algorithms.com/graph/mst_kruskal_with_dsu.html"
+      ],
+      "youtube": [],
+      "youtubeSearchUrl": "https://www.youtube.com/results?search_query=Minimum+Spanning+Tree+tutorial"
+    },
+    "ml deployment": {
+      "officialDocumentationUrls": [
+        "https://fastapi.tiangolo.com/"
+      ],
+      "youtube": [],
+      "youtubeSearchUrl": "https://www.youtube.com/results?search_query=ML+Deployment+tutorial"
+    },
+    "mlops": {
+      "officialDocumentationUrls": [
+        "https://mlflow.org/docs/latest/ml/"
+      ],
+      "youtube": [],
+      "youtubeSearchUrl": "https://www.youtube.com/results?search_query=MLOps+tutorial"
+    },
+    "model evaluation": {
+      "officialDocumentationUrls": [
+        "https://scikit-learn.org/stable/modules/model_evaluation.html"
+      ],
+      "youtube": [
+        {
+          "title": "Machine Learning Course for Beginners",
+          "channel": "freeCodeCamp.org",
+          "videoId": "NWONeJKn6kc",
+          "url": "https://www.youtube.com/watch?v=NWONeJKn6kc",
+          "thumbnailUrl": "https://i.ytimg.com/vi/NWONeJKn6kc/hqdefault.jpg",
+          "viewsAtResearch": 2081044,
+          "selectionBasis": "high_view_verified",
+          "coverage": "direct"
+        }
+      ],
+      "youtubeSearchUrl": "https://www.youtube.com/results?search_query=Model+Evaluation+tutorial"
+    },
+    "model optimization": {
+      "officialDocumentationUrls": [
+        "https://pytorch.org/tutorials/recipes/recipes/tuning_guide.html"
+      ],
+      "youtube": [],
+      "youtubeSearchUrl": "https://www.youtube.com/results?search_query=Model+Optimization+tutorial"
+    },
+    "mongodb": {
+      "officialDocumentationUrls": [
+        "https://www.mongodb.com/docs/manual/introduction/"
+      ],
+      "youtube": [],
+      "youtubeSearchUrl": "https://www.youtube.com/results?search_query=MongoDB+tutorial"
+    },
+    "monitoring & logging": {
+      "officialDocumentationUrls": [
+        "https://opentelemetry.io/docs/"
+      ],
+      "youtube": [],
+      "youtubeSearchUrl": "https://www.youtube.com/results?search_query=Monitoring+&+Logging+tutorial"
+    },
+    "mqtt": {
+      "officialDocumentationUrls": [
+        "https://mqtt.org/mqtt-specification/"
+      ],
+      "youtube": [],
+      "youtubeSearchUrl": "https://www.youtube.com/results?search_query=MQTT+tutorial"
+    },
+    "networking": {
+      "officialDocumentationUrls": [
+        "https://developer.mozilla.org/en-US/docs/Learn_web_development/Howto/Web_mechanics/What_is_a_URL"
+      ],
+      "youtube": [],
+      "youtubeSearchUrl": "https://www.youtube.com/results?search_query=Networking+tutorial"
+    },
+    "neural networks": {
+      "officialDocumentationUrls": [
+        "https://pytorch.org/tutorials/beginner/basics/buildmodel_tutorial.html"
+      ],
+      "youtube": [
+        {
+          "title": "PyTorch for Deep Learning & Machine Learning - Full Course",
+          "channel": "Daniel Bourke",
+          "videoId": "V_xro1bcAuA",
+          "url": "https://www.youtube.com/watch?v=V_xro1bcAuA",
+          "thumbnailUrl": "https://i.ytimg.com/vi/V_xro1bcAuA/hqdefault.jpg",
+          "viewsAtResearch": null,
+          "selectionBasis": "curated_relevant",
+          "coverage": "direct"
+        }
+      ],
+      "youtubeSearchUrl": "https://www.youtube.com/results?search_query=Neural+Networks+tutorial"
+    },
+    "nlp": {
+      "officialDocumentationUrls": [
+        "https://huggingface.co/docs/transformers/tasks/sequence_classification"
+      ],
+      "youtube": [],
+      "youtubeSearchUrl": "https://www.youtube.com/results?search_query=NLP+tutorial"
+    },
+    "node.js": {
+      "officialDocumentationUrls": [
+        "https://nodejs.org/en/learn"
+      ],
+      "youtube": [
+        {
+          "title": "Learn Node.js - Full Tutorial for Beginners",
+          "channel": "freeCodeCamp.org",
+          "videoId": "RLtyhwFtXQA",
+          "url": "https://www.youtube.com/watch?v=RLtyhwFtXQA",
+          "thumbnailUrl": "https://i.ytimg.com/vi/RLtyhwFtXQA/hqdefault.jpg",
+          "viewsAtResearch": 1243052,
+          "selectionBasis": "high_view_verified",
+          "coverage": "direct"
+        }
+      ],
+      "youtubeSearchUrl": "https://www.youtube.com/results?search_query=Node.js+tutorial"
+    },
+    "numpy": {
+      "officialDocumentationUrls": [
+        "https://numpy.org/doc/stable/user/"
+      ],
+      "youtube": [
+        {
+          "title": "Python NumPy Tutorial for Beginners",
+          "channel": "freeCodeCamp.org",
+          "videoId": "QUT1VHiLmmI",
+          "url": "https://www.youtube.com/watch?v=QUT1VHiLmmI",
+          "thumbnailUrl": "https://i.ytimg.com/vi/QUT1VHiLmmI/hqdefault.jpg",
+          "viewsAtResearch": 2249022,
+          "selectionBasis": "high_view_verified",
+          "coverage": "direct"
+        }
+      ],
+      "youtubeSearchUrl": "https://www.youtube.com/results?search_query=NumPy+tutorial"
+    },
+    "pandas": {
+      "officialDocumentationUrls": [
+        "https://pandas.pydata.org/docs/getting_started/"
+      ],
+      "youtube": [],
+      "youtubeSearchUrl": "https://www.youtube.com/results?search_query=Pandas+tutorial"
+    },
+    "postgresql": {
+      "officialDocumentationUrls": [
+        "https://www.postgresql.org/docs/current/tutorial.html"
+      ],
+      "youtube": [
+        {
+          "title": "SQL Tutorial - Full Database Course for Beginners",
+          "channel": "freeCodeCamp.org",
+          "videoId": "HXV3zeQKqGY",
+          "url": "https://www.youtube.com/watch?v=HXV3zeQKqGY",
+          "thumbnailUrl": "https://i.ytimg.com/vi/HXV3zeQKqGY/hqdefault.jpg",
+          "viewsAtResearch": 20993714,
+          "selectionBasis": "high_view_verified",
+          "coverage": "direct"
+        }
+      ],
+      "youtubeSearchUrl": "https://www.youtube.com/results?search_query=PostgreSQL+tutorial"
+    },
+    "probability": {
+      "officialDocumentationUrls": [
+        "https://www.khanacademy.org/math/statistics-probability"
+      ],
+      "youtube": [],
+      "youtubeSearchUrl": "https://www.youtube.com/results?search_query=Probability+tutorial"
+    },
+    "problem solving": {
+      "officialDocumentationUrls": [
+        "https://usaco.guide/"
+      ],
+      "youtube": [
+        {
+          "title": "Data Structures Easy to Advanced Course - Full Tutorial from a Google Engineer",
+          "channel": "freeCodeCamp.org",
+          "videoId": "RBSGKlAvoiM",
+          "url": "https://www.youtube.com/watch?v=RBSGKlAvoiM",
+          "thumbnailUrl": "https://i.ytimg.com/vi/RBSGKlAvoiM/hqdefault.jpg",
+          "viewsAtResearch": 7466150,
+          "selectionBasis": "high_view_verified",
+          "coverage": "direct"
+        }
+      ],
+      "youtubeSearchUrl": "https://www.youtube.com/results?search_query=Problem+Solving+tutorial"
+    },
+    "pwm": {
+      "officialDocumentationUrls": [
+        "https://docs.arduino.cc/learn/microcontrollers/analog-output/"
+      ],
+      "youtube": [],
+      "youtubeSearchUrl": "https://www.youtube.com/results?search_query=PWM+tutorial"
+    },
+    "python": {
+      "officialDocumentationUrls": [
+        "https://docs.python.org/3/tutorial/"
+      ],
+      "youtube": [
+        {
+          "title": "Learn Python - Full Course for Beginners [Tutorial]",
+          "channel": "freeCodeCamp.org",
+          "videoId": "rfscVS0vtbw",
+          "url": "https://www.youtube.com/watch?v=rfscVS0vtbw",
+          "thumbnailUrl": "https://i.ytimg.com/vi/rfscVS0vtbw/hqdefault.jpg",
+          "viewsAtResearch": 49300746,
+          "selectionBasis": "high_view_verified",
+          "coverage": "direct"
+        }
+      ],
+      "youtubeSearchUrl": "https://www.youtube.com/results?search_query=Python+tutorial"
+    },
+    "pytorch": {
+      "officialDocumentationUrls": [
+        "https://docs.pytorch.org/tutorials/"
+      ],
+      "youtube": [
+        {
+          "title": "PyTorch for Deep Learning & Machine Learning - Full Course",
+          "channel": "Daniel Bourke",
+          "videoId": "V_xro1bcAuA",
+          "url": "https://www.youtube.com/watch?v=V_xro1bcAuA",
+          "thumbnailUrl": "https://i.ytimg.com/vi/V_xro1bcAuA/hqdefault.jpg",
+          "viewsAtResearch": null,
+          "selectionBasis": "curated_relevant",
+          "coverage": "direct"
+        }
+      ],
+      "youtubeSearchUrl": "https://www.youtube.com/results?search_query=PyTorch+tutorial"
+    },
+    "queues": {
+      "officialDocumentationUrls": [
+        "https://en.cppreference.com/w/cpp/container/queue"
+      ],
+      "youtube": [],
+      "youtubeSearchUrl": "https://www.youtube.com/results?search_query=Queues+tutorial"
+    },
+    "raspberry pi": {
+      "officialDocumentationUrls": [
+        "https://www.raspberrypi.com/documentation/"
+      ],
+      "youtube": [],
+      "youtubeSearchUrl": "https://www.youtube.com/results?search_query=Raspberry+Pi+tutorial"
+    },
+    "react": {
+      "officialDocumentationUrls": [
+        "https://react.dev/learn"
+      ],
+      "youtube": [
+        {
+          "title": "Learn React JS - Full Course for Beginners - Tutorial",
+          "channel": "freeCodeCamp.org",
+          "videoId": "DLX62G4lc44",
+          "url": "https://www.youtube.com/watch?v=DLX62G4lc44",
+          "thumbnailUrl": "https://i.ytimg.com/vi/DLX62G4lc44/hqdefault.jpg",
+          "viewsAtResearch": 3209520,
+          "selectionBasis": "high_view_verified",
+          "coverage": "direct"
+        }
+      ],
+      "youtubeSearchUrl": "https://www.youtube.com/results?search_query=React+tutorial"
+    },
+    "recursion": {
+      "officialDocumentationUrls": [
+        "https://en.cppreference.com/w/cpp/language/recursion"
+      ],
+      "youtube": [],
+      "youtubeSearchUrl": "https://www.youtube.com/results?search_query=Recursion+tutorial"
+    },
+    "redis / caching": {
+      "officialDocumentationUrls": [
+        "https://redis.io/docs/latest/develop/"
+      ],
+      "youtube": [],
+      "youtubeSearchUrl": "https://www.youtube.com/results?search_query=Redis+/+Caching+tutorial"
+    },
+    "responsive web design": {
+      "officialDocumentationUrls": [],
+      "youtube": [],
+      "youtubeSearchUrl": "https://www.youtube.com/results?search_query=Responsive+Web+Design+tutorial"
+    },
+    "rest api": {
+      "officialDocumentationUrls": [
+        "https://developer.mozilla.org/en-US/docs/Glossary/REST"
+      ],
+      "youtube": [
+        {
+          "title": "Learn Node.js - Full Tutorial for Beginners",
+          "channel": "freeCodeCamp.org",
+          "videoId": "RLtyhwFtXQA",
+          "url": "https://www.youtube.com/watch?v=RLtyhwFtXQA",
+          "thumbnailUrl": "https://i.ytimg.com/vi/RLtyhwFtXQA/hqdefault.jpg",
+          "viewsAtResearch": 1243052,
+          "selectionBasis": "high_view_verified",
+          "coverage": "direct"
+        }
+      ],
+      "youtubeSearchUrl": "https://www.youtube.com/results?search_query=REST+APIs+tutorial"
+    },
+    "rtos": {
+      "officialDocumentationUrls": [
+        "https://www.freertos.org/Documentation/02-Kernel"
+      ],
+      "youtube": [],
+      "youtubeSearchUrl": "https://www.youtube.com/results?search_query=RTOS+tutorial"
+    },
+    "scikit-learn": {
+      "officialDocumentationUrls": [
+        "https://scikit-learn.org/stable/user_guide.html"
+      ],
+      "youtube": [
+        {
+          "title": "Machine Learning Course for Beginners",
+          "channel": "freeCodeCamp.org",
+          "videoId": "NWONeJKn6kc",
+          "url": "https://www.youtube.com/watch?v=NWONeJKn6kc",
+          "thumbnailUrl": "https://i.ytimg.com/vi/NWONeJKn6kc/hqdefault.jpg",
+          "viewsAtResearch": 2081044,
+          "selectionBasis": "high_view_verified",
+          "coverage": "direct"
+        }
+      ],
+      "youtubeSearchUrl": "https://www.youtube.com/results?search_query=Scikit-learn+tutorial"
+    },
+    "seaborn": {
+      "officialDocumentationUrls": [
+        "https://seaborn.pydata.org/tutorial.html"
+      ],
+      "youtube": [],
+      "youtubeSearchUrl": "https://www.youtube.com/results?search_query=Seaborn+tutorial"
+    },
+    "searching": {
+      "officialDocumentationUrls": [
+        "https://en.cppreference.com/w/cpp/algorithm"
+      ],
+      "youtube": [],
+      "youtubeSearchUrl": "https://www.youtube.com/results?search_query=Searching+tutorial"
+    },
+    "security fundamentals": {
+      "officialDocumentationUrls": [
+        "https://owasp.org/www-project-top-ten/"
+      ],
+      "youtube": [],
+      "youtubeSearchUrl": "https://www.youtube.com/results?search_query=Security+Fundamentals+tutorial"
+    },
+    "sensors": {
+      "officialDocumentationUrls": [
+        "https://docs.arduino.cc/learn/electronics/sensors"
+      ],
+      "youtube": [],
+      "youtubeSearchUrl": "https://www.youtube.com/results?search_query=Sensors+tutorial"
+    },
+    "shortest path": {
+      "officialDocumentationUrls": [
+        "https://cp-algorithms.com/graph/dijkstra.html"
+      ],
+      "youtube": [],
+      "youtubeSearchUrl": "https://www.youtube.com/results?search_query=Shortest+Path+tutorial"
+    },
+    "sliding window": {
+      "officialDocumentationUrls": [
+        "https://usaco.guide/gold/sliding-window"
+      ],
+      "youtube": [],
+      "youtubeSearchUrl": "https://www.youtube.com/results?search_query=Sliding+Window+tutorial"
+    },
+    "software design": {
+      "officialDocumentationUrls": [
+        "https://refactoring.guru/design-patterns"
+      ],
+      "youtube": [],
+      "youtubeSearchUrl": "https://www.youtube.com/results?search_query=Software+Design+tutorial"
+    },
+    "sorting": {
+      "officialDocumentationUrls": [
+        "https://en.cppreference.com/w/cpp/algorithm/sort"
+      ],
+      "youtube": [],
+      "youtubeSearchUrl": "https://www.youtube.com/results?search_query=Sorting+tutorial"
+    },
+    "spi": {
+      "officialDocumentationUrls": [
+        "https://docs.arduino.cc/learn/communication/spi"
+      ],
+      "youtube": [],
+      "youtubeSearchUrl": "https://www.youtube.com/results?search_query=SPI+tutorial"
+    },
+    "sql": {
+      "officialDocumentationUrls": [
+        "https://www.postgresql.org/docs/current/tutorial.html"
+      ],
+      "youtube": [
+        {
+          "title": "SQL Tutorial - Full Database Course for Beginners",
+          "channel": "freeCodeCamp.org",
+          "videoId": "HXV3zeQKqGY",
+          "url": "https://www.youtube.com/watch?v=HXV3zeQKqGY",
+          "thumbnailUrl": "https://i.ytimg.com/vi/HXV3zeQKqGY/hqdefault.jpg",
+          "viewsAtResearch": 20993714,
+          "selectionBasis": "high_view_verified",
+          "coverage": "direct"
+        }
+      ],
+      "youtubeSearchUrl": "https://www.youtube.com/results?search_query=SQL+tutorial"
+    },
+    "stacks": {
+      "officialDocumentationUrls": [
+        "https://en.cppreference.com/w/cpp/container/stack"
+      ],
+      "youtube": [],
+      "youtubeSearchUrl": "https://www.youtube.com/results?search_query=Stacks+tutorial"
+    },
+    "statistics": {
+      "officialDocumentationUrls": [
+        "https://www.khanacademy.org/math/statistics-probability"
+      ],
+      "youtube": [],
+      "youtubeSearchUrl": "https://www.youtube.com/results?search_query=Statistics+tutorial"
+    },
+    "strings": {
+      "officialDocumentationUrls": [
+        "https://en.cppreference.com/w/cpp/string"
+      ],
+      "youtube": [],
+      "youtubeSearchUrl": "https://www.youtube.com/results?search_query=Strings+tutorial"
+    },
+    "system design": {
+      "officialDocumentationUrls": [
+        "https://github.com/donnemartin/system-design-primer"
+      ],
+      "youtube": [],
+      "youtubeSearchUrl": "https://www.youtube.com/results?search_query=System+Design+tutorial"
+    },
+    "terraform": {
+      "officialDocumentationUrls": [
+        "https://developer.hashicorp.com/terraform/tutorials"
+      ],
+      "youtube": [],
+      "youtubeSearchUrl": "https://www.youtube.com/results?search_query=Terraform+tutorial"
+    },
+    "testing": {
+      "officialDocumentationUrls": [
+        "https://nodejs.org/en/learn/test-runner/introduction"
+      ],
+      "youtube": [],
+      "youtubeSearchUrl": "https://www.youtube.com/results?search_query=Testing+tutorial"
+    },
+    "timers": {
+      "officialDocumentationUrls": [
+        "https://docs.arduino.cc/learn/electronics/timers/"
+      ],
+      "youtube": [],
+      "youtubeSearchUrl": "https://www.youtube.com/results?search_query=Timers+tutorial"
+    },
+    "topological sorting": {
+      "officialDocumentationUrls": [
+        "https://cp-algorithms.com/graph/topological-sort.html"
+      ],
+      "youtube": [],
+      "youtubeSearchUrl": "https://www.youtube.com/results?search_query=Topological+Sorting+tutorial"
+    },
+    "transformers": {
+      "officialDocumentationUrls": [
+        "https://huggingface.co/docs/transformers/index"
+      ],
+      "youtube": [],
+      "youtubeSearchUrl": "https://www.youtube.com/results?search_query=Transformers+tutorial"
+    },
+    "trees": {
+      "officialDocumentationUrls": [
+        "https://en.cppreference.com/w/cpp/container"
+      ],
+      "youtube": [],
+      "youtubeSearchUrl": "https://www.youtube.com/results?search_query=Trees+tutorial"
+    },
+    "two pointers": {
+      "officialDocumentationUrls": [
+        "https://usaco.guide/bronze/two-pointers"
+      ],
+      "youtube": [],
+      "youtubeSearchUrl": "https://www.youtube.com/results?search_query=Two+Pointers+tutorial"
+    },
+    "typescript": {
+      "officialDocumentationUrls": [
+        "https://www.typescriptlang.org/docs/"
+      ],
+      "youtube": [],
+      "youtubeSearchUrl": "https://www.youtube.com/results?search_query=TypeScript+tutorial"
+    },
+    "uart": {
+      "officialDocumentationUrls": [
+        "https://docs.arduino.cc/learn/communication/uart"
+      ],
+      "youtube": [],
+      "youtubeSearchUrl": "https://www.youtube.com/results?search_query=UART+tutorial"
+    },
+    "union-find": {
+      "officialDocumentationUrls": [
+        "https://cp-algorithms.com/data_structures/disjoint_set_union.html"
+      ],
+      "youtube": [],
+      "youtubeSearchUrl": "https://www.youtube.com/results?search_query=Union-Find+tutorial"
+    },
+    "web security": {
+      "officialDocumentationUrls": [
+        "https://developer.mozilla.org/en-US/docs/Web/Security"
+      ],
+      "youtube": [],
+      "youtubeSearchUrl": "https://www.youtube.com/results?search_query=Web+Security+tutorial"
+    }
+  }
+}

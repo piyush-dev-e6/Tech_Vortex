@@ -25,8 +25,8 @@ export default function App() {
         <div className="p-6 rounded-2xl bg-[#0D1424] border border-slate-800">
           <h2 className="text-2xl font-bold text-white mb-2">Platform Master Console</h2>
           <p className="text-sm text-slate-300">
-            For the complete offline-ready production build with audio synthesizers, 4-7-8 breathing calm cycles,
-            live speech recognition mock interviews, and 5-stage AI ML pipelines, open the root <code>index.html</code>.
+            The dashboard is served from the project root and needs the Node.js API for career analysis and resume parsing.
+            The first page load uses CDN-hosted assets.
           </p>
         </div>
       </main>
